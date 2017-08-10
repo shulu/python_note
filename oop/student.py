@@ -15,6 +15,11 @@ class Student(object):
 
     __repr__ = __str__
 
+    def __getattr__(self, attr):
+        if attr == 'grade':
+            return '高一'
+        raise AttributeError('\'Student\' object hash no attribute \'%s\' ' % attr)
+
     def print_score(self):
         print('%s: %s' % (self.__name, self.__score))
 
@@ -80,6 +85,8 @@ will.score = 60
 print(will.score)
 #will.score = 999
 
-print(will.__repr__())
+print(will)
 #bart.set_score(999)
+print(will.grade)
+print(will.some)
 
