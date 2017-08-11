@@ -100,7 +100,3 @@ ENV/
 # mypy
 .mypy_cache/
 /.idea
-<<<<<<< HEAD
-=======
-/.idea
->>>>>>> 15fa2e24c3050b4a9bc8945bac77ddbec2171d39
