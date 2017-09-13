@@ -37,7 +37,7 @@ def merge(defaults, override):
 
 def toDict(d):
     D = Dict()
-    for k, v in d.items:
+    for k, v in d.items():
         D[k] = toDict(v) if isinstance(v, dict) else v
     return D
 
