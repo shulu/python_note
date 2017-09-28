@@ -5,9 +5,11 @@ import re, time, json, logging, hashlib, base64, asyncio
 
 from coroweb import get, post
 
+import markdown2
+
 from models import User, Comment, Blog, next_id
 
-from apis import *
+from apis import Page, APIError, APIValueError, APIPermissionError, APIResourceNotFoundError
 
 from config import configs
 
@@ -42,6 +44,12 @@ def user2cookie(user, max_age):
     s = '%s-%s-%s-%s' % (user.id, user.passwd, expires, _COOKIE_KEY)
     L = [user.id, expires, hashlib.sha1(s.encode('utf-8')).hexdigest()]
     return '-'.join(L)
+
+
+def text2html(text):
+    lines = map(lambda s: '<p>%s</p>' % s.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;'), filter(lambda s: s.strip() != '', text.split('\n')))
+    return ''.join(lines)
+
 
 @asyncio.coroutine
 def cookie2user(cookie_str):
@@ -85,11 +93,26 @@ async def index(request):
     }
 
 
+@get('/blog/{id}')
+def get_blog(id):
+    blog = yield from Blog.find(id)
+    comments = yield from Comment.findAll('blog_id=?', [id], orderBy='created_at desc')
+    for c in comments:
+        c.html_content = text2html(c.content)
+    blog.html_content = markdown2.markdown(blog.content)
+    return {
+        '__template__': 'blog.html',
+        'blog': blog,
+        'comments': comments
+    }
+
+
 @get('/register')
 async def register():
     return {
         '__template__': 'register.html'
     }
+
 
 @get('/signin')
 async def signin():
@@ -165,13 +188,13 @@ def signout(request):
 
 
 @get('/api/blogs')
-def api_blogs(*, page='1'):
+async def api_blogs(*, page='1'):
     page_index = get_page_index(page)
-    num = yield from Blog.findNumber('count(id)')
+    num = await Blog.findNumber('count(id)')
     p = Page(num, page_index)
     if num == 0:
         return dict(page=p, blogs=())
-    blogs = yield from Blog.findAll(orderBy='created_at desc', limit=(p.offset, p.limit))
+    blogs = await Blog.findAll(orderBy='created_at desc', limit=(p.offset, p.limit))
     return dict(page=p, blogs=blogs)
 
 
@@ -187,18 +210,20 @@ def manage_blogs(*, page='1'):
 def manage_create_blogs(request):
     check_admin(request)
     return {
-        '__template__': 'manage_blog_edit.html'
+        '__template__': 'manage_blog_edit.html',
+        'id': '',
+        'action': '/api/blogs'
     }
 
 
 @get('/api/blogs/{id}')
-def api_get_blog(*, id):
-    blog = yield from Blog.find(id)
+async def api_get_blog(*, id):
+    blog = await Blog.find(id)
     return blog
 
 
 @post('/api/blogs')
-def api_create_blog(request, *, name, summary, content):
+async def api_create_blog(request, *, name, summary, content):
     check_admin(request)
     if not name or not name.strip():
         raise APIValueError('name', 'name cannot be empty.')
@@ -207,5 +232,5 @@ def api_create_blog(request, *, name, summary, content):
     if not content or not content.strip():
         raise APIValueError('content', 'content cannot be empty.')
     blog = Blog(user_id=request.__user__.id, user_name=request.__user__.name, user_image=request.__user__.image, name=name.strip(), summary=summary.strip(), content=content.strip())
-    yield from blog.save()
+    await blog.save()
     return blog
