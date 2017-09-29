@@ -24,7 +24,7 @@
 * 获取评论：``` GET /api/comments ```
 * 创建评论：``` POST /api/blogs/:blog_id/comments ```
 * 删除评论：``` POST /api/comments/:comment_id/delete ```
-* 创建新用户：```` POST /api/users ```
+* 创建新用户：``` POST /api/users ```
 * 获取用户：``` GET /api/users ```
 ###管理页面包括：
 * 评论列表页：``` GET /manage/comments ```
