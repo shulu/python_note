@@ -31,9 +31,7 @@
         $('#vm').show();
     }
     $(function() {
-        getJSON('/api/blogs', {
-            page: {{ page_index }}
-    }, function (err, results) {
+        getJSON('/api/blogs', {page: {{ page_index }}}, function(err, results) {
             if (err) {
                 return fatal(err);
             }

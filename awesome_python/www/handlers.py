@@ -78,8 +78,8 @@ def cookie2user(cookie_str):
         logging.exception(e)
         return None
 
-
 @get('/')
+# 首页
 async def index(request):
     blogs = await Blog.findAll('', '', orderBy='created_at desc')
     return {
@@ -89,6 +89,7 @@ async def index(request):
 
 
 @get('/blog/{id}')
+# 查看日志
 async def get_blog(id):
     blog = await Blog.find(id)
     comments = await Comment.findAll('blog_id=?', [id], orderBy='created_at desc')
@@ -104,6 +105,7 @@ async def get_blog(id):
 
 
 @get('/register')
+# 注册用户
 async def register():
     return {
         '__template__': 'register.html'
@@ -111,12 +113,14 @@ async def register():
 
 
 @get('/signin')
+# 登录
 async def signin():
     return {
         '__template__': 'signin.html'
     }
 
 @get('/api/users')
+# 获取用户
 async def api_get_users(*, page='1'):
     users = await User.findAll(orderBy='created_at desc')
     for u in users:
@@ -125,6 +129,7 @@ async def api_get_users(*, page='1'):
 
 
 @post('/api/users')
+# 注册用户
 async def api_register_user(*, email, name, passwd):
     if not name or not name.strip():
         raise APIValueError('name')
@@ -149,6 +154,7 @@ async def api_register_user(*, email, name, passwd):
 
 
 @post('/api/authenticate')
+# 查看授权
 async def authenticate(*, email, passwd):
     if not email:
         raise APIValueError('email', 'Invalid email.')
@@ -175,6 +181,7 @@ async def authenticate(*, email, passwd):
 
 
 @get('/signout')
+# 登出
 def signout(request):
     referer = request.headers.get('Referer')
     r = web.HTTPFound(referer or '/')
@@ -184,6 +191,7 @@ def signout(request):
 
 
 @get('/api/blogs')
+# 博客列表
 async def api_blogs(*, page='1'):
     page_index = get_page_index(page)
     num = await Blog.findNumber('count(id)')
@@ -195,6 +203,7 @@ async def api_blogs(*, page='1'):
 
 
 @get('/manage/blogs')
+# 博客管理
 def manage_blogs(*, page='1'):
     return {
         '__template__': 'manage_blogs.html',
@@ -203,6 +212,7 @@ def manage_blogs(*, page='1'):
 
 
 @get('/manage/blogs/create')
+# 新建博客
 def manage_create_blogs(request):
     check_admin(request)
     return {
@@ -213,12 +223,23 @@ def manage_create_blogs(request):
 
 
 @get('/api/blogs/{id}')
+# 查看博客api
 async def api_get_blog(*, id):
     blog = await Blog.find(id)
     return blog
 
 
+@get('/blogs/{id}')
+# 查看博客
+def get_blogs(*, id):
+    return {
+        '__template__': 'blogs_show.html',
+        'blog_id': id
+    }
+
+
 @post('/api/blogs')
+# 新建博客
 async def api_create_blog(request, *, name, summary, content):
     check_admin(request)
     if not name or not name.strip():
