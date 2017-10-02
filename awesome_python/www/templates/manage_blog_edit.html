@@ -19,7 +19,7 @@
                             $form.showFormError(err);
                         }
                         else {
-                            return location.assign('/api/blogs/' + r.id);
+                            return location.assign('/blogs/' + r.id);
                         }
                     });
                 }
@@ -76,6 +76,12 @@
             <label class="uk-form-label">标题:</label>
             <div class="uk-form-controls">
                 <input v-model="name" name="name" type="text" placeholder="标题" class="uk-width-1-1">
+            </div>
+        </div>
+        <div class="uk-form-row">
+            <label class="uk-form-label">子标题:</label>
+            <div class="uk-form-controls">
+                <input v-model="sub_name" name="sub_name" type="text" placeholder="子标题" class="uk-width-1-1">
             </div>
         </div>
         <div class="uk-form-row">
