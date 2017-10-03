@@ -12,5 +12,4 @@ CREATE TABLE `focus` (
 	`tags` VARCHAR(255) NOT NULL,
 	`video_time` SMALLINT(6) NOT NULL
 )
-	ENGINE=MyISAM
-;
+	ENGINE=INNODB;

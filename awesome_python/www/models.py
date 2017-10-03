@@ -2,7 +2,7 @@
 
 import time, uuid
 
-from orm import Model, StringField, BooleanField, FloatField, TextField
+from orm import Model, StringField, BooleanField, FloatField, TextField, IntegerField
 
 
 def next_id():
@@ -46,3 +46,19 @@ class Comment(Model):
     content = TextField()
     created_at = FloatField(default=time.time())
 
+class Fcous(Model):
+    __table__ = 'focus'
+
+    id = StringField(primary_key=True, default=next_id(), ddl='varchar(50)')
+    user_name = StringField(ddl='varchar(50)')
+    user_id = IntegerField()
+    user_img = StringField(ddl='varchar(255)')
+    avatar = StringField(ddl='varchar(255)')
+    sign = StringField(ddl='varchar(255)')
+    title = StringField(ddl='varchar(50)')
+    title_img = StringField(ddl='varchar(255)')
+    url = StringField(ddl='varchar(50)')
+    release_date = StringField(ddl='varchar(50)')
+    description = StringField(ddl='varchar(50)')
+    tags = StringField(ddl='varchar(255)')
+    video_time = IntegerField()

@@ -28,8 +28,9 @@
 {% endblock %}
 
 {% block content %}
+<div class="uk-grid" data-uk-grid-margin>
 
-<div class="uk-width-medium-3-4">
+    <div class="uk-width-medium-3-4">
     <article class="uk-article">
         <h2>{{ blog.name }}</h2>
         <p class="uk-article-meta">发表于{{ blog.created_at|datetime }}</p>
@@ -84,22 +85,22 @@
     </ul>
 
 </div>
-
-<div class="uk-width-medium-1-4">
-    <div class="uk-panel uk-panel-box">
-        <div class="uk-text-center">
-            <img class="uk-border-circle" width="120" height="120" src="{{ blog.user_image }}">
-            <h3>{{ blog.user_name }}</h3>
+    <div class="uk-width-medium-1-4">
+        <div class="uk-panel uk-panel-box">
+            <div class="uk-text-center">
+                <img class="uk-border-circle" width="120" height="120" src="{{ blog.user_image }}">
+                <h3>{{ blog.user_name }}</h3>
+            </div>
+        </div>
+        <div class="uk-panel uk-panel-header">
+            <h3 class="uk-panel-title">友情链接</h3>
+            <ul class="uk-list uk-list-line">
+                <li><i class="uk-icon-link"></i> <a href="#">编程</a></li>
+                <li><i class="uk-icon-link"></i> <a href="#">思考</a></li>
+                <li><i class="uk-icon-link"></i> <a href="#">读书</a></li>
+            </ul>
         </div>
     </div>
-    <div class="uk-panel uk-panel-header">
-        <h3 class="uk-panel-title">友情链接</h3>
-        <ul class="uk-list uk-list-line">
-            <li><i class="uk-icon-link"></i> <a href="#">编程</a></li>
-            <li><i class="uk-icon-link"></i> <a href="#">思考</a></li>
-            <li><i class="uk-icon-link"></i> <a href="#">读书</a></li>
-        </ul>
-    </div>
-</div>
 
+</div>
 {% endblock %}

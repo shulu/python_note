@@ -338,3 +338,10 @@ async def api_delete_blog(request, *, id):
     blog = await Blog.find(id)
     await blog.remove()
     return dict(id=id)
+
+
+@get('/acfun/focus')
+def get_acfun_focus():
+    return {
+        '__template__':'acfun_post.html'
+    }
