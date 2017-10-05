@@ -35,11 +35,11 @@
     {% block beforehead %}<!-- before head  -->{% endblock %}
 </head>
 <body>
-<div  class="uk-container uk-container-center uk-margin-top uk-margin-large-bottom" v-cloak>
+<div  class="uk-container uk-container-center uk-margin-top uk-margin-large-bottom">
     <nav class="uk-navbar uk-margin-large-bottom">
-        <a class="uk-navbar-brand uk-hidden-small" href="#">Awesome</a>
+        <a class="uk-navbar-brand uk-hidden-small" href="/"><i class="uk-icon-home"></i> Awesome </a>
         <ul id="nav" class="uk-navbar-nav uk-hidden-small">
-            <li  v-for="(item,index) in navs" :class="{active: index==now_index}">
+            <li  v-for="(item,index) in navs" :class="{'uk-active': index==now_index}">
                 <a :id="item.id" :data-url="item.data_url" :href="item.nav_url" @click="navClick(index)" v-text="item.nav_title"></a>
             </li>
             <li>
@@ -50,7 +50,7 @@
             <ul class="uk-navbar-nav">
                 {% if __user__ %}
                 <li class="uk-parent" data-uk-dropdown="" aria-haspopup="true" aria-expanded="false">
-                    <a href="">管理员操作</a>
+                    <a href=""><i class="uk-icon-cogs"></i> 管理员操作 </a>
                     <div class="uk-dropdown uk-dropdown-navbar uk-dropdown-bottom" aria-hidden="true" style="top: 40px; left: 0px;" tabindex="">
                         <ul class="uk-nav uk-nav-navbar">
                             <li class="uk-nav-header">用户管理</li>

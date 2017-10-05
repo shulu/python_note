@@ -180,6 +180,7 @@ function toSmartDate(timestamp) {
 
 $(function() {
     $('.x-smartdate').each(function() {
+        console.log($(this).attr('date'))
         $(this).removeClass('x-smartdate').text(toSmartDate($(this).attr('date')));
     });
 });

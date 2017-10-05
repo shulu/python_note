@@ -343,16 +343,19 @@ async def api_delete_blog(request, *, id):
 @get('/api/acfun/focus')
 async def api_acfun_focus(*, page='1'):
     page_index = get_page_index(page)
+    # 查看总数 目前最多只拿50
     num = await ACFcous.findNumber('count(id)')
     p = Page(num, page_index)
     if num == 0:
-        return dict(page=p, blogs=())
+        return dict(page=p, focus=())
     focus = await ACFcous.findAll(orderBy='release_date desc', limit=(p.offset, p.limit))
-    return dict(page=p, focus=focus)
+    tags = await ACFcous.findField('user_name', orderBy='release_date desc', limit=(p.offset, p.limit))
+    return dict(page=p, focus=focus, tags=tags)
 
 
 @get('/acfun/focus')
-def get_acfun_focus():
+def get_acfun_focus(*, page = 1):
     return {
-        '__template__':'acfun_post.html'
+        '__template__':'acfun_post.html',
+        'page_index': get_page_index(page)
     }

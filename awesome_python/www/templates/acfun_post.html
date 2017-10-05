@@ -1,25 +1,29 @@
 {% extends '__base__.html' %}
 
-{% block title %}Acfun_daily_post{% endblock %}
+{% block title %}Acfun_DAILY_POST{% endblock %}
 
 {% block beforehead %}
 
 <script>
-    function initVM(data) {
+    function initVM(data)
+    {
         var vm = new Vue({
             el: '#vm',
             data: {
                 focus: data.focus,
+                tags: data.tags,
                 page: data.page
             },
             methods: {
-
-            }
+                gotoPage: function (page) {
+                    gotoPage(page)
+                },
+            },
         });
         $('#vm').show();
     }
     $(function() {
-        getJSON('/api/acfun/focus', {}, function(err, results) {
+        getJSON('/api/acfun/focus', {page: {{ page_index }}}, function(err, results) {
             if (err) {
                 return fatal(err);
             }
@@ -40,14 +44,19 @@
         </div>
     </div>
 
+    <div id="error" class="uk-width-1-1">
+    </div>
+
+    <div id="loading" class="uk-width-1-1 uk-text-center">
+        <span><i class="uk-icon-spinner uk-icon-medium uk-icon-spin"></i> 正在加载...</span>
+    </div>
+
     <div id="vm" class="uk-grid" data-uk-grid-margin>
         <div class="uk-width-1-1">
 
             <ul class="uk-subnav uk-subnav-pill" data-uk-switcher="{connect:'#switcher-content'}">
                 <li class="uk-active"><a href="#">All</a></li>
-                <li><a href="#">Logo</a></li>
-                <li><a href="#">Web</a></li>
-                <li><a href="#">App</a></li>
+                <li v-for="tag in tags"><a v-text="tag.user_name" href="#"></a></li>
             </ul>
 
             <ul id="switcher-content" class="uk-switcher">
@@ -60,10 +69,11 @@
                             <div class="uk-thumbnail uk-overlay-hover" >
                                 <figure class="uk-overlay">
                                     <img width="600" height="400" :src="item.title_img" alt="">
-                                    <figcaption class="uk-overlay-panel uk-overlay-background uk-overlay-fade uk-overlay-bottom">
+                                    <figcaption class="uk-overlay-panel uk-overlay-background uk-overlay-fade uk-overlay-bottom uk-overlay-slide-bottom">
                                         <div v-text='"up主 : "+item.user_name'></div>
                                         <div v-text='"标题 : "+item.title'></div>
-                                        <div v-text='"推送时间 : "+item.release_date'></div>
+                                        <!--<div v-text='"推送时间 : "+item.release_date.toDateTime()'></div>-->
+                                        <div v-text="item.release_date"></div>
                                     </figcaption>
                                     <a class="uk-position-cover" target="_blank" :href="item.url"></a>
                                 </figure>
@@ -297,14 +307,21 @@
 
             </ul>
             <ul class="uk-pagination">
-                <li class="uk-disabled"><span><i class="uk-icon-angle-double-left"></i></span></li>
-                <li class="uk-active"><span>1</span></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
+                <li class="uk-disabled" :class="{'uk-active': page.has_previous}">
+                    <span><i class="uk-icon-angle-double-left"></i> 上一页 </span>
+                </li>
+                <li v-for="pages in page.page_count" class="uk-active" :class="{'uk-disabled': pages!=page.page_index}">
+                    <template v-if="pages==page.page_index">
+                        <span v-text="pages"></span>
+                    </template>
+                    <template v-else>
+                        <a v-text="pages" @click="gotoPage(pages)"></a>
+                    </template>
+                </li>
                 <li><span>...</span></li>
-                <li><a href="#">20</a></li>
-                <li><a href="#"><span><i class="uk-icon-angle-double-right"></i></span></a></li>
+                <li class="uk-disabled" :class="{'uk-active': page.has_next}">
+                    <a href="#"><span><i class="uk-icon-angle-double-right"></i> 下一页 </span></a>
+                </li>
             </ul>
         </div>
     </div>

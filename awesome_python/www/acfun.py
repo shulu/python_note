@@ -67,8 +67,11 @@ def get_data():
         # print(contents[0])
         for item in contents:
             focus_id = next_id()
-            release_date = item['releaseDate']
-            if item['sign']:
+            # acfun时间多000
+            release_date = str(item['releaseDate'])[:-3]
+
+            # Python 3.X 里不包含 has_key() 函数，被 __contains__(key) 替代:
+            if item.__contains__('sign'):
                 sign = item['sign']
             else:
                 sign = ''
@@ -76,7 +79,7 @@ def get_data():
                 focus_id,
                 item['username'], item['userId'], item['userImg'],
                 item['avatar'], sign, item['title'],
-                item['titleImg'], 'http://www.acfun.cn'+item['url'], item['releaseDate'],
+                item['titleImg'], 'http://www.acfun.cn'+item['url'], release_date,
                 item['description'], item['tags'], item['time']
             )
             store(data)
@@ -84,7 +87,7 @@ def get_data():
 
 if __name__ == '__main__':
     get_data()
-
+    print('get data successful!')
 
 
 
