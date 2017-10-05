@@ -46,8 +46,9 @@ class Comment(Model):
     content = TextField()
     created_at = FloatField(default=time.time())
 
-class Fcous(Model):
-    __table__ = 'focus'
+
+class ACFcous(Model):
+    __table__ = 'acfun_focus'
 
     id = StringField(primary_key=True, default=next_id(), ddl='varchar(50)')
     user_name = StringField(ddl='varchar(50)')

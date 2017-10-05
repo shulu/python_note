@@ -7,7 +7,7 @@ from coroweb import get, post
 
 import markdown2
 
-from models import User, Comment, Blog, next_id
+from models import User, Comment, Blog, ACFcous, next_id
 
 from apis import Page, APIError, APIValueError, APIPermissionError, APIResourceNotFoundError
 
@@ -338,6 +338,17 @@ async def api_delete_blog(request, *, id):
     blog = await Blog.find(id)
     await blog.remove()
     return dict(id=id)
+
+
+@get('/api/acfun/focus')
+async def api_acfun_focus(*, page='1'):
+    page_index = get_page_index(page)
+    num = await ACFcous.findNumber('count(id)')
+    p = Page(num, page_index)
+    if num == 0:
+        return dict(page=p, blogs=())
+    focus = await ACFcous.findAll(orderBy='release_date desc', limit=(p.offset, p.limit))
+    return dict(page=p, focus=focus)
 
 
 @get('/acfun/focus')

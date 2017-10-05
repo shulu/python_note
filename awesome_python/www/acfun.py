@@ -5,6 +5,7 @@ import sys
 import requests
 import json
 import pymysql
+from models import next_id
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer,encoding='utf8') #改变标准输出的默认编码
 
@@ -21,18 +22,19 @@ sys.stdout = io.TextIOWrapper(sys.stdout.buffer,encoding='utf8') #改变标准�
 def store(data):
     # 打开数据库连接
     con = pymysql.connect(
-        user="root",
-        password="",  #连接数据库，不会的可以看我之前写的连接数据库的文章
+        user="www-data",
+        password="www-data",  #连接数据库，不会的可以看我之前写的连接数据库的文章
         port=3306,
         host="127.0.0.1",
-        db="acfun",
+        db="awesome",
         charset="utf8"
     )
     # 使用cursor()方法获取操作游标
     cur = con.cursor()
-    sql = "INSERT INTO `focus` (user_name,user_id ,user_img,avatar,sign,title,title_img,url,release_date,description ,tags ,video_time) VALUES ('%s', '%d', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%d')" % data
+    sql = "INSERT INTO `acfun_focus` (id, user_name, user_id ,user_img,avatar,sign,title,title_img,url,release_date,description ,tags ,video_time) VALUES ('%s', '%s', '%d', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%d')" % data
     cur.execute(sql)
     con.commit()
+
 
 def get_data():
     s = requests.session()
@@ -64,9 +66,16 @@ def get_data():
         contents = decode_data['contents']
         # print(contents[0])
         for item in contents:
+            focus_id = next_id()
+            release_date = item['releaseDate']
+            if item['sign']:
+                sign = item['sign']
+            else:
+                sign = ''
             data = (
+                focus_id,
                 item['username'], item['userId'], item['userImg'],
-                item['avatar'], item['sign'], item['title'],
+                item['avatar'], sign, item['title'],
                 item['titleImg'], 'http://www.acfun.cn'+item['url'], item['releaseDate'],
                 item['description'], item['tags'], item['time']
             )

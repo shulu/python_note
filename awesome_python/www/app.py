@@ -117,7 +117,8 @@ def datetime_filter(t):
     if delta < 604800:
         return u'%s days ago' % (delta // 86400)
     dt = datetime.fromtimestamp(t)
-    return u'%syear-%smonth-%sday' % (dt.year, dt.month, dt.day)
+    # return u'%syear-%smonth-%sday' % (dt.year, dt.month, dt.day)
+    return u'%s年-%s月-%s日' % (dt.year, dt.month, dt.day)
 
 # def index(request):
 #     return web.Response(body=b'<h1>Awesome</h1>', content_type='text/html')

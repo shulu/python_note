@@ -21,7 +21,7 @@
     <meta charset="utf-8" />
     {% block meta %}<!-- block meta  -->{% endblock %}
     <title>{% block title %} ? {% endblock %} - Awesome Python Webapp</title>
-    <link href="/favicon.ico" rel="icon" type="image/x-icon" />
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="/static/css/uikit.min.css">
     <link rel="stylesheet" href="/static/css/uikit.gradient.min.css">
     <link rel="stylesheet" href="/static/css/awesome.css" />
@@ -35,7 +35,7 @@
     {% block beforehead %}<!-- before head  -->{% endblock %}
 </head>
 <body>
-<div  class="uk-container uk-container-center uk-margin-top uk-margin-large-bottom">
+<div  class="uk-container uk-container-center uk-margin-top uk-margin-large-bottom" v-cloak>
     <nav class="uk-navbar uk-margin-large-bottom">
         <a class="uk-navbar-brand uk-hidden-small" href="#">Awesome</a>
         <ul id="nav" class="uk-navbar-nav uk-hidden-small">
@@ -81,6 +81,22 @@
         </div>
     </nav>
     <!-- content -->{% block content %}{% endblock %}<!-- // content -->
+</div>
+<div class="site-footer uk-margin-large-top">
+    <div class="uk-container uk-container-center uk-text-center">
+        <div class="uk-panel uk-margin-top uk-margin-bottom">
+            <p>
+                <a target="_blank" href="http://weibo.com/liaoxuefeng" class="uk-icon-button uk-icon-weibo"></a>
+                <a target="_blank" href="https://github.com/michaelliao" class="uk-icon-button uk-icon-github"></a>
+                <a target="_blank" href="http://www.linkedin.com/in/liaoxuefeng" class="uk-icon-button uk-icon-linkedin-square"></a>
+                <a target="_blank" href="https://twitter.com/liaoxuefeng" class="uk-icon-button uk-icon-twitter"></a>
+            </p>
+            <p>Powered by <a href="http://awesome.liaoxuefeng.com">Awesome Python Webapp</a>. Copyright &copy; 2014. [<a href="/manage/" target="_blank">Manage</a>]</p>
+            <p><a href="http://www.liaoxuefeng.com/" target="_blank">www.liaoxuefeng.com</a>. All rights reserved.</p>
+            <a target="_blank" href="http://www.w3.org/TR/html5/"><i class="uk-icon-html5" style="font-size:64px; color: #444;"></i></a>
+        </div>
+
+    </div>
 </div>
 </body>
 <script src="/static/js/nav.js"></script>
