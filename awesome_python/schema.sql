@@ -4,7 +4,7 @@ create database awesome;
 
 use awesome;
 
-grant select, insert, update, delete on awesome.* to 'www-data'@'localhost' identified by 'www-data';
+grant select, insert, update, delete on awesome.* to 'www-data'@'*' identified by 'www-data';
 
 create table users (
     `id` varchar(50) not null,
@@ -60,5 +60,5 @@ CREATE TABLE `acfun_focus` (
     `tags` VARCHAR(255) NOT NULL,
     `video_time` SMALLINT(6) NOT NULL,
     PRIMARY KEY (`id`)
-)ENGINE=MyISAM DEFAULT CHARSET=utf8;
+)ENGINE=innodb DEFAULT CHARSET=utf8;
 

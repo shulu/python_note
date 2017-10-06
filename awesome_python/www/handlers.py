@@ -350,6 +350,8 @@ async def api_acfun_focus(*, page='1'):
         return dict(page=p, focus=())
     focus = await ACFcous.findAll(orderBy='release_date desc', limit=(p.offset, p.limit))
     tags = await ACFcous.findField('user_name', orderBy='release_date desc', limit=(p.offset, p.limit))
+    for tag in tags:
+        pass
     return dict(page=p, focus=focus, tags=tags)
 
 

@@ -22,10 +22,13 @@ sys.stdout = io.TextIOWrapper(sys.stdout.buffer,encoding='utf8') #改变标准�
 def store(data):
     # 打开数据库连接
     con = pymysql.connect(
-        user="www-data",
-        password="www-data",  #连接数据库，不会的可以看我之前写的连接数据库的文章
+        #user="www-data",
+        #password="www-data",  #连接数据库，不会的可以看我之前写的连接数据库的文章
+        user="root",
+        password="123",
         port=3306,
-        host="127.0.0.1",
+        # host="127.0.0.1",
+        host="192.168.217.131",
         db="awesome",
         charset="utf8"
     )
