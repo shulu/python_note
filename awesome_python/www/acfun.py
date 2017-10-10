@@ -2,6 +2,7 @@
 
 import io
 import sys
+import time
 import requests
 import json
 import pymysql
@@ -22,13 +23,13 @@ sys.stdout = io.TextIOWrapper(sys.stdout.buffer,encoding='utf8') #改变标准�
 def store(data):
     # 打开数据库连接
     con = pymysql.connect(
-        #user="www-data",
-        #password="www-data",  #连接数据库，不会的可以看我之前写的连接数据库的文章
-        user="root",
-        password="123",
+        user="www-data",
+        password="www-data",  #连接数据库，不会的可以看我之前写的连接数据库的文章
+        #user="root",
+        #password="123",
         port=3306,
-        # host="127.0.0.1",
-        host="192.168.217.131",
+        host="127.0.0.1",
+        #host="192.168.217.131",
         db="awesome",
         charset="utf8"
     )
@@ -72,7 +73,9 @@ def get_data():
             focus_id = next_id()
             # acfun时间多000
             release_date = str(item['releaseDate'])[:-3]
-
+            # 利用localtime()转换为时间数组,然后格式化为需要的格式
+            release_date = time.localtime(int(release_date))
+            release_date = time.strftime("%Y-%m-%d %H:%M:%S", release_date)
             # Python 3.X 里不包含 has_key() 函数，被 __contains__(key) 替代:
             if item.__contains__('sign'):
                 sign = item['sign']

@@ -66,14 +66,13 @@
                         <div class="uk-width-medium-1-3" v-for="val in item">
                             <!--显示界面-->
                             <!--<div class="uk-thumbnail uk-overlay-hover" data-uk-modal="{target:'#modal-1'}" >-->
-                            <div class="uk-thumbnail uk-overlay-hover" >
+                            <div class="uk-thumbnail" >
                                 <figure class="uk-overlay">
                                     <img width="600" height="200" :src="val.title_img" alt="" style="height:200px">
-                                    <figcaption class="uk-overlay-panel uk-overlay-background uk-overlay-fade uk-overlay-bottom uk-overlay-slide-bottom">
+                                    <figcaption class="uk-overlay-panel uk-overlay-background uk-overlay-bottom">
                                         <div v-text='"up主 : "+val.user_name'></div>
                                         <div v-text='"标题 : "+val.title'></div>
                                         <div v-text='"推送时间 : "+val.release_date'></div>
-                                        <!--<div v-text="val.release_date"></div>-->
                                     </figcaption>
                                     <a class="uk-position-cover" target="_blank" :href="val.url"></a>
                                 </figure>

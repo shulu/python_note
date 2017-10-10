@@ -352,7 +352,8 @@ async def api_acfun_focus(*, page='1'):
     all_focus = [focus]
     tags = []
     for item in focus:
-        tags.append(item['user_name'])
+        if item['user_name'] not in tags:
+            tags.append(item['user_name'])
     for tag in tags:
         temp = []
         for item in focus:
