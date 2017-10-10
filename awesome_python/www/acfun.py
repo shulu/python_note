@@ -57,7 +57,7 @@ def get_data():
     login_data = {'username':'13570274240','password':'SHU1202LU'}
     s.post('http://www.acfun.cn/login.aspx',data=login_data,headers=headers)
     url = 'http://www.acfun.cn/member/publishContent.aspx?isGroup=0&groupId=-1&pageSize=10&pageNo='
-    _range = ['1','2','3','4', '5']
+    _range = ['1','2','3','4', '5', '6', '7']
     for x in _range:
         real_url = url+x
         # 获取请求信息
