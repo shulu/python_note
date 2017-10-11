@@ -29,9 +29,7 @@
         });
     }
     $(function() {
-        getJSON('/api/comments', {
-            page: {{ page_index }}
-    }, function (err, results) {
+        getJSON('/api/comments', {page: {{ page_index }}}, function (err, results) {
             if (err) {
                 return fatal(err);
             }
@@ -73,7 +71,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr v-repeat="comment: comments" >
+        <tr v-for="comment in comments" >
             <td>
                 <span v-text="comment.user_name"></span>
             </td>
@@ -84,11 +82,11 @@
                 <span v-text="comment.created_at.toDateTime()"></span>
             </td>
             <td>
-                <a href="#0" v-on="click: delete_comment(comment)"><i class="uk-icon-trash-o"></i>
+                <a href="#0" :click="delete_comment(comment)"><i class="uk-icon-trash-o"></i></a>
             </td>
         </tr>
         </tbody>
     </table>
-    <div v-component="pagination" v-with="page"></div>
+    <page-component :page="page"></page-component>
 </div>
 {% endblock %}

@@ -13,12 +13,7 @@
                 focus: data.focus,
                 tags: data.tags,
                 page: data.page
-            },
-            methods: {
-                gotoPage: function (page) {
-                    gotoPage(page)
-                },
-            },
+            }
         });
         $('#vm').show();
     }
@@ -50,7 +45,6 @@
             <p class="uk-text-large">ACFUN 每周 推送合集.</p>
         </div>
     </div>
-
     <div id="vm" class="uk-grid" data-uk-grid-margin>
         <div class="uk-width-1-1">
 
@@ -87,26 +81,8 @@
                         </div>
                     </div>
                 </li>
-
             </ul>
-            <ul class="uk-pagination">
-                <li class="uk-disabled" :class="{'uk-active': page.has_previous}">
-                    <span><i class="uk-icon-angle-double-left"></i> 上一页 </span>
-                </li>
-                <li v-for="pages in page.page_count" class="uk-active" :class="{'uk-disabled': pages!=page.page_index}">
-                    <template v-if="pages==page.page_index">
-                        <span v-text="pages"></span>
-                    </template>
-                    <template v-else>
-                        <a v-text="pages" @click="gotoPage(pages)"></a>
-                    </template>
-                </li>
-                <li><span>...</span></li>
-                <li class="uk-disabled" :class="{'uk-active': page.has_next}">
-                    <a href="#"><span><i class="uk-icon-angle-double-right"></i> 下一页 </span></a>
-                </li>
-            </ul>
+            <page-component :page="page"></page-component>
         </div>
     </div>
-
 {% endblock %}

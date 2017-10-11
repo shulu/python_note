@@ -81,7 +81,7 @@ def cookie2user(cookie_str):
 @get('/')
 # 首页
 async def index(request):
-    blogs = await Blog.findAll('', '', orderBy='created_at desc')
+    blogs = await Blog.findAll('', limit=10 , orderBy='created_at desc')
     return {
         '__template__': 'blogs.html',
         'blogs': blogs
@@ -122,10 +122,15 @@ async def signin():
 @get('/api/users')
 # 获取用户
 async def api_get_users(*, page='1'):
-    users = await User.findAll(orderBy='created_at desc')
+    page_index = get_page_index(page)
+    num = await User.findNumber('count(id)')
+    p = Page(num, page_index)
+    if num == 0:
+        return dict(page=p, users=())
+    users = await User.findAll(orderBy='created_at desc', limit=(p.offset, p.limit))
     for u in users:
         u.passwd = '******'
-    return dict(users=users)
+    return dict(page=p, users=users)
 
 
 @post('/api/users')
@@ -364,7 +369,7 @@ async def api_acfun_focus(*, page='1'):
 
 
 @get('/acfun/focus')
-def get_acfun_focus(*, page = 1):
+def get_acfun_focus(*, page='1'):
     return {
         '__template__':'acfun_post.html',
         'page_index': get_page_index(page)
