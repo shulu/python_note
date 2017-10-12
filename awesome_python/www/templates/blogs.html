@@ -35,10 +35,12 @@
         {% endfor %}
     </div>
     <div class="uk-width-medium-1-4">
+        {% if __user__ %}
         <div class="uk-panel uk-panel-box uk-text-center">
-        <img class="uk-border-circle" width="120" height="120" src="{{ __user__.image }}">
-        <p>Lorem ipsum dolor sit amet, consectetur adipisici elit, sed eiusmod tempor incidunt ut.</p>
+            <img class="uk-border-circle" width="120" height="120" src="{{ __user__.image }}">
+            <p>Lorem ipsum dolor sit amet, consectetur adipisici elit, sed eiusmod tempor incidunt ut.</p>
         </div>
+        {% endif %}
         <div class="uk-panel">
             <h3 class="uk-panel-title">Archives</h3>
             <ul class="uk-list uk-list-line">

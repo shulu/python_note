@@ -15,7 +15,7 @@
     <script src="/static/js/components/pagination.min.js"></script>
     <!--<script src="/static/js/vue.min.js"></script>-->
     <script src="/static/js/vue.js"></script>
-    <script src="/static/js/vue-router.js"></script>
+    <!--<script src="/static/js/vue-router.js"></script>-->
     <script src="/static/js/awesome.js"></script>
     <script src="/static/js/components/component.js"></script>
     {% block beforehead %}<!-- before head  -->{% endblock %}
@@ -31,18 +31,6 @@
             <li>
                 <a target="_blank" href="http://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000">教程</a>
             </li>
-            <!-- 使用 router-link 组件来导航. -->
-            <!-- 通过传入 `to` 属性指定链接. -->
-            <!-- <router-link> 默认会被渲染成一个 `<a>` 标签 -->
-            <li>
-                <router-link to="/foo">Go to Foo</router-link>
-            </li>
-            <li>
-                <router-link to="/bar">Go to Bar</router-link>
-            </li>
-            <!-- 路由出口 -->
-            <!-- 路由匹配到的组件将渲染在这里 -->
-            <router-view></router-view>
         </ul>
         <div class="uk-navbar-flip">
             <ul class="uk-navbar-nav">
@@ -64,7 +52,7 @@
                     </div>
                 </li>
                 <li class="uk-parent" data-uk-dropdown>
-                    <a href="#0"><i class="uk-icon-user"></i> {{ __user__.name }}</a>
+                    <a href="#0"><i class="uk-icon-user" ></i> {{ __user__.name }}</a>
                     <div class="uk-dropdown uk-dropdown-navbar">
                         <ul class="uk-nav uk-nav-navbar">
                             <li><a href="/signout"><i class="uk-icon-sign-out"></i> 登出</a></li>
@@ -100,6 +88,5 @@
 </div>
 </body>
 <script src="/static/js/nav.js"></script>
-<script src="/static/js/components/router.js"></script>
-
+<!--<script src="/static/js/components/router.js"></script>-->
 </html>
