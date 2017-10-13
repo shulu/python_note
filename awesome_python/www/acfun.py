@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
 
 import io
+import json
 import sys
 import time
+
 import requests
-import json
-import pymysql
+
 from models import next_id
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer,encoding='utf8') #改变标准输出的默认编码
@@ -18,17 +19,6 @@ sys.stdout = io.TextIOWrapper(sys.stdout.buffer,encoding='utf8') #改变标准�
 #*特殊方法*#
 # r.json() #Requests中内置的JSON解码器
 # r.raise_for_status() #失败请求(非200响应)抛出异常
-
-
-def store(data):
-    # 打开数据库连接
-    con = pymysql.connect(user="root", password="123", port=3306, host="192.168.217.131", db="awesome", charset="utf8")
-    # con = pymysql.connect(user="www-data", password="www-data", port=3306, host="127.0.0.1", db="awesome", charset="utf8")
-    # 使用cursor()方法获取操作游标
-    cur = con.cursor()
-    sql = "INSERT INTO `acfun_focus` (id, user_name, user_id ,user_img,avatar,sign,title,title_img,url,release_date,description ,tags ,video_time) VALUES ('%s', '%s', '%d', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%d')" % data
-    cur.execute(sql)
-    con.commit()
 
 
 def get_data():
@@ -79,7 +69,20 @@ def get_data():
                 item['titleImg'], 'http://www.acfun.cn'+item['url'], release_date,
                 item['description'], item['tags'], item['time']
             )
-            store(data)
+            sql = "INSERT INTO `acfun_focus` " \
+                  "(" \
+                  "id, user_name, user_id ,user_img," \
+                  "avatar,sign,title,title_img,url," \
+                  "release_date,description ,tags " \
+                  ",video_time) " \
+                  "VALUES " \
+                  "(" \
+                  "'%s', '%s', '%d', '%s', " \
+                  "'%s', '%s', '%s', " \
+                  "'%s', '%s', '%s', " \
+                  "'%s', '%s', '%d')" \
+                  % data
+            store(sql)
 
 
 if __name__ == '__main__':

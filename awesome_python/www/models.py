@@ -63,3 +63,14 @@ class ACFcous(Model):
     description = StringField(ddl='varchar(50)')
     tags = StringField(ddl='varchar(255)')
     video_time = IntegerField()
+
+
+class JinGuang(Model):
+    __table__ = 'jinguang'
+
+    id = IntegerField(primary_key=True)
+    pid = IntegerField()
+    title = StringField(ddl='varchar(50)')
+    title_url = StringField(ddl='varchar(50)')
+    post_time = StringField(ddl='varchar(50)')
+    add_time = StringField(ddl='varchar(50)')

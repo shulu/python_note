@@ -7,7 +7,7 @@ from coroweb import get, post
 
 import markdown2
 
-from models import User, Comment, Blog, ACFcous, next_id
+from models import User, Comment, Blog, ACFcous, JinGuang, next_id
 
 from apis import Page, APIError, APIValueError, APIPermissionError, APIResourceNotFoundError
 
@@ -372,5 +372,24 @@ async def api_acfun_focus(*, page='1'):
 def get_acfun_focus(*, page='1'):
     return {
         '__template__':'acfun_post.html',
+        'page_index': get_page_index(page)
+    }
+
+@get('/api/jinguang')
+async def api_jinguang(*, page='1'):
+    page_index = get_page_index(page)
+    # 查看总数 目前最多只拿50
+    num = await JinGuang.findNumber('count(id)', where='pid=0')
+    p = Page(num, page_index)
+    if num == 0:
+        return dict(page=p, focus=())
+    jinguang = await JinGuang.findAll(orderBy='id desc', where='pid=0', limit=(p.offset, p.limit))
+    logging.info(jinguang)
+    return dict(page=p, focus=jinguang)
+
+@get('/jinguang')
+def get_jinguang(*, page='1'):
+    return {
+        '__template__':'jinguang.html',
         'page_index': get_page_index(page)
     }

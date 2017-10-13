@@ -62,3 +62,17 @@ CREATE TABLE `acfun_focus` (
     PRIMARY KEY (`id`)
 )ENGINE=innodb DEFAULT CHARSET=utf8;
 
+CREATE TABLE `jinguang` (
+	`id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+	`pid` INT(10) UNSIGNED NOT NULL DEFAULT '0',
+	`title` VARCHAR(50) NOT NULL DEFAULT 'no title',
+	`title_url` VARCHAR(50) NOT NULL DEFAULT 'no url',
+	`post_time` VARCHAR(50) NOT NULL DEFAULT 'no specific date',
+	`add_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	PRIMARY KEY (`id`)
+)
+COMMENT='金光布袋戏'
+COLLATE='utf8_general_ci'
+ENGINE=InnoDB
+;
+
