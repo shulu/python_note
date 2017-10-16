@@ -73,4 +73,4 @@ class JinGuang(Model):
     title = StringField(ddl='varchar(50)')
     title_url = StringField(ddl='varchar(50)')
     post_time = StringField(ddl='varchar(50)')
-    add_time = StringField(ddl='varchar(50)')
+    add_time = FloatField(default=time.time())

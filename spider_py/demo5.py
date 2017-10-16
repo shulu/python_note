@@ -8,6 +8,7 @@ from collections import deque
 import requests
 from bs4 import BeautifulSoup
 import pymysql
+import time
 
 url = "http://video.yaodaojiao.com/jinguang/"
 # 定义队列
@@ -84,8 +85,9 @@ while queue:
         list_title = convertcoding(list_title, coding)
         post_time = soup.find("div",{'class':'t_right'}).text
         post_time = convertcoding(post_time, coding)
-        data = (0, list_title, '#', post_time)
-        sql = "INSERT INTO `jinguang` (pid, title ,title_url, post_time) VALUES ('%d', '%s', '%s', '%s')" % data
+        add_time = time.time()
+        data = (0, list_title, '#', post_time, add_time)
+        sql = "INSERT INTO `jinguang` (pid, title ,title_url, post_time, add_time) VALUES ('%d', '%s', '%s', '%s', '%f')" % data
         ins_id = store(sql)
         c_boxs = soup.findAll('div', {'class':'c_box'})
         for c_box in c_boxs:
@@ -95,8 +97,9 @@ while queue:
             title = href.text
             title = convertcoding(title, coding)
             link = href['href']
-            data = (ins_id, title, link, post_time)
-            sql = "INSERT INTO `jinguang` (pid, title ,title_url, post_time) VALUES ('%d', '%s', '%s', '%s')" % data
+            add_time = time.time()
+            data = (ins_id, title, link, post_time, add_time)
+            sql = "INSERT INTO `jinguang` (pid, title ,title_url, post_time, add_time) VALUES ('%d', '%s', '%s', '%s', '%f')" % data
             store(sql)
             # if 'http' in link and link not in visited:
             #      queue.append(link)

@@ -5,437 +5,113 @@
 {% block beforehead %}
 
 <script>
+    function initVM(data)
+    {
+        var vm = new Vue({
+            el: '#vm',
+            data: {
+                jg_title: data.jg_title,
+                jg_content: data.jg_content,
+                jg_id: 1
+            },
+            methods:{
+                titleClick:function(index){
+                    this.jg_id=index;
+                }
+            }
+        });
+        $('#vm').show();
+    }
+    $(function() {
+        getJSON('/api/jinguang', function(err, results) {
+            if (err) {
+                return fatal(err);
+            }
+            $('#loading').hide();
+            initVM(results);
+        });
+    });
 </script>
 
 {% endblock %}
 
 {% block content %}
-        <div class="uk-container uk-container-center uk-margin-top uk-margin-large-bottom">
+        <div id="vm" class="uk-container uk-container-center uk-margin-top uk-margin-large-bottom">
 
             <div class="uk-grid" data-uk-grid-margin>
                 <div class="uk-width-1-1">
                     <h1 class="uk-heading-large">金光布袋戏</h1>
-                    <p class="uk-text-large">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut.</p>
+                    <p class="uk-text-large">
+                        金光布袋戏，实际通称为黄俊雄布袋戏。
+                        金光布袋戏由黄俊雄，西卿，黄凤仪（长女）和黄立纲（幼子）共同经营；
+                        黄凤仪和西卿负责幕后主唱和行政管理，
+                        黄立纲负责口白主演和导演及后制动画还有配乐师，
+                        黄凤仪也曾和黄俊雄一起担任金光布袋戏编剧的工作.
+                    </p>
                 </div>
             </div>
 
             <div class="uk-grid" data-uk-grid-margin>
                 <div class="uk-width-medium-3-4">
 
-                    <h2 id="getstarted">Get Started</h2>
+                    <div v-for="title in jg_title">
+                        <h2 :id="title.title" v-text="title.title"></h2>
 
-                    <p>Lorem ipsum dolor sit amet, <code>consectetuer adipiscing</code> elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.</p>
+                        <p>播出时间: <code v-text="title.post_time"></code> .</p>
 
-                    <div class="uk-overflow-container">
-                        <table class="uk-table uk-text-nowrap">
-                            <thead>
-                                <tr>
-                                    <th>Class</th>
-                                    <th>Description</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><code>.my-class-1</code></td>
-                                    <td>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</td>
-                                </tr>
-                                <tr>
-                                    <td><code>.my-class-2</code></td>
-                                    <td>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</td>
-                                </tr>
-                                <tr>
-                                    <td><code>.my-class-3</code></td>
-                                    <td>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <div class="uk-overflow-container" >
+                            <table class="uk-table uk-text-nowrap">
+                                <thead>
+                                    <tr>
+                                        <th>剧集</th>
+                                        <th>Description</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr v-for="content in jg_content" v-if="content.pid == title.id">
+                                        <td><code v-text="title.title"></code></td>
+                                        <td ><a :href="content.title_url" v-text="content.title" target="_blank"></a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <h3>Example</h3>
+
+                        <div class="uk-grid" data-uk-grid-margin>
+                            <div class="uk-width-medium-1-3">
+                                <div class="uk-panel uk-panel-box">
+                                    <h3 class="uk-panel-title">Title</h3>
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                </div>
+                            </div>
+                            <div class="uk-width-medium-1-3">
+                                 <div class="uk-panel uk-panel-box">
+                                    <h3 class="uk-panel-title">Title</h3>
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                </div>
+                            </div>
+                            <div class="uk-width-medium-1-3">
+                                 <div class="uk-panel uk-panel-box">
+                                    <h3 class="uk-panel-title">Title</h3>
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                </div>
+                            </div>
+                        </div>
+
+                        <p><span class="uk-badge">NOTE</span> Lorem ipsum <a href="#">dolor sit amet</a>, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</p>
+
+                        <hr class="uk-grid-divider">
                     </div>
-
-                    <h3>Example</h3>
-
-                    <div class="uk-grid" data-uk-grid-margin>
-                        <div class="uk-width-medium-1-3">
-                            <div class="uk-panel uk-panel-box">
-                                <h3 class="uk-panel-title">Title</h3>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                            </div>
-                        </div>
-                        <div class="uk-width-medium-1-3">
-                             <div class="uk-panel uk-panel-box">
-                                <h3 class="uk-panel-title">Title</h3>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                            </div>
-                        </div>
-                        <div class="uk-width-medium-1-3">
-                             <div class="uk-panel uk-panel-box">
-                                <h3 class="uk-panel-title">Title</h3>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                            </div>
-                        </div>
-                    </div>
-
-                    <h4>Markup</h4>
-
-<pre><code>&lt;div class="my-class-1"&gt;
-    &lt;div class="my-class-2"&gt;
-        &lt;div class="my-class-3"&gt;
-            &lt;h3&gt;...&lt;/h3&gt;
-            ...
-        &lt;/div&gt;
-    &lt;/div&gt;
-&lt;/div&gt;</code></pre>
-
-                    <p><span class="uk-badge">NOTE</span> Lorem ipsum <a href="#">dolor sit amet</a>, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</p>
-
-                    <hr class="uk-grid-divider">
-
-                    <h2 id="templatesettings">Template Settings</h2>
-
-                    <p>Lorem ipsum dolor sit amet, <code>consectetuer adipiscing</code> elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.</p>
-
-                    <div class="uk-overflow-container">
-                        <table class="uk-table uk-text-nowrap">
-                            <thead>
-                                <tr>
-                                    <th>Class</th>
-                                    <th>Description</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><code>.my-class-1</code></td>
-                                    <td>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</td>
-                                </tr>
-                                <tr>
-                                    <td><code>.my-class-2</code></td>
-                                    <td>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</td>
-                                </tr>
-                                <tr>
-                                    <td><code>.my-class-3</code></td>
-                                    <td>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <h3>Example</h3>
-
-                    <div class="uk-grid" data-uk-grid-margin>
-                        <div class="uk-width-medium-1-3">
-                            <div class="uk-panel uk-panel-box">
-                                <h3 class="uk-panel-title">Title</h3>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                            </div>
-                        </div>
-                        <div class="uk-width-medium-1-3">
-                             <div class="uk-panel uk-panel-box">
-                                <h3 class="uk-panel-title">Title</h3>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                            </div>
-                        </div>
-                        <div class="uk-width-medium-1-3">
-                             <div class="uk-panel uk-panel-box">
-                                <h3 class="uk-panel-title">Title</h3>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                            </div>
-                        </div>
-                    </div>
-
-                    <h4>Markup</h4>
-
-<pre><code>&lt;div class="my-class-1"&gt;
-&lt;div class="my-class-2"&gt;
-    &lt;div class="my-class-3"&gt;
-        &lt;h3&gt;...&lt;/h3&gt;
-        ...
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;</code></pre>
-
-                    <p><span class="uk-badge">NOTE</span> Lorem ipsum <a href="#">dolor sit amet</a>, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</p>
-
-                    <hr class="uk-grid-divider">
-
-                    <h2 id="customizer">Customizer</h2>
-
-                    <p>Lorem ipsum dolor sit amet, <code>consectetuer adipiscing</code> elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.</p>
-
-                    <div class="uk-overflow-container">
-                        <table class="uk-table uk-text-nowrap">
-                            <thead>
-                                <tr>
-                                    <th>Class</th>
-                                    <th>Description</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><code>.my-class-1</code></td>
-                                    <td>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</td>
-                                </tr>
-                                <tr>
-                                    <td><code>.my-class-2</code></td>
-                                    <td>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</td>
-                                </tr>
-                                <tr>
-                                    <td><code>.my-class-3</code></td>
-                                    <td>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <h3>Example</h3>
-
-                    <div class="uk-grid" data-uk-grid-margin>
-                        <div class="uk-width-medium-1-3">
-                            <div class="uk-panel uk-panel-box">
-                                <h3 class="uk-panel-title">Title</h3>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                            </div>
-                        </div>
-                        <div class="uk-width-medium-1-3">
-                             <div class="uk-panel uk-panel-box">
-                                <h3 class="uk-panel-title">Title</h3>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                            </div>
-                        </div>
-                        <div class="uk-width-medium-1-3">
-                             <div class="uk-panel uk-panel-box">
-                                <h3 class="uk-panel-title">Title</h3>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                            </div>
-                        </div>
-                    </div>
-
-                    <h4>Markup</h4>
-
-<pre><code>&lt;div class="my-class-1"&gt;
-    &lt;div class="my-class-2"&gt;
-        &lt;div class="my-class-3"&gt;
-            &lt;h3&gt;...&lt;/h3&gt;
-            ...
-        &lt;/div&gt;
-    &lt;/div&gt;
-&lt;/div&gt;</code></pre>
-
-                    <p><span class="uk-badge">NOTE</span> Lorem ipsum <a href="#">dolor sit amet</a>, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</p>
-
-                    <hr class="uk-grid-divider">
-
-                    <h2 id="customization">Customization</h2>
-
-                    <p>Lorem ipsum dolor sit amet, <code>consectetuer adipiscing</code> elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.</p>
-
-                    <div class="uk-overflow-container">
-                        <table class="uk-table uk-text-nowrap">
-                            <thead>
-                                <tr>
-                                    <th>Class</th>
-                                    <th>Description</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><code>.my-class-1</code></td>
-                                    <td>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</td>
-                                </tr>
-                                <tr>
-                                    <td><code>.my-class-2</code></td>
-                                    <td>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</td>
-                                </tr>
-                                <tr>
-                                    <td><code>.my-class-3</code></td>
-                                    <td>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <h3>Example</h3>
-
-                    <div class="uk-grid" data-uk-grid-margin>
-                        <div class="uk-width-medium-1-3">
-                            <div class="uk-panel uk-panel-box">
-                                <h3 class="uk-panel-title">Title</h3>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                            </div>
-                        </div>
-                        <div class="uk-width-medium-1-3">
-                             <div class="uk-panel uk-panel-box">
-                                <h3 class="uk-panel-title">Title</h3>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                            </div>
-                        </div>
-                        <div class="uk-width-medium-1-3">
-                             <div class="uk-panel uk-panel-box">
-                                <h3 class="uk-panel-title">Title</h3>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                            </div>
-                        </div>
-                    </div>
-
-                    <h4>Markup</h4>
-
-<pre><code>&lt;div class="my-class-1"&gt;
-    &lt;div class="my-class-2"&gt;
-        &lt;div class="my-class-3"&gt;
-            &lt;h3&gt;...&lt;/h3&gt;
-            ...
-        &lt;/div&gt;
-    &lt;/div&gt;
-&lt;/div&gt;</code></pre>
-
-                    <p><span class="uk-badge">NOTE</span> Lorem ipsum <a href="#">dolor sit amet</a>, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</p>
-
-                    <hr class="uk-grid-divider">
-
-                    <h2 id="troubleshooting">Troubleshooting</h2>
-
-                    <p>Lorem ipsum dolor sit amet, <code>consectetuer adipiscing</code> elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.</p>
-
-                    <div class="uk-overflow-container">
-                        <table class="uk-table uk-text-nowrap">
-                            <thead>
-                                <tr>
-                                    <th>Class</th>
-                                    <th>Description</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><code>.my-class-1</code></td>
-                                    <td>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</td>
-                                </tr>
-                                <tr>
-                                    <td><code>.my-class-2</code></td>
-                                    <td>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</td>
-                                </tr>
-                                <tr>
-                                    <td><code>.my-class-3</code></td>
-                                    <td>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <h3>Example</h3>
-
-                    <div class="uk-grid" data-uk-grid-margin>
-                        <div class="uk-width-medium-1-3">
-                            <div class="uk-panel uk-panel-box">
-                                <h3 class="uk-panel-title">Title</h3>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                            </div>
-                        </div>
-                        <div class="uk-width-medium-1-3">
-                             <div class="uk-panel uk-panel-box">
-                                <h3 class="uk-panel-title">Title</h3>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                            </div>
-                        </div>
-                        <div class="uk-width-medium-1-3">
-                             <div class="uk-panel uk-panel-box">
-                                <h3 class="uk-panel-title">Title</h3>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                            </div>
-                        </div>
-                    </div>
-
-                    <h4>Markup</h4>
-
-<pre><code>&lt;div class="my-class-1"&gt;
-    &lt;div class="my-class-2"&gt;
-        &lt;div class="my-class-3"&gt;
-            &lt;h3&gt;...&lt;/h3&gt;
-            ...
-        &lt;/div&gt;
-    &lt;/div&gt;
-&lt;/div&gt;</code></pre>
-
-                    <p><span class="uk-badge">NOTE</span> Lorem ipsum <a href="#">dolor sit amet</a>, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</p>
-
-                    <hr class="uk-grid-divider">
-
-                    <h2 id="faq">FAQ</h2>
-
-                    <p>Lorem ipsum dolor sit amet, <code>consectetuer adipiscing</code> elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.</p>
-
-                    <div class="uk-overflow-container">
-                        <table class="uk-table uk-text-nowrap">
-                            <thead>
-                                <tr>
-                                    <th>Class</th>
-                                    <th>Description</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><code>.my-class-1</code></td>
-                                    <td>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</td>
-                                </tr>
-                                <tr>
-                                    <td><code>.my-class-2</code></td>
-                                    <td>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</td>
-                                </tr>
-                                <tr>
-                                    <td><code>.my-class-3</code></td>
-                                    <td>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <h3>Example</h3>
-
-                    <div class="uk-grid" data-uk-grid-margin>
-                        <div class="uk-width-medium-1-3">
-                            <div class="uk-panel uk-panel-box">
-                                <h3 class="uk-panel-title">Title</h3>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                            </div>
-                        </div>
-                        <div class="uk-width-medium-1-3">
-                             <div class="uk-panel uk-panel-box">
-                                <h3 class="uk-panel-title">Title</h3>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                            </div>
-                        </div>
-                        <div class="uk-width-medium-1-3">
-                             <div class="uk-panel uk-panel-box">
-                                <h3 class="uk-panel-title">Title</h3>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                            </div>
-                        </div>
-                    </div>
-
-                    <h4>Markup</h4>
-
-<pre><code>&lt;div class="my-class-1"&gt;
-    &lt;div class="my-class-2"&gt;
-        &lt;div class="my-class-3"&gt;
-            &lt;h3&gt;...&lt;/h3&gt;
-            ...
-        &lt;/div&gt;
-    &lt;/div&gt;
-&lt;/div&gt;</code></pre>
-
-                    <p><span class="uk-badge">NOTE</span> Lorem ipsum <a href="#">dolor sit amet</a>, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</p>
 
                 </div>
                 <div class="uk-width-medium-1-4">
-
                     <div class="uk-panel uk-panel-box" data-uk-sticky="{top:35}">
                         <ul class="uk-nav uk-nav-side" data-uk-scrollspy-nav="{closest:'li', smoothscroll:true}">
-                            <li class="uk-nav-header">For Beginners</li>
-                            <li class="uk-active"><a href="#getstarted">Get Started</a></li>
-                            <li class=""><a href="#templatesettings">Template Settings</a></li>
-                            <li class=""><a href="#customizer">Customizer</a></li>
-                            <li class="uk-nav-header">For Developers</li>
-                            <li class=""><a href="#customization">Customizaton</a></li>
-                            <li class=""><a href="#troubleshooting">Troubleshooting</a></li>
-                            <li class="uk-nav-divider"></li>
-                            <li class=""><a href="#faq"><i class="uk-icon-info-circle uk-margin-small-right"></i>FAQ</a></li>
+                            <li class="uk-nav-header"> 金光布袋戏 列表 </li>
+                            <li  v-for="item in jg_title" :class="{'uk-active':jg_id == item.id}">
+                                <a :id="item.id" :href="item.title_url+item.title" v-text="item.title" @click="titleClick(item.id)"></a>
+                            </li>
                         </ul>
                     </div>
 
