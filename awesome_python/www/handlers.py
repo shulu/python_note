@@ -387,3 +387,9 @@ def get_jinguang(*, page='1'):
         '__template__':'jinguang.html',
         'page_index': get_page_index(page)
     }
+
+@get('/chat')
+def chat():
+    return {
+        '__template__': 'chat.html'
+    }
