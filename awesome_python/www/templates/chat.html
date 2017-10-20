@@ -5,33 +5,36 @@
 {% block beforehead %}
 
 <script>
-    var client_id = 0, server_id = 0, client_name = '';
-    var message = '';
-    window.onload = function (event) {
-        client_name = generateMixed(6);
-        document.getElementById("who_to_talk").innerHTML = client_name
-    };
+    var client_id = 0, server_id = 999, client_name = '';
     var exampleSocket = new WebSocket("ws:127.0.0.1:9501");
     exampleSocket.onopen = function (event) {
-        exampleSocket.send("Here's some text that the server is urgently awaiting!");
+        // 把 msg 对象作为JSON格式字符串发送
+        msg = {
+            type: "message",
+            from_id:client_id,
+            message: 'shake hand with server',
+            date: Date.now()
+        };
+        exampleSocket.send(JSON.stringify(msg));
     };
     exampleSocket.onmessage = function(event) {
         message = event.data;
-        parse_msg =  JSON.parse(message);
-        client_id = parse_msg.client_id;
-        server_id = parse_msg.server_id;
-        if(server_id == 999) { server_id = '系统消息'; }
-        rcv_msg = parse_msg.message;
-        console.log(parse_msg);
-        var f = document.getElementById("chat_box").contentDocument;
+        parse_message =  JSON.parse(message);
+        client_id = parse_message.target_id;
+        server_id = parse_message.from_id;
+        recieve_message = parse_message.message;
+        // console.log(parse_message);
+        var f = document.getElementById("chat_box");
+        // console.log(f)
         var text = "<div>";
-        var time = new Date(parse_msg.date);
-        var timeStr = time.toLocaleTimeString();
-        text = "<p><strong> "+client_name+": "+timeStr+"</strong> <br>"+rcv_msg+" </p>"
-        text += "</div>"
+        var time = new Date(parse_message.date);
+        var timeStr = time.toLocaleTimeString("zh-CN");
+        text += "<p><strong> "+server_id+": Send in "+timeStr+"</strong> <br>"+recieve_message+" </p><hr class=\"uk-article-divider\">";
+        text += "</div>";
         if (text.length) {
-          f.write(text);
-          document.getElementById("chat_box").contentWindow.scrollByPages(1);
+          ele = $(text).get(0);
+          console.log(ele);
+          f.appendChild(ele)
         }
     };
     exampleSocket.onclose = function (event) {
@@ -44,49 +47,37 @@
 {% block content %}
     <div class="uk-grid" data-uk-grid-margin>
         <div class="uk-width-1-1">
-            <div class="uk-panel uk-panel-box uk-text-center uk-text-success">
-                very welcome u come to this chatroom.
+            <div class="uk-alert" data-uk-alert>
+                <a href="" class="uk-alert-close uk-close"></a>
+                <p>very welcome u come to this chatroom.</p>
             </div>
         </div>
     </div>
     <div class="uk-grid" data-uk-grid-margin>
         <div class="uk-width-medium-3-4">
-                <div class="uk-panel uk-panel-header ">
-                    <!--<h3 class="uk-panel-title">here was who you talk</h3>-->
-                    <div class="uk-panel uk-panel-box uk-panel-box-secondary" id="chat_box">
-                        <h3 class="uk-panel-title" id="who_to_talk">here was who you talk</h3>
-                        <div>
-                            <p>
-                                <strong> who: </strong>
-                                <br>message
-                                <br>message
-                            </p>
-                            <p>
-                                <a>link message</a>
-                                <br><a>email message</a><br>
-                                message
-                            </p>
-                            <h3 class="uk-h4">Follow Us</h3>
-                            <hr class="uk-article-divider">
-                        </div>
+            <div class="uk-panel uk-panel-header ">
+                <div class="uk-panel uk-panel-box uk-panel-box-secondary">
+                    <h3 class="uk-panel-title" id="who_to_talk">here was who you talk</h3>
+                    <div class="uk-overflow-container" id="chat_box">
+
                     </div>
                 </div>
-                <div class="uk-panel uk-panel-header ">
-                    <form class="uk-form uk-form-stacked" action="#">
-                        <div class="uk-form-row">
-                            <label class="uk-form-label">Your Message</label>
-                            <div class="uk-form-controls">
-                                <textarea class="uk-width-1-1" id="send_msg" cols="100" rows="9"></textarea>
-                            </div>
+            </div>
+            <div class="uk-panel uk-panel-header">
+                <form class="uk-form uk-form-stacked" action="#">
+                    <div class="uk-form-row">
+                        <label class="uk-form-label">Your Message</label>
+                        <div class="uk-form-controls">
+                            <textarea class="uk-width-1-1" id="send_msg" cols="100" rows="3"></textarea>
                         </div>
-
-                        <div class="uk-form-row">
-                            <div class="uk-form-controls">
-                                <button class="uk-button uk-button-primary" onclick="sendText()">Submit</button>
-                            </div>
+                    </div>
+                    <div class="uk-form-row">
+                        <div class="uk-form-controls uk-float-right">
+                            <button type="button" class="uk-button uk-button-primary" onclick="sendText()">Submit</button>
                         </div>
-                    </form>
-                </div>
+                    </div>
+                </form>
+            </div>
         </div>
         <div class="uk-width-medium-1-4">
             <div class="uk-panel uk-panel-box-primary">

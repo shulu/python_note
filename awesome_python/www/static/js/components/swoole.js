@@ -17,14 +17,14 @@ function sendText() {
     // 构造一个 msg 对象， 包含了服务器处理所需的数据
     var msg = {
         type: "message",
-        text: document.getElementById("send_msg").value,
-        client_id:   client_id,
-        server_id:   server_id,
+        message: document.getElementById("send_msg").value,
+        from_id:   client_id,
+        target_id:   999,
         date: Date.now()
     };
     // 把 msg 对象作为JSON格式字符串发送
     exampleSocket.send(JSON.stringify(msg));
 
     // 清空文本输入元素，为接收下一条消息做好准备。
-    document.getElementById("text").value = "";
+    document.getElementById("send_msg").value = "";
 }
