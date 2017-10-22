@@ -1,72 +1,30 @@
 {% extends '__base__.html' %}
 
-{% block title %}Acfun_DAILY_POST{% endblock %}
+{% block title %}CHAT ROOM{% endblock %}
 
 {% block beforehead %}
-
-<script>
-    var client_id = 0, server_id = 999, client_name = '';
-    var exampleSocket = new WebSocket("ws:127.0.0.1:9501");
-    exampleSocket.onopen = function (event) {
-        // 把 msg 对象作为JSON格式字符串发送
-        msg = {
-            type: "message",
-            from_id:client_id,
-            message: 'shake hand with server',
-            date: Date.now()
-        };
-        exampleSocket.send(JSON.stringify(msg));
-    };
-    exampleSocket.onmessage = function(event) {
-        message = event.data;
-        parse_message =  JSON.parse(message);
-        client_id = parse_message.target_id;
-        server_id = parse_message.from_id;
-        recieve_message = parse_message.message;
-        // console.log(parse_message);
-        var f = document.getElementById("chat_box");
-        // console.log(f)
-        var text = "<div>";
-        var time = new Date(parse_message.date);
-        var timeStr = time.toLocaleTimeString("zh-CN");
-        text += "<p><strong> "+server_id+": Send in "+timeStr+"</strong> <br>"+recieve_message+" </p><hr class=\"uk-article-divider\">";
-        text += "</div>";
-        if (text.length) {
-          ele = $(text).get(0);
-          console.log(ele);
-          f.appendChild(ele)
-        }
-    };
-    exampleSocket.onclose = function (event) {
-        console.log(event)
-    }
-</script>
-
+<script src="/static/js/components/swoole.js"></script>
 {% endblock %}
 
 {% block content %}
     <div class="uk-grid" data-uk-grid-margin>
-        <div class="uk-width-1-1">
+        <div class="uk-width-medium-1-5">
             <div class="uk-alert" data-uk-alert>
-                <a href="" class="uk-alert-close uk-close"></a>
+                <a href="#" class="uk-alert-close uk-close"></a>
                 <p>very welcome u come to this chatroom.</p>
             </div>
         </div>
-    </div>
-    <div class="uk-grid" data-uk-grid-margin>
-        <div class="uk-width-medium-3-4">
+        <div class="uk-width-medium-3-5">
             <div class="uk-panel uk-panel-header ">
                 <div class="uk-panel uk-panel-box uk-panel-box-secondary">
                     <h3 class="uk-panel-title" id="who_to_talk">here was who you talk</h3>
-                    <div class="uk-overflow-container" id="chat_box">
-
-                    </div>
+                    <div class="uk-overflow-container" id="chat_box" style="height: 300px"></div>
                 </div>
             </div>
             <div class="uk-panel uk-panel-header">
                 <form class="uk-form uk-form-stacked" action="#">
                     <div class="uk-form-row">
-                        <label class="uk-form-label">Your Message</label>
+                        <label class="uk-form-label" for="send_msg">Your Message</label>
                         <div class="uk-form-controls">
                             <textarea class="uk-width-1-1" id="send_msg" cols="100" rows="3"></textarea>
                         </div>
@@ -79,7 +37,7 @@
                 </form>
             </div>
         </div>
-        <div class="uk-width-medium-1-4">
+        <div class="uk-width-medium-1-5">
             <div class="uk-panel uk-panel-box-primary">
                 <ul class="uk-nav uk-nav-side uk-nav-parent-icon" data-uk-nav="">
                     <li class="uk-nav-header">friends && groups</li>
@@ -99,12 +57,6 @@
                     </li>
                     <li><a href="#">Item</a></li>
                 </ul>
-            </div>
-        </div>
-    </div>
-    <div class="uk-grid" data-uk-grid-margin>
-        <div class="uk-width-1-1">
-            <div class="uk-panel uk-panel-header ">
             </div>
         </div>
     </div>
