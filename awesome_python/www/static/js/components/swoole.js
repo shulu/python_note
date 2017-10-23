@@ -32,29 +32,6 @@ Socket.onmessage = function(event) {
     msg =  JSON.parse(event.data);
     _type = msg.type;
     console.log(msg);
-    switch(_type) {
-        case "init":
-          client_id = msg.target_id;
-          // setUsername();
-          client_name = generateMixed(6);
-          break;
-        case "username":
-          text = "<b>User <em>" + msg.name + "</em> signed in at " + timeStr + "</b><br>";
-          break;
-        case "msg":
-          text = "(" + timeStr + ") <b>" + msg.name + "</b>: " + msg.text + "<br>";
-          break;
-        case "rejectusername":
-          text = "<b>Your username has been set to <em>" + msg.name + "</em> because the name you chose is in use.</b><br>"
-          break;
-        case "userlist":
-          var ul = "";
-          for (i=0; i < msg.users.length; i++) {
-            ul += msg.users[i] + "<br>";
-          }
-          document.getElementById("userlistbox").innerHTML = ul;
-          break;
-      }
     acceptText(msg);
     writeUser(msg.users)
 };
@@ -91,16 +68,46 @@ function sendText() {
 }
 //写入文本
 function acceptText(message) {
-    var f = document.getElementById("chat_box");
-    // console.log(f)
-    var text = "<p>";
-    var time = new Date(message.date);
-    var timeStr = time.toLocaleTimeString("zh-CN");
-    text += "<strong> "+message.from_name+": Send in "+timeStr+"</strong> <br>"+message.message;
-    text += "</p>";
-    if (text.length) {
-        ele = $(text).get(0);
-        f.appendChild(ele);
+    switch(_type)
+    {
+        case "init":
+            client_id = msg.target_id;
+            // setUsername();
+            client_name = generateMixed(6);
+            break;
+        case "system":
+            var _node = document.getElementById("show_warn");
+            text = "<div class='uk-alert' data-uk-alert><a href='#' class='uk-alert-close uk-close'></a>" +
+                "<p>"+message.message+"</p></div>";
+            ele = $(text).get(0);
+            _node.appendChild();
+            break;
+        case "username":
+            text = "<b>User <em>" + msg.name + "</em> signed in at " + timeStr + "</b><br>";
+            break;
+        case "message":
+            var f = document.getElementById("chat_box");
+            // console.log(f)
+            var text = "<p>";
+            var time = new Date(message.date);
+            var timeStr = time.toLocaleTimeString("zh-CN");
+            text += "<strong> "+message.from_name+": Send in "+timeStr+"</strong> <br>"+message.message;
+            text += "</p>";
+            if (text.length) {
+                ele = $(text).get(0);
+                f.appendChild(ele);
+            }
+            break;
+        case "rejectusername":
+            text = "<b>Your username has been set to <em>" + msg.name + "</em> because the name you chose is in use.</b><br>"
+            break;
+        case "userlist":
+            var ul = "";
+            for (i=0; i < msg.users.length; i++) {
+                ul += msg.users[i] + "<br>";
+            }
+            document.getElementById("userlistbox").innerHTML = ul;
+            break;
     }
 }
 //写入用户数
