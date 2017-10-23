@@ -29,23 +29,34 @@ Socket.onopen = function (event) {
     console.log('this is ok')
 };
 Socket.onmessage = function(event) {
-    message = event.data;
-    parse_message =  JSON.parse(message);
-    client_id = parse_message.target_id;
-    server_id = parse_message.from_id;
-    recieve_message = parse_message.message;
-    // console.log(parse_message);
-    var f = document.getElementById("chat_box");
-    // console.log(f)
-    var text = "<p>";
-    var time = new Date(parse_message.date);
-    var timeStr = time.toLocaleTimeString("zh-CN");
-    text += "<strong> "+server_id+": Send in "+timeStr+"</strong> <br>"+recieve_message;
-    text += "</p>";
-    if (text.length) {
-        ele = $(text).get(0);
-        f.appendChild(ele)
-    }
+    msg =  JSON.parse(event.data);
+    _type = msg.type;
+    console.log(msg);
+    switch(_type) {
+        case "init":
+          client_id = msg.target_id;
+          // setUsername();
+          client_name = generateMixed(6);
+          break;
+        case "username":
+          text = "<b>User <em>" + msg.name + "</em> signed in at " + timeStr + "</b><br>";
+          break;
+        case "msg":
+          text = "(" + timeStr + ") <b>" + msg.name + "</b>: " + msg.text + "<br>";
+          break;
+        case "rejectusername":
+          text = "<b>Your username has been set to <em>" + msg.name + "</em> because the name you chose is in use.</b><br>"
+          break;
+        case "userlist":
+          var ul = "";
+          for (i=0; i < msg.users.length; i++) {
+            ul += msg.users[i] + "<br>";
+          }
+          document.getElementById("userlistbox").innerHTML = ul;
+          break;
+      }
+    acceptText(msg);
+    writeUser(msg.users)
 };
 Socket.onerror = function (event) {console.log(event)};
 Socket.onclose = function (event) {console.log(event)};
@@ -66,12 +77,42 @@ function sendText() {
         type: "message",
         message: document.getElementById("send_msg").value,
         from_id:   client_id,
-        target_id:   client_id,
+        from_name:   client_name,
+        target_id:   server_id,
         date: Date.now()
     };
     // 把 msg 对象作为JSON格式字符串发送
-    Socket.send(JSON.stringify(msg));
-
+    message = JSON.stringify(msg);
+    Socket.send(message);
     // 清空文本输入元素，为接收下一条消息做好准备。
     document.getElementById("send_msg").value = "";
+    //写入聊天框
+    acceptText(msg);
 }
+//写入文本
+function acceptText(message) {
+    var f = document.getElementById("chat_box");
+    // console.log(f)
+    var text = "<p>";
+    var time = new Date(message.date);
+    var timeStr = time.toLocaleTimeString("zh-CN");
+    text += "<strong> "+message.from_name+": Send in "+timeStr+"</strong> <br>"+message.message;
+    text += "</p>";
+    if (text.length) {
+        ele = $(text).get(0);
+        f.appendChild(ele);
+    }
+}
+//写入用户数
+function writeUser(users) {
+    var f = document.getElementById("show_user");
+    f.innerHTML = "";
+    var text = "";
+    users.forEach(function (item, index, array) {
+        //console.log(item, index);
+        text = "<li><a onclick='changeServer("+item+")' href='#'>"+item+"</a></li>";
+        if (text.length) {ele = $(text).get(0);f.appendChild(ele);}
+    });
+}
+//更改谈话用户
+function changeServer(id) {server_id = id;}

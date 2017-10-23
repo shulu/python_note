@@ -3,6 +3,7 @@
 {% block title %}CHAT ROOM{% endblock %}
 
 {% block beforehead %}
+<script>var now_index = 3</script>
 <script src="/static/js/components/swoole.js"></script>
 {% endblock %}
 
@@ -39,7 +40,7 @@
         </div>
         <div class="uk-width-medium-1-5">
             <div class="uk-panel uk-panel-box-primary">
-                <ul class="uk-nav uk-nav-side uk-nav-parent-icon" data-uk-nav="">
+                <ul class="uk-nav uk-nav-side uk-nav-parent-icon" data-uk-nav="" id="show_user">
                     <li class="uk-nav-header">friends && groups</li>
                     <li class="uk-nav-divider"></li>
                     <li class="uk-active"><a href="#">Active</a></li>
