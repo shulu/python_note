@@ -21,41 +21,37 @@ var chars = [
         'K','L','M','N','O','P','Q','R','S','T',
         'U','V','W','X','Y','Z'
     ];
-var client_id = 0, server_id = 999, client_name = '';
+var client_id = 0, target_id = 999, client_name = '';
 var Socket ='';
 initSocket();
 Socket.onopen = function (event) {
-    //exampleSocket.send(JSON.stringify());
-    console.log('this is ok')
+    console.log(event);
+    client_name = generateMixed(6);
 };
 Socket.onmessage = function(event) {
     msg =  JSON.parse(event.data);
     _type = msg.type;
     console.log(msg);
     acceptText(msg);
-    writeUser(msg.users)
 };
 Socket.onerror = function (event) {console.log(event)};
-Socket.onclose = function (event) {console.log(event)};
+Socket.onclose = function (event)
+{
+    console.log(Socket.bufferedAmount);
+    console.log(event)
+};
 
 function initSocket() {Socket = new WebSocket("ws:127.0.0.1:9501");}
-function generateMixed(n) {
-    var res = "";
-    for(var i = 0; i < n ; i ++) {
-        var id = Math.ceil(Math.random()*35);
-        res += chars[id];
-    }
-    return res;
-}
 // 服务器向所有用户发送文本
-function sendText() {
+function sendText()
+{
     // 构造一个 msg 对象， 包含了服务器处理所需的数据
     var msg = {
         type: "message",
         message: document.getElementById("send_msg").value,
         from_id:   client_id,
         from_name:   client_name,
-        target_id:   server_id,
+        target_id:   target_id,
         date: Date.now()
     };
     // 把 msg 对象作为JSON格式字符串发送
@@ -67,59 +63,53 @@ function sendText() {
     acceptText(msg);
 }
 //写入文本
-function acceptText(message) {
+function acceptText(message)
+{
     switch(_type)
     {
         case "init":
-            client_id = msg.target_id;
-            // setUsername();
-            client_name = generateMixed(6);
             break;
         case "system":
-            var _node = document.getElementById("show_warn");
-            text = "<div class='uk-alert' data-uk-alert><a href='#' class='uk-alert-close uk-close'></a>" +
-                "<p>"+message.message+"</p></div>";
-            ele = $(text).get(0);
-            _node.appendChild();
+            var _warn = document.getElementById("show_warn");
+            _warn.innerHTML = message.message
             break;
         case "username":
             text = "<b>User <em>" + msg.name + "</em> signed in at " + timeStr + "</b><br>";
             break;
         case "message":
-            var f = document.getElementById("chat_box");
+            var _chat = document.getElementById("chat_box");
             // console.log(f)
             var text = "<p>";
             var time = new Date(message.date);
             var timeStr = time.toLocaleTimeString("zh-CN");
             text += "<strong> "+message.from_name+": Send in "+timeStr+"</strong> <br>"+message.message;
             text += "</p>";
-            if (text.length) {
-                ele = $(text).get(0);
-                f.appendChild(ele);
-            }
+            if (text.length) {ele = $(text).get(0);_chat.appendChild(ele);}
             break;
         case "rejectusername":
             text = "<b>Your username has been set to <em>" + msg.name + "</em> because the name you chose is in use.</b><br>"
             break;
         case "userlist":
-            var ul = "";
-            for (i=0; i < msg.users.length; i++) {
-                ul += msg.users[i] + "<br>";
-            }
-            document.getElementById("userlistbox").innerHTML = ul;
+            client_id = message.target_id;
+            //写入用户数
+            var _user = document.getElementById("show_user");
+            _user.innerHTML = "";
+            message.users.forEach(function (item, index, array) {
+                text = "<li><a onclick='changeServer("+item+")' href='#'>"+item+"</a></li>";
+                if (text.length) {ele = $(text).get(0);_user.appendChild(ele);}
+            });
             break;
     }
 }
-//写入用户数
-function writeUser(users) {
-    var f = document.getElementById("show_user");
-    f.innerHTML = "";
-    var text = "";
-    users.forEach(function (item, index, array) {
-        //console.log(item, index);
-        text = "<li><a onclick='changeServer("+item+")' href='#'>"+item+"</a></li>";
-        if (text.length) {ele = $(text).get(0);f.appendChild(ele);}
-    });
-}
 //更改谈话用户
-function changeServer(id) {server_id = id;}
+function changeServer(id) {target_id = id;}
+//关闭客户端
+function closeServer() {Socket.close();}
+function generateMixed(n) {
+    var res = "";
+    for(var i = 0; i < n ; i ++) {
+        var id = Math.ceil(Math.random()*35);
+        res += chars[id];
+    }
+    return res;
+}

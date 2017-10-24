@@ -8,18 +8,31 @@
 {% endblock %}
 
 {% block content %}
-    <div class="uk-grid" data-uk-grid-margin>
-        <div class="uk-width-medium-1-5" id="show_warn">
+    <div class="uk-grid" data-uk-grid-margin="">
+        <div class="uk-width-1-1k">
             <div class="uk-alert" data-uk-alert>
                 <a href="#" class="uk-alert-close uk-close"></a>
-                <p>very welcome u come to this chatroom.</p>
+                <div class="uk-badge uk-badge-danger">SYSTEM:</div>&nbsp;&nbsp;
+                <span id="show_warn">very welcome u come to this chatroom.</span>
             </div>
+        </div>
+    </div>
+    <div class="uk-grid" data-uk-grid-margin>
+        <div class="uk-width-medium-1-5" >
+            <p class="uk-text-center">Controller</p>
+            <hr class="uk-article-divider">
+            <button class="uk-button uk-button-success uk-button-small uk-width-1-1" onclick="closeServer()">断开连接</button>
+            <hr class="uk-article-divider">
+            <button class="uk-button uk-button-success uk-button-small uk-width-1-1">Button</button>
+            <hr class="uk-article-divider">
+            <button class="uk-button uk-button-success uk-button-small uk-width-1-1">Button</button>
         </div>
         <div class="uk-width-medium-3-5">
             <div class="uk-panel uk-panel-header">
                 <div class="uk-panel uk-panel-box uk-panel-box-secondary">
                     <h3 class="uk-panel-title" id="who_to_talk">here was who you talk</h3>
-                    <div class="uk-overflow-container" id="chat_box" style="height: 300px"></div>
+                    <!--<div class="uk-overflow-container" id="chat_box" style="height: 300px"></div>-->
+                    <pre class="uk-scrollable-text" id="chat_box" style="height: 300px"></pre>
                 </div>
             </div>
             <div class="uk-panel uk-panel-header">
