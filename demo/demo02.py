@@ -137,7 +137,7 @@ if __name__ == '__main__':
             convert_images_to_pdf('D:/products/'+pid+'/desc_img/', pid, 'pro'+pid+'.pdf')
             now_path = zipBigImg(s, pid)
             # zip_name = 'pro1227745.zip'
-            writeZip(now_path, pid , 'pro'+pid+'zip')
+            writeZip(now_path, pid , 'pro'+pid+'.zip')
 
     # s = getHtmlInfo('https://www.banggood.com/-p-1227745.html')
     # desc_path = htmlDescription(s, '1227745')
