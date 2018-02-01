@@ -14,6 +14,7 @@ import json
 file_path = 'D:/products/'
 
 
+# 获取网页信息
 def getHtmlInfo(url):
     # url_path = url[24:]
     res = requests.get(url, timeout=10)
@@ -22,7 +23,7 @@ def getHtmlInfo(url):
         s = etree.HTML(res.text)
         return s
 
-
+#获取描述和描述图片
 def htmlDescription(s, pid):
     desc_content = s.xpath('//div[@class="list"][1]')
     desc_img = []
@@ -36,14 +37,14 @@ def htmlDescription(s, pid):
     description = etree.tostring(desc_content[0], pretty_print=True, encoding='utf-8')
     filter_desc = description.decode().replace('\n', '').replace('\t', '')
     all_desc = '<html>'+filter_desc+'</html>'
-    path = file_path+str(pid)+'/pro'+str(pid)+'.html'
+    path = file_path+pid+'/pro'+pid+'.html'
     f = open(path,'w', encoding='utf-8')
     f.write(all_desc)
     f.close()
     # print(all_desc)
     return img_path
 
-
+# 压缩图片
 def zipBigImg(s, pid):
     links = s.xpath('//a[contains(@big,"http")]')
     big_img_list = []
@@ -52,8 +53,9 @@ def zipBigImg(s, pid):
     path = getImg('main_img',big_img_list, pid)
     return path
 
+#下载图片
 def getImg(folder, imglist, pid):
-    now_path = file_path + str(pid) + '/'+folder+'/'
+    now_path = file_path + pid + '/'+folder+'/'
     checkdir(now_path)
     for i in range(len(imglist)):
         f = open(now_path+str(i+1)+'.jpg',"wb")    #打开文件
@@ -65,7 +67,7 @@ def getImg(folder, imglist, pid):
         time.sleep(1)
     return now_path
 
-
+#压缩文件
 def writeZip(path, pid, file_name):
     azip = zipfile.ZipFile(file_path + pid + '/' + file_name, mode='w', compression=zipfile.ZIP_DEFLATED)
     for current_path, subfolders, filesname in os.walk(path):
@@ -77,7 +79,7 @@ def writeZip(path, pid, file_name):
         # 关闭资源
         azip.close()
 
-
+#生成图片PDF
 def convert_images_to_pdf(img_path, pid, pdf_name):
     pages = 0
     (w, h) = portrait(A4)
@@ -129,12 +131,13 @@ if __name__ == '__main__':
     with open("info.json", 'r') as prod_info:
         load_info = json.load(prod_info)
         for p in load_info['RECORDS']:
+            pid = str(p['pid'])
             s = getHtmlInfo(p['url'])
-            desc_path = htmlDescription(s, p['pid'])
-            convert_images_to_pdf('D:/products/'+p['pid']+'/desc_img/', p['pid'], 'pro'+p['pid']+'.pdf')
-            now_path = zipBigImg(s, p['pid'])
+            desc_path = htmlDescription(s, pid)
+            convert_images_to_pdf('D:/products/'+pid+'/desc_img/', pid, 'pro'+pid+'.pdf')
+            now_path = zipBigImg(s, pid)
             # zip_name = 'pro1227745.zip'
-            writeZip(now_path, '1227745', 'pro'++p['pid']+'zip')
+            writeZip(now_path, pid , 'pro'+pid+'zip')
 
     # s = getHtmlInfo('https://www.banggood.com/-p-1227745.html')
     # desc_path = htmlDescription(s, '1227745')
