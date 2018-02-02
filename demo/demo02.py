@@ -20,7 +20,7 @@ def getHtmlInfo(info):
     # url_path = url[24:]
     try:
         header = {
-            'referer':'https://www.banggood.com/search/41600.html',
+            'referer':'https://www.banggood.com',
             'upgrade-insecure-requests':'1',
             'user-agent':'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36'
         }
@@ -30,9 +30,10 @@ def getHtmlInfo(info):
             s = etree.HTML(res.text)
             return s
     except RequestException as e:
+        info['fail_reason'] = '错误原因:'+str(e)
         content = json.dumps(info)
-        open('fail_product.json', 'a').write(content+',')
-        print('出现错误， 错误原因: ', e)
+        open('fail_product.json', 'a').write(content+',\n')
+        #print('出现错误， 错误原因: ', e)
 
 
 #获取描述和描述图片
@@ -85,11 +86,16 @@ def getImg(folder, imglist, pid):
                 'upgrade-insecure-requests': '1',
                 'user-agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36'
             }
-            ir = requests.get(imglist[i], headers=header)
-            if ir.status_code == 200:
-                open(jpg_path, 'wb').write(ir.content)
-            print("now writing " + folder + '/' + str(i + 1) + '.jpg')
-            time.sleep(1)
+            try:
+                ir = requests.get(imglist[i], headers=header, timeout=15)
+                if ir.status_code == 200:
+                    open(jpg_path, 'wb').write(ir.content)
+                print("now writing " + folder + '/' + str(i + 1) + '.jpg')
+                time.sleep(1)
+            except RequestException as e:
+                fail_img = json.dumps({'url':imglist[i], 'folder':jpg_path, 'fail_reason':'错误原因:'+str(e)})
+                open('img_fail.json', 'a').write(fail_img+',\n')
+                #print('出现错误， 错误原因: ', e)
     return now_path
 
 #压缩文件
@@ -216,7 +222,6 @@ if __name__ == '__main__':
                 rpt(desc_path, pid, 'pro'+pid+'.pdf')
                 main_path = zipBigImg(s, pid)
                 writeZip(main_path, pid , 'pro'+pid+'.zip')
-
     #s = getHtmlInfo('https://www.banggood.com/Wholesale-3Port-1_3B-HDMI-Splitter-Switch-Switcher-For-HDTV-1080P-p-28012.html')
     #desc_content = s.xpath('//div[@class="list"][1]')
     #desc_content = etree.tostring(desc_content[0], pretty_print=True, encoding='utf-8')
