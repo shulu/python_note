@@ -154,11 +154,11 @@ def rpt(img_path, pid, pdf_name):
         imgpath = []
         for i in l:
             f = img_path + os.sep + str(i)
+            imgpath.append(f)
             file_size = int(os.path.getsize(f) / 1024)
             filesize_now += file_size
             if filesize_now >= filesize_limit:
                 break
-            imgpath.append(f)
         component_data = []
         col_width = []
         for i in imgpath:
@@ -170,17 +170,21 @@ def rpt(img_path, pid, pdf_name):
             #表格数据：用法详见reportlab-userguide.pdf中chapter 7 Table
             component_data.append([img])
             col_width.append(500)
-        #创建表格对象，并设定各列宽度
-        component_table = Table(component_data, colWidths=col_width)
-        #添加表格样式
-        component_table.setStyle(TableStyle([
-        ('ALIGN',(-1,0),(-2,0),'RIGHT'),#对齐
-        ('VALIGN',(-1,0),(-2,0),'MIDDLE'),  #对齐
-        ]))
-        story.append(component_table)
+        if component_data and col_width:
+            #创建表格对象，并设定各列宽度
+            component_table = Table(component_data, colWidths=col_width)
+            #添加表格样式
+            component_table.setStyle(TableStyle([
+            ('ALIGN',(-1,0),(-2,0),'RIGHT'),#对齐
+            ('VALIGN',(-1,0),(-2,0),'MIDDLE'),  #对齐
+            ]))
+            story.append(component_table)
 
-        doc = SimpleDocTemplate(file_path + pid + '/' + pdf_name)
-        doc.build(story)
+            doc = SimpleDocTemplate(file_path + pid + '/' + pdf_name)
+            doc.build(story)
+        else:
+            fail_pdf = json.dumps({'pid': pid, 'fail_reason': '错误原因:图片大于1M'})
+            open('fail_pdf.json', 'a').write(fail_pdf + ',\n')
 
 
 
