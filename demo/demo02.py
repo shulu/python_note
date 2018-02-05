@@ -226,6 +226,8 @@ if __name__ == '__main__':
                 rpt(desc_path, pid, 'pro'+pid+'.pdf')
                 main_path = zipBigImg(s, pid)
                 writeZip(main_path, pid , 'pro'+pid+'.zip')
+            else:
+                open('fail_pid.txt', 'a').write(pid + ',\n')
     #s = getHtmlInfo('https://www.banggood.com/Wholesale-3Port-1_3B-HDMI-Splitter-Switch-Switcher-For-HDTV-1080P-p-28012.html')
     #desc_content = s.xpath('//div[@class="list"][1]')
     #desc_content = etree.tostring(desc_content[0], pretty_print=True, encoding='utf-8')
