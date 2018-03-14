@@ -12,11 +12,12 @@ from reportlab.lib.pagesizes import A4, portrait, landscape
 from reportlab.pdfgen import canvas
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer,Image,Table,TableStyle
 import json
+import csv
 
-file_path = 'D:/products/'
+file_path = 'D:/products_1/'
 
 # 获取网页信息
-def getHtmlInfo(info):
+def getHtmlInfo(p_url):
     # url_path = url[24:]
     try:
         header = {
@@ -24,19 +25,19 @@ def getHtmlInfo(info):
             'upgrade-insecure-requests':'1',
             'user-agent':'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36'
         }
-        res = requests.get(info['url'], headers=header, timeout=10)
+        res = requests.get(p_url, headers=header, timeout=10)
         is_ok = res.status_code
         if is_ok == 200:
             s = etree.HTML(res.text)
             return s
     except RequestException as e:
-        info['fail_reason'] = '错误原因:'+str(e)
-        content = json.dumps(info)
+        # info['fail_reason'] = '错误原因:'+str(e)
+        content = json.dumps(pid+str(e))
         open('fail_product.json', 'a').write(content+',\n')
-        #print('出现错误， 错误原因: ', e)
+        # print('出现错误， 错误原因: ', e)
 
 
-#获取描述和描述图片
+# 获取描述和描述图片
 def htmlDescription(s, pid):
     desc_content = s.xpath('//div[@class="list"][1]')
     desc_img = []
@@ -52,16 +53,17 @@ def htmlDescription(s, pid):
                 desc_img.append('https:'+elem.attrib['data-original'])
             # print('https:'+elem.attrib['data-original'])
     img_path = getImg('desc_img', desc_img, pid)
-    description = etree.tostring(desc_content[0], pretty_print=True, encoding='utf-8')
-    #print(description)
-    filter_desc = description.decode().replace('\n', '').replace('\t', '')
-    all_desc = '<html>'+filter_desc+'</html>'
-    path = file_path+pid+'/pro'+pid+'.html'
-    f = open(path,'w', encoding='utf-8')
-    f.write(all_desc)
-    f.close()
+    # description = etree.tostring(desc_content[0], pretty_print=True, encoding='utf-8')
+    # print(description)
+    # filter_desc = description.decode().replace('\n', '').replace('\t', '')
+    # all_desc = '<html>'+filter_desc+'</html>'
+    # path = file_path+pid+'/pro'+pid+'.html'
+    # f = open(path,'w', encoding='utf-8')
+    # f.write(all_desc)
+    # f.close()
     # print(all_desc)
     return img_path
+
 
 # 压缩图片
 def zipBigImg(s, pid):
@@ -72,7 +74,8 @@ def zipBigImg(s, pid):
     path = getImg('main_img',big_img_list, pid)
     return path
 
-#下载图片
+
+# 下载图片
 def getImg(folder, imglist, pid):
     now_path = file_path + pid + '/'+folder+'/'
     checkdir(now_path)
@@ -98,7 +101,8 @@ def getImg(folder, imglist, pid):
                 #print('出现错误， 错误原因: ', e)
     return now_path
 
-#压缩文件
+
+# 压缩文件
 def writeZip(path, pid, file_name):
     azip = zipfile.ZipFile(file_path + pid + '/' + file_name, mode='w', compression=zipfile.ZIP_DEFLATED)
     for current_path, subfolders, filesname in os.walk(path):
@@ -121,9 +125,8 @@ def is_valid_jpg(jpg_file):
     else:
         return True
 
-        #生成图片PDF
 
-
+# 生成图片PDF
 def convert_images_to_pdf(img_path, pid, pdf_name):
     pages = 0
     (w, h) = portrait(A4)
@@ -144,6 +147,7 @@ def convert_images_to_pdf(img_path, pid, pdf_name):
     c.save()
 
 
+# 生成详情介绍图
 def rpt(img_path, pid, pdf_name):
     story=[]
     l = os.listdir(img_path)
@@ -151,12 +155,14 @@ def rpt(img_path, pid, pdf_name):
         l.sort(key=lambda x: int(x[:-4]))
         filesize_now = 0
         filesize_limit = 1024
+        count = 0
         imgpath = []
         for i in l:
             f = img_path + os.sep + str(i)
             imgpath.append(f)
             file_size = int(os.path.getsize(f) / 1024)
             filesize_now += file_size
+            if count < 3: continue
             if filesize_now >= filesize_limit:
                 break
         component_data = []
@@ -216,21 +222,39 @@ def checkdir(path):
 
 
 if __name__ == '__main__':
-    with open("info.json", 'r') as prod_info:
-        load_info = json.load(prod_info)
-        for p in load_info['RECORDS']:
-            pid = str(p['pid'])
-            s = getHtmlInfo(p)
+
+    with open('product.csv', 'r') as prod:
+        f_csv = csv.DictReader(prod)
+        headers = next(f_csv)
+        prod_id = []
+        for item in f_csv:
+            prod_id.append(item['prod_id'])
+        # print(prod_id)
+        for pid in prod_id:
+            url = str("https://www.banggood.com/-p-"+pid+".html")
+            s = getHtmlInfo(url)
             if s != None:
-                desc_path = htmlDescription(s, pid)
-                rpt(desc_path, pid, 'pro'+pid+'.pdf')
-                main_path = zipBigImg(s, pid)
-                writeZip(main_path, pid , 'pro'+pid+'.zip')
+               desc_path = htmlDescription(s, pid)
+               rpt(desc_path, pid, 'pro'+pid+'.pdf')
+               main_path = zipBigImg(s, pid)
+               writeZip(main_path, pid , 'pro'+pid+'.zip')
             else:
-                open('fail_pid.txt', 'a').write(pid + ',\n')
-    #s = getHtmlInfo('https://www.banggood.com/Wholesale-3Port-1_3B-HDMI-Splitter-Switch-Switcher-For-HDTV-1080P-p-28012.html')
-    #desc_content = s.xpath('//div[@class="list"][1]')
-    #desc_content = etree.tostring(desc_content[0], pretty_print=True, encoding='utf-8')
+               open('fail_pid.csv', 'a').write(pid + '\n')
+    # with open("info.json", 'r') as prod_info:
+    #    load_info = json.load(prod_info)
+    #    for p in load_info['RECORDS']:
+    #       pid = str(p['pid'])
+    #        s = getHtmlInfo(p)
+    #        if s != None:
+    #            desc_path = htmlDescription(s, pid)
+    #            rpt(desc_path, pid, 'pro'+pid+'.pdf')
+    #            main_path = zipBigImg(s, pid)
+    #            writeZip(main_path, pid , 'pro'+pid+'.zip')
+    #        else:
+    #            open('fail_pid.txt', 'a').write(pid + ',\n')
+    # s=getHtmlInfo('https://www.banggood.com/Wholesale-3Port-1_3B-HDMI-Splitter-Switch-Switcher-For-HDTV-1080P-p-28012.html')
+    # desc_content = s.xpath('//div[@class="list"][1]')
+    # desc_content = etree.tostring(desc_content[0], pretty_print=True, encoding='utf-8')
     # convert_images_to_pdf('D:/products/1227745/desc_img/', '1227745', 'pro1227745.pdf')
     # now_path = zipBigImg(s, '1227745')
     # zip_name = 'pro1227745.zip'
