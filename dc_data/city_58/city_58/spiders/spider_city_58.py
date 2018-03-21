@@ -8,4 +8,4 @@ class SpiderCity58Spider(scrapy.Spider):
     start_urls = ['http://58.com/']
 
     def parse(self, response):
-        print('im in 解析器')
+        print('我进入了解析器')

@@ -229,7 +229,8 @@ if __name__ == '__main__':
         prod_id = []
         for item in f_csv:
             prod_id.append(item['prod_id'])
-        # print(prod_id)
+        print(prod_id)
+        exit(1)
         for pid in prod_id:
             url = str("https://www.banggood.com/-p-"+pid+".html")
             s = getHtmlInfo(url)
