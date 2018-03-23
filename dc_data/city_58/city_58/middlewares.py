@@ -10,6 +10,7 @@ __author__ = 'SarcasMe'
 
 from scrapy import signals
 import random
+import scrapy.downloadermiddlewares.retry
 
 class UAMiddleware(object):
 

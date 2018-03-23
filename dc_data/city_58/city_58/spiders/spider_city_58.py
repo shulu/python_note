@@ -6,7 +6,10 @@ from ..items import City58Item
 class SpiderCity58Spider(scrapy.Spider):
     name = 'spider_city_58'
     allowed_domains = ['58.com']
-    start_urls = ['http://gz.58.com/chuzu']
+    start_urls = [
+        'http://gz.58.com/chuzu',
+        'http://gz.58.com/chuzu/pn2',
+    ]
 
     def parse(self, response):
         print('我进入了解析器')
