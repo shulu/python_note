@@ -2,14 +2,16 @@
 import scrapy
 from pyquery import PyQuery as pq
 from ..items import City58Item
+from scrapy.http import Request
 
 class SpiderCity58Spider(scrapy.Spider):
     name = 'spider_city_58'
     allowed_domains = ['58.com']
-    start_urls = [
-        'http://gz.58.com/chuzu',
-        'http://gz.58.com/chuzu/pn2',
-    ]
+    # start_urls = [
+    #     'http://gz.58.com/chuzu',
+    #     'http://gz.58.com/chuzu/pn2/',
+    # ]
+    start_urls = ['http://gz.58.com/chuzu']
 
     def parse(self, response):
         print('我进入了解析器')
@@ -25,3 +27,12 @@ class SpiderCity58Spider(scrapy.Spider):
             item['price'] = li('div.listliright > div.money > b').text()
             yield item
             #pass
+        req = response.follow('/chuzu/pn2/', callable=self.parse)
+        yield req
+
+        Request('http://gz.58.com/chuzu/pn3',
+                callback=self.parse,
+                )
+
+    def error_back(self, e):
+        print(e)
