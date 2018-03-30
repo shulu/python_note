@@ -8,6 +8,7 @@ import cv2
 
 convert_path = './convert_img'
 
+# 遍历文件夹查找tif文件
 def checkConvert(path):
     files = os.listdir(path)
     for file in files:
@@ -18,7 +19,7 @@ def checkConvert(path):
         else:
             convertImg(file_dir)
 
-
+# 根据路径转换tif为jpg
 def convertImg(path):
     f,e = os.path.splitext(path)
     convert_file = f+'.jpg'
