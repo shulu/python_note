@@ -7,6 +7,8 @@ __author__ = 'SarcasMe'
 import requests
 import json
 from pyecharts import Bar
+from wordcloud import WordCloud
+import matplotlib.pyplot as plt
 
 url = 'http://music.163.com/weapi/v1/resource/comments/R_SO_4_551816010?csrf_token=568cec564ccadb5f1b29311ece2288f1'
 
@@ -39,6 +41,13 @@ content_list = [content['content'] for content in hotcomments]
 nickname = [content['nickname'] for content in hotcomments]
 liked_count = [content['likedCount'] for content in hotcomments]
 
-bar = Bar("热评中点赞数示例图")
-bar.add( "点赞数",nickname, liked_count, is_stack=True,mark_line=["min", "max"],mark_point=["average"])
-bar.render()
+# bar = Bar("热评中点赞数示例图")
+# bar.add( "点赞数",nickname, liked_count, is_stack=True,mark_line=["min", "max"],mark_point=["average"])
+# bar.render()
+
+content_text = " ".join(content_list)
+wordcloud = WordCloud(font_path=r"C:\simhei.ttf",max_words=200).generate(content_text)
+plt.figure()
+plt.imshow(wordcloud,interpolation='bilinear')
+plt.axis('off')
+plt.show()
