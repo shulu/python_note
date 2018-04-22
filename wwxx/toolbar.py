@@ -14,7 +14,7 @@ class Example(wx.Frame):
     def InitUI(self):
 
         toolbar = self.CreateToolBar()
-        qtool = toolbar.AddTool(wx.ID_ANY, 'Quit', wx.Bitmap('exit.png'))
+        qtool = toolbar.AddTool(wx.ID_ANY, 'Quit', wx.Bitmap('./icon/exit.png'))
         toolbar.Realize()
 
         self.Bind(wx.EVT_TOOL, self.OnQuit, qtool)
