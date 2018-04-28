@@ -41,7 +41,7 @@ class Example(wx.Frame):
         ])
         # param1 从0开始 标记那些行 param2 proportion 是否可增长
         fgs.AddGrowableRow(2, 1)
-
+        # param1 从0开始 标记那些列 param2 proportion 是否可增长
         fgs.AddGrowableCol(1, 1)
 
         hbox.Add(fgs, proportion=1, flag=wx.ALL|wx.EXPAND, border=15)
