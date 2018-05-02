@@ -21,7 +21,7 @@ class Example(wx.Frame):
 
         sizer = wx.GridBagSizer(5,5)
 
-        st1 = wx.StaticText(panel, label='java Class')
+        st1 = wx.StaticText(panel, label='Java Class')
         sizer.Add(st1, pos=(0,0), flag=wx.TOP|wx.LEFT|wx.BOTTOM, border=15)
         # 8bit
         icon = wx.StaticBitmap(panel, bitmap=wx.Bitmap('./icon/exec.png'))
