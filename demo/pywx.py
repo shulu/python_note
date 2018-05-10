@@ -8,7 +8,29 @@ from wxpy import *
 bot = Bot(console_qr=True, cache_path=True)
 friends_stat = bot.friends().stats()
 a_friend = bot.friends()
-print(friends_stat)
+#print(friends_stat)
+# myself = bot.core.loginInfo['User']['NickName']
+myself = bot.self.name
+# print(friends_stat["province"].items())
+# exit()
+
+# 每一个元素是一个二元列表，分别存储地区和人数信息
+friend_loc = []
+for province, count in friends_stat["province"].items():
+
+    if province == "":
+        province = '未知区域'
+    friend_loc.append([province, count])
+
+# 对人数倒序排序
+friend_loc.sort(key=lambda x: x[1], reverse=True)
+
+print('%s 的好友地区统计' % myself)
+
+#打印人数最多的十个地区
+for item in friend_loc[:10]:
+    print("%s 地区的好友有 %d个" % (item[0], item[1]))
+
 
 # 在 Web 微信中把自己加为好友
 # bot.self.add()

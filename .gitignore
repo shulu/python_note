@@ -102,4 +102,4 @@ ENV/
 /.idea
 
 # wxpy
-wxpy.pkl
+*.pkl
