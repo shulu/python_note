@@ -43,7 +43,7 @@ liked_count = [content['likedCount'] for content in hotcomments]
 
 bar = Bar("热评中点赞数示例图")
 bar.add( "点赞数",nickname, liked_count, is_stack=True,mark_line=["min", "max"],mark_point=["average"])
-bar.render()
+bar.render('163like.html')
 
 content_text = " ".join(content_list)
 wordcloud = WordCloud(font_path=r"C:\simhei.ttf",max_words=200).generate(content_text)
