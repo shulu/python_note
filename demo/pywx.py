@@ -5,15 +5,36 @@ __author__ = 'SarcasMe'
 
 from wxpy import *
 from pyecharts import Bar, Pie
+import re
+import jieba
 
 bot = Bot(console_qr=True, cache_path=True)
 
 # bot.file_helper.send("{apikey：98f466650507488b836a9eea937fc211,密钥： 7a18332b77f41b94,userid:261407}")
 
 friends = bot.friends()
+
+signature_list = []
 for chat in friends:
     nick_name = chat.nick_name
-    chat.get_avatar('./wx_avatar/'+nick_name+'.jpg')
+    signature = chat.signature
+    if signature != "":
+        # 过滤换行空格
+        signature = signature.replace('\r','').replace('\n','').replace('\t','').replace(' ', '')
+        # 过滤html代码
+        signature = re.sub(r'</?\w+[^>]*>', '', signature)
+        # 过滤特殊字符
+        signature = re.sub(r"[\s+.!/_,$%^*(+"')]+|[+——()?【】“”！，。？、~@#￥%……&*（）丶·๑•̀ㅂ́و✧ ～:3」∠❀]+', "", signature)
+        signature_list.append(signature)
+    # chat.get_avatar('./wx_avatar/'+nick_name+'.jpg')
+
+text = " ".join(signature_list)
+with open('wx_singnature.txt', 'a', encoding='utf-8') as f:
+
+    wordlist = jieba.cut(text, cut_all=True)
+    word_space_split = " ".join(wordlist)
+    f.write(word_space_split+'\n')
+    f.close()
 
 exit()
 friends_stat = bot.friends().stats()
