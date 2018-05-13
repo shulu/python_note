@@ -13,6 +13,7 @@ import PIL.Image as Image
 import numpy as np
 import matplotlib.pyplot as plt
 from wordcloud import WordCloud, STOPWORDS, ImageColorGenerator
+import random
 
 class GenerateWxInfo():
 
@@ -20,21 +21,22 @@ class GenerateWxInfo():
 
         # myself = bot.core.loginInfo['User']['NickName']
         self.login_wx()
-        self.avatar_filename = './wx_avatar/' + self.login_user + '/avatar.png'
-        my_friend = self.bot.friends().search(u'老婆')[ 0 ]
-        my_friend.send_image(self.avatar_filename)
-        # self.avatar_path = './wx_avatar/'+self.login_user+'/avatar/'
-        # self.avatar_filename = './wx_avatar/'+self.login_user+'/avatar.png'
-        # self.wd_path = './wx_wordclouds/'
-        # self.wd_txt_path = self.wd_path+self.login_user+'_wx_singnature.txt'
-        # self.wd_filename = self.wd_path+self.login_user+'.jpg'
-        # self.las_path = './wx_locationandsex/'
-        # self.las_filename = self.las_path+self.login_user+'_locationandsex.png'
-        # self.drawLocationAndSex()
-        # self.getFriendsAvatarAndSignature()
-        # self.concat_img()
-        # self.generate_wordclouds()
-        # self.send_to_self()
+        # my_friend = self.bot.friends().search(u'老婆')[ 0 ]
+        # print(my_friend)
+        # my_friend.send_image(self.wd_filename)
+        base_username = str(random.randint(9999,999999))
+        self.avatar_path = './wx_avatar/'+base_username+'/avatar/'
+        self.avatar_filename = './wx_avatar/'+base_username+'/avatar.png'
+        self.wd_path = './wx_wordclouds/'
+        self.wd_txt_path = self.wd_path+base_username+'_wx_singnature.txt'
+        self.wd_filename = self.wd_path+base_username+'.jpg'
+        self.las_path = './wx_locationandsex/'
+        self.las_filename = self.las_path+base_username+'_locationandsex.png'
+        self.drawLocationAndSex()
+        self.getFriendsAvatarAndSignature()
+        self.concat_img()
+        self.generate_wordclouds()
+        self.send_to_self()
 
     def login_wx(self):
 
