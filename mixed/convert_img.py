@@ -31,5 +31,7 @@ def convertImg(path):
         print('can not convert file %s' % path)
 
 
-if __name__ == '__main__':
-    checkConvert(convert_path)
+convertImg('./demo.png')
+
+# if __name__ == '__main__':
+    #checkConvert(convert_path)

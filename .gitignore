@@ -103,3 +103,6 @@ ENV/
 
 # wxpy
 *.pkl
+wx_avatar/
+wx_locationandsex/
+wx_wordclouds/
