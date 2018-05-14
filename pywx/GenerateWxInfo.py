@@ -6,7 +6,6 @@ __author__ = 'SarcasMe'
 import os, math
 from wxpy import *
 from pyecharts import Bar, Pie
-from pyecharts import configure
 import re
 import jieba
 import PIL.Image as Image
@@ -14,6 +13,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from wordcloud import WordCloud, STOPWORDS, ImageColorGenerator
 import random
+import cv2
 
 class GenerateWxInfo():
 
@@ -21,17 +21,16 @@ class GenerateWxInfo():
 
         # myself = bot.core.loginInfo['User']['NickName']
         self.login_wx()
-        # my_friend = self.bot.friends().search(u'老婆')[ 0 ]
-        # print(my_friend)
-        # my_friend.send_image(self.wd_filename)
+        # self.bot.file_helper.send_image('./wx_wordclouds/952908.jpg')
         base_username = str(random.randint(9999,999999))
         self.avatar_path = './wx_avatar/'+base_username+'/avatar/'
-        self.avatar_filename = './wx_avatar/'+base_username+'/avatar.png'
+        self.avatar_filename = './wx_avatar/'+base_username+'/avatar.jpg'
         self.wd_path = './wx_wordclouds/'
         self.wd_txt_path = self.wd_path+base_username+'_wx_singnature.txt'
         self.wd_filename = self.wd_path+base_username+'.jpg'
         self.las_path = './wx_locationandsex/'
-        self.las_filename = self.las_path+base_username+'_locationandsex.png'
+        self.las_filename = self.las_path+base_username+'locationandsex.gif'
+        self.las_save_filename = self.las_path+base_username+'locationandsex.jpg'
         self.drawLocationAndSex()
         self.getFriendsAvatarAndSignature()
         self.concat_img()
@@ -40,7 +39,7 @@ class GenerateWxInfo():
 
     def login_wx(self):
 
-        self.bot = Bot(console_qr=True, cache_path=True)
+        self.bot = Bot()
         self.login_user = self.bot.self.name
         self.friends = self.bot.friends()
         self.friends_stat = self.bot.friends().stats()
@@ -80,6 +79,7 @@ class GenerateWxInfo():
     def getFriendsAvatarAndSignature(self):
 
         signature_list = [ ]
+        i = 0
         for chat in self.friends:
             nick_name = chat.nick_name
             signature = chat.signature
@@ -92,7 +92,7 @@ class GenerateWxInfo():
                 signature = re.sub(r"[\s+.!/_,$%^*(+"')]+|[+——()?【】“”！，。？、~@#￥%……&*（）丶·๑•̀ㅂ́و✧ ～:3」∠❀]+', "", signature)
                 signature_list.append(signature)
             if os.path.exists(self.avatar_path):
-                file = self.avatar_path + nick_name + '.jpg'
+                file = self.avatar_path + 'avatar_'+ str(i) + '.jpg'
                 if os.path.exists(file):
                     pass
                     # print('%s file is exists' % file)
@@ -100,7 +100,8 @@ class GenerateWxInfo():
                     chat.get_avatar(save_path=file)
             else:
                 os.makedirs(self.avatar_path)
-                chat.get_avatar(save_path=self.avatar_path+nick_name+'.jpg')
+                chat.get_avatar(save_path=self.avatar_path+str(i)+'.jpg')
+            i += 1
 
         if os.path.exists(self.wd_txt_path):
             pass
@@ -123,17 +124,17 @@ class GenerateWxInfo():
             friend_loc = self.getFriendsLocation()
             friend_sex = self.getFriendsSex()
             pie = Pie("好友统计", width=900)
-            pie.use_theme('macarons')
-            pie.add('', list(map(lambda x: x[ 0 ], friend_loc)), list(map(lambda x: x[ 1 ], friend_loc)),
-                    center=[ 25, 50 ], radius=[ 0, 50 ], is_label_show=True, legend_pos='left')
-            pie.add('', list(map(lambda x: x[ 0 ], friend_sex)), list(map(lambda x: x[ 1 ], friend_sex)),
-                    center=[ 75, 50 ], radius=[ 0, 50 ], is_label_show=True, legend_pos='right')
+            # pie.use_theme('macaron')
+            pie.add('', list(map(lambda x: x[ 0 ], friend_loc)), list(map(lambda x: x[ 1 ], friend_loc)), center=[ 25, 50 ], radius=[ 0, 50 ], is_label_show=True, is_legend_show=False, legend_pos='left')
+            pie.add('', list(map(lambda x: x[ 0 ], friend_sex)), list(map(lambda x: x[ 1 ], friend_sex)), center=[ 75, 50 ], radius=[ 0, 50 ], is_label_show=True, is_legend_show=False, legend_pos='right')
             # pie.render('wxpy_location_sex_pie.html')
             pie.render(path=self.las_filename)
             # 修改输出扩展名为.jpeg
-            # img = Image.open(self.las_filename)
-            # rgb_img = img.convert('RGB')
-            # rgb_img.save(self.las_path+self.login_user+'_locationandsex.jpg')
+            img = Image.open(self.las_filename)
+            im = img.convert('RGB')
+            f, e = os.path.splitext(self.las_filename)
+            convert_file = f + '.jpg'
+            im.save(convert_file)
 
     def concat_img(self):
 
@@ -193,7 +194,7 @@ class GenerateWxInfo():
         # 发送图片
         self.bot.file_helper.send_image(self.avatar_filename)
         self.bot.file_helper.send_image(self.wd_filename)
-        self.bot.file_helper.send_image(self.las_filename)
+        self.bot.file_helper.send_image(self.las_save_filename)
         # 发送视频
         # my_friend.send_video('my_video.mov')
         # 发送文件
@@ -201,7 +202,11 @@ class GenerateWxInfo():
         # 以动态的方式发送图片
         # my_friend.send('@img@my_picture.png')
 
+    def run_loop(self):
+
+        self.login_wx()
 
 if __name__ == '__main__':
 
     GenerateWxInfo()
+    embed()
