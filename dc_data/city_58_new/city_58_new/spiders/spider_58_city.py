@@ -2,10 +2,10 @@
 import scrapy
 
 
-class SpiderCity58Spider(scrapy.Spider):
-    name = 'spider_city_58'
+class Spider58CitySpider(scrapy.Spider):
+    name = 'spider_58_city'
     allowed_domains = ['58.com']
     start_urls = ['http://58.com/']
 
     def parse(self, response):
-        print('im in pipeline')
+        pass

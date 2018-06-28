@@ -5,5 +5,4 @@ __author__ = 'SarcasMe'
 
 from scrapy import cmdline
 
-cmdline.execute('Scrapy crawl spider_city_58'.split())
-# ['Scrapy', 'crawl', 'spider_city_58']
+cmdline.execute("scrapy crawl spider_city_58".split())

@@ -8,7 +8,7 @@
 import scrapy
 
 
-class City58Item(scrapy.Item):
+class City58NewItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
     pass

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Scrapy settings for city_58 project
+# Scrapy settings for city_58_new project
 #
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
@@ -9,14 +9,14 @@
 #     https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://doc.scrapy.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = 'city_58'
+BOT_NAME = 'city_58_new'
 
-SPIDER_MODULES = ['city_58.spiders']
-NEWSPIDER_MODULE = 'city_58.spiders'
+SPIDER_MODULES = ['city_58_new.spiders']
+NEWSPIDER_MODULE = 'city_58_new.spiders'
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = 'city_58 (+http://www.yourdomain.com)'
+#USER_AGENT = 'city_58_new (+http://www.yourdomain.com)'
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
@@ -47,13 +47,13 @@ ROBOTSTXT_OBEY = True
 # Enable or disable spider middlewares
 # See https://doc.scrapy.org/en/latest/topics/spider-middleware.html
 #SPIDER_MIDDLEWARES = {
-#    'city_58.middlewares.City58SpiderMiddleware': 543,
+#    'city_58_new.middlewares.City58NewSpiderMiddleware': 543,
 #}
 
 # Enable or disable downloader middlewares
 # See https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
 #DOWNLOADER_MIDDLEWARES = {
-#    'city_58.middlewares.City58DownloaderMiddleware': 543,
+#    'city_58_new.middlewares.City58NewDownloaderMiddleware': 543,
 #}
 
 # Enable or disable extensions
@@ -65,7 +65,7 @@ ROBOTSTXT_OBEY = True
 # Configure item pipelines
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 #ITEM_PIPELINES = {
-#    'city_58.pipelines.City58Pipeline': 300,
+#    'city_58_new.pipelines.City58NewPipeline': 300,
 #}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
