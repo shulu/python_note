@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-__author__ = 'SarcasMe'
-
 import requests
 import json
 import math
+import time
+import re
 from openpyxl import load_workbook
 
+__author__ = 'SarcasMe'
 
 class my_pipelines():
 
@@ -25,19 +26,24 @@ class my_pipelines():
         pages = int(math.ceil(all_commit/20))
 
         while pages > 0:
+
+            time.sleep(0.5)
             print('start page '+str(pages))
             data = self.return_pipelines(pages)
-            pipelines_data = []
-            # pipeline_id	author	author_email	branch	commit_id	commit_message	commit_date pipeline_status
-            for pipe in data['pipelines']:
 
+            # pipeline_id	author	author_email	branch	commit_id	commit_message	commit_date pipeline_status
+            pipelines = data['pipelines']
+            pipelines.reverse()
+            for pipe in pipelines:
+
+                branch = author_email = commit_id = commit_message = 'unknow'
                 pipeline_id = str(pipe['id'])
-                author = pipe['commit']['author_name']
-                commit_id = pipe['commit']['id']
-                commit_date = pipe['created_at']
-                author_email = pipe['commit']['author_email']
-                commit_message = pipe['commit']['title']
-                branch = 'unknow'
+                author = pipe['user']['name']
+                if pipe['commit']:
+                    commit_id = pipe['commit']['id']
+                    author_email = pipe['commit']['author_email']
+                    commit_message = pipe['commit']['title']
+                commit_date = self.conv_utc_time(pipe['created_at'])
                 if pipe['ref']['branch']:
                     branch = pipe['ref']['name']
                 pipeline_status = pipe['details']['status']['label']
@@ -45,10 +51,28 @@ class my_pipelines():
                     pipeline_id, author, author_email, branch,
                     commit_id, commit_message, commit_date, pipeline_status
                 ]
-                pipelines_data.append(pipeline)
+                # pipelines_data.append(pipeline)
+                yield pipeline
                 # print('    ' + pipeline_id + '  |   ' + author + ' |   ' + branch + '    | ' + pipeline_status)
-            self.save_to_excel(pipelines_data)
+            # self.save_to_excel(pipelines_data)
             pages -= 1
+
+    @staticmethod
+    def conv_utc_time(dt):
+
+        dates = re.search("(\d*-\d*-\d*)", dt).group()
+        times = re.search("(\d*:\d*:\d*)", dt).group()
+        dt = dates + ' ' + times
+        # 转换成时间数组
+        timeArray = time.strptime(dt, "%Y-%m-%d %H:%M:%S")
+        # 转换成时间戳
+        timestamp = time.mktime(timeArray)
+        timestamp += 8 * 3600
+        # 转换成localtime
+        time_local = time.localtime(timestamp)
+        # 转换成新的时间格式(2016-05-05 20:28:54)
+        dt = time.strftime("%Y-%m-%d %H:%M:%S", time_local)
+        return dt
 
     def return_pipelines(self, page):
 
@@ -63,28 +87,26 @@ class my_pipelines():
         else:
             return False
 
-    def save_to_excel(self, datas):
+    def save_to_excel(self):
 
         wb = load_workbook(self.excel_name)
         sheet = wb.active
         row = sheet.max_row  # <-最大行数
         max_row = row + 1
-        lens = len(datas)
-        for i in range(0, lens-1):
-            for col in range(1, len(datas[i]) + 1):
-                # print(max_row, col1)
-                _ = sheet.cell(row=max_row, column=col, value=str(datas[i][col - 1]))
+        for pipeline in self.get_pipelines():
+            for col in range(1, len(pipeline) + 1):
+                _ = sheet.cell(row=max_row, column=col, value=str(pipeline[col - 1]))
             max_row += 1
-            wb.save(filename=self.excel_name)
-        # print("保存成功")
+        wb.save(filename=self.excel_name)
+        print("保存成功")
 
     @staticmethod
     def record_max(count):
         with open("max_count.json", "w") as f:
             json.dump({'all_count':count}, f)
-        print("加载入文件完成...")
+        print("加载count文件完成...")
 
 if __name__ == '__main__':
 
     pipe = my_pipelines()
-    pipe.get_pipelines()
+    pipe.save_to_excel()
