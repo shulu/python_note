@@ -6,7 +6,18 @@ __author__ = 'SarcasMe'
 import numpy as np
 import pandas as pd
 
-df = pd.DataFrame(pd.read_excel('pipelines.xlsx'))
+# df = pd.DataFrame(pd.read_excel('pipelines.xlsx'))
+df = pd.DataFrame(
+    {
+        "id":[1001, 1002, 1003, 1004, 1005, 1006],
+        "date":pd.date_range('20130102', periods=6),
+        "city":["Beijing", "SH", ' guangzhou ', 'Shenzhen', 'shanghai', 'BEIJING '],
+        "age":[23,44, 54, 32, 34, 32],
+        "category":['100-A', '100-B', '110-A', '110-C', '210-A', '130-F'],
+        "price":[1200, np.nan, 2133, 5433, np.nan, 4432]
+    },
+    columns=['id', 'date', 'city', 'category', 'age', 'price']
+)
 # 查看数据的维度
 # print(df.shape)
 # 查看数据表信息
@@ -36,3 +47,11 @@ df = pd.DataFrame(pd.read_excel('pipelines.xlsx'))
 # 更改数据格式
 # df['price'].astype['int']
 # 更改列名称
+# df.rename(columns={'category': 'category-size'})
+# 删除重复值
+# df['city'].drop_duplicates() 保留第一位的
+# df['city'].drop_duplicates(keep='last') 保留最后一个
+# 数值的修改和替换
+# df['city'].replace('sh', 'shanghai')
+
+
