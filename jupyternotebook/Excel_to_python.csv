@@ -1,0 +1,7 @@
+date,id,city,category_x,age,price,gender,m-point,pay,group,sign1,sign2,category_y,size
+2013-01-02,1001,beijing,100-A,23,1200.0,male,10,Y,low,,,100,A
+2013-01-03,1002,sh,100-B,44,,female,12,N,low,,,100,B
+2013-01-04,1003,guangzhou,110-A,54,2133.0,male,20,Y,low,,,110,A
+2013-01-05,1004,shenzhen,110-C,32,5433.0,female,40,Y,high,,,110,C
+2013-01-06,1005,shanghai,210-A,34,,male,40,N,low,,,210,A
+2013-01-07,1006,beijing,130-F,32,4432.0,female,40,Y,high,1.0,1.0,130,F

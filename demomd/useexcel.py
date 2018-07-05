@@ -18,6 +18,7 @@ df = pd.DataFrame(
     },
     columns=['id', 'date', 'city', 'category', 'age', 'price']
 )
+
 # 查看数据的维度
 # print(df.shape)
 # 查看数据表信息
