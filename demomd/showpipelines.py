@@ -18,11 +18,16 @@ class my_pipelines():
         self.private_token = 's64NyxXzb-Dreu9-4iM3'
         self.excel_name = 'pipelines.xlsx'
 
+    def continue_to_excel(self):
+
+        data = open('max_count.json').read()
+        data = json.loads(data)
+        print(data['all_count'])
+
     def get_pipelines(self):
 
         data = self.return_pipelines(False)
         all_commit = data['count']['all']
-        self.record_max(all_commit)
         pages = int(math.ceil(all_commit/20))
 
         while pages > 0:
@@ -56,6 +61,8 @@ class my_pipelines():
                 # print('    ' + pipeline_id + '  |   ' + author + ' |   ' + branch + '    | ' + pipeline_status)
             # self.save_to_excel(pipelines_data)
             pages -= 1
+
+        self.record_max(all_commit)
 
     @staticmethod
     def conv_utc_time(dt):
@@ -109,4 +116,5 @@ class my_pipelines():
 if __name__ == '__main__':
 
     pipe = my_pipelines()
-    pipe.save_to_excel()
+    # pipe.save_to_excel()
+    pipe.continue_to_excel()
