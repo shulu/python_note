@@ -51,5 +51,8 @@ author_pipelines = author_pipelines.set_index('commit_date')
 month_count = []
 for months in cals:
     month_data = author_pipelines[months[0]:months[1]]
-    print(month_data.size)
+    month_count.append(month_data.size)
+
+print([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])
+print(month_count)
 
