@@ -6,17 +6,27 @@ __author__ = 'SarcasMe'
 import pandas as pd
 import numpy as np
 import calendar as cal
+import time
 
+ss = '1111-11-11'
+print(ss[:7])
+exit()
 cals = []
 year = 2017
 for m in range(1, 13):
     d = cal.monthrange(year, m)
     # first_day = str(year)+'-'+str(m)+'-1'
     first_day = "%d-%d-%d" % (year, m, 1)
-    last_day = "%d-%d-%d" % (year, m, d[1])
+    # 转换成时间数组
+    timeArray = time.strptime(first_day, "%Y-%m-%d")
+    first_day = time.strftime("%Y-%m-%d", timeArray)
+    last_day = "%d-%d-%d 23:59:59" % (year, m, d[1])
+    timeArray = time.strptime(last_day, "%Y-%m-%d")
+    last_day = time.strftime("%Y-%m-%d %H:%M:%S", timeArray)
     # print("%d-%d-%d\t%d-%d-%d" % (year, m, 1, year, m, d[1]))
     cals.append([first_day, last_day])
-
+print(cals)
+exit()
 df = pd.DataFrame(pd.read_excel('pipelines_bak.xlsx'))
 # df = pd.DataFrame(pd.read_excel('pipelines.xlsx'))
 
