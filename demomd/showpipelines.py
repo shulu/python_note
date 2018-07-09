@@ -22,13 +22,23 @@ class my_pipelines():
 
         data = open('max_count.json').read()
         data = json.loads(data)
-        print(data['all_count'])
+        last_allacount = data['all_count']
+        data = self.return_pipelines(False)
+        all_commit = data[ 'count' ][ 'all' ]
+        if all_commit > last_allacount:
 
-    def get_pipelines(self):
+            pages = int(math.ceil(all_commit / 20))
+            
+
+    def get_pages(self):
 
         data = self.return_pipelines(False)
-        all_commit = data['count']['all']
-        pages = int(math.ceil(all_commit/20))
+        all_commit = data[ 'count' ][ 'all' ]
+        pages = int(math.ceil(all_commit / 20))
+        self.record_max(all_commit)
+        return pages
+
+    def get_pipelines(self, pages):
 
         while pages > 0:
 
@@ -62,7 +72,6 @@ class my_pipelines():
             # self.save_to_excel(pipelines_data)
             pages -= 1
 
-        self.record_max(all_commit)
 
     @staticmethod
     def conv_utc_time(dt):
@@ -96,11 +105,12 @@ class my_pipelines():
 
     def save_to_excel(self):
 
+        pages = self.get_pages()
         wb = load_workbook(self.excel_name)
         sheet = wb.active
         row = sheet.max_row  # <-最大行数
         max_row = row + 1
-        for pipeline in self.get_pipelines():
+        for pipeline in self.get_pipelines(pages=pages):
             for col in range(1, len(pipeline) + 1):
                 _ = sheet.cell(row=max_row, column=col, value=str(pipeline[col - 1]))
             max_row += 1
