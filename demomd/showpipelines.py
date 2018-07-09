@@ -28,7 +28,7 @@ class my_pipelines():
         if all_commit > last_allacount:
 
             pages = int(math.ceil(all_commit / 20))
-            
+
 
     def get_pages(self):
 
