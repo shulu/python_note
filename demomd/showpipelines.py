@@ -7,6 +7,7 @@ import math
 import time
 import re
 from openpyxl import load_workbook
+import pandas as pd
 
 __author__ = 'SarcasMe'
 
@@ -16,7 +17,9 @@ class my_pipelines():
 
         self.project = 'banggood/www'
         self.private_token = 's64NyxXzb-Dreu9-4iM3'
-        self.excel_name = 'pipelines.xlsx'
+        self.excel_name = 'pipelines_bak.xlsx'
+        self.max_id = 0
+        self.max_count = 0
 
     def continue_to_excel(self):
 
@@ -24,11 +27,16 @@ class my_pipelines():
         data = json.loads(data)
         last_allacount = data['all_count']
         data = self.return_pipelines(False)
-        all_commit = data[ 'count' ][ 'all' ]
+        all_commit = data['count']['all']
+        pages = 0
         if all_commit > last_allacount:
-
-            pages = int(math.ceil(all_commit / 20))
-
+            df = pd.DataFrame(pd.read_excel(self.excel_name))
+            self.max_id = df['pipeline_id'].tail(1).values[0]
+            self.max_count = all_commit
+            pages = int(math.ceil((all_commit-last_allacount) / 20))
+        else:
+            print('当前已经时最新数据')
+        return pages
 
     def get_pages(self):
 
@@ -46,13 +54,14 @@ class my_pipelines():
             print('start page '+str(pages))
             data = self.return_pipelines(pages)
 
-            # pipeline_id	author	author_email	branch	commit_id	commit_message	commit_date pipeline_status
             pipelines = data['pipelines']
             pipelines.reverse()
             for pipe in pipelines:
 
                 branch = author_email = commit_id = commit_message = 'unknow'
-                pipeline_id = str(pipe['id'])
+                pipeline_id = pipe['id']
+                if pipeline_id <= self.max_id:
+                    continue
                 author = pipe['user']['name']
                 if pipe['commit']:
                     commit_id = pipe['commit']['id']
@@ -66,12 +75,8 @@ class my_pipelines():
                     pipeline_id, author, author_email, branch,
                     commit_id, commit_message, commit_date, pipeline_status
                 ]
-                # pipelines_data.append(pipeline)
                 yield pipeline
-                # print('    ' + pipeline_id + '  |   ' + author + ' |   ' + branch + '    | ' + pipeline_status)
-            # self.save_to_excel(pipelines_data)
             pages -= 1
-
 
     @staticmethod
     def conv_utc_time(dt):
@@ -105,7 +110,7 @@ class my_pipelines():
 
     def save_to_excel(self):
 
-        pages = self.get_pages()
+        pages = self.continue_to_excel()
         wb = load_workbook(self.excel_name)
         sheet = wb.active
         row = sheet.max_row  # <-最大行数
@@ -115,6 +120,7 @@ class my_pipelines():
                 _ = sheet.cell(row=max_row, column=col, value=str(pipeline[col - 1]))
             max_row += 1
         wb.save(filename=self.excel_name)
+        self.record_max(self.max_count)
         print("保存成功")
 
     @staticmethod
@@ -126,5 +132,5 @@ class my_pipelines():
 if __name__ == '__main__':
 
     pipe = my_pipelines()
-    # pipe.save_to_excel()
-    pipe.continue_to_excel()
+    pipe.save_to_excel()
+    #pipe.continue_to_excel()
