@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Scrapy settings for city_58 project
+# Scrapy settings for city58 project
 #
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
@@ -9,17 +9,17 @@
 #     https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://doc.scrapy.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = 'city_58'
+BOT_NAME = 'city58'
 
-SPIDER_MODULES = ['city_58.spiders']
-NEWSPIDER_MODULE = 'city_58.spiders'
+SPIDER_MODULES = ['city58.spiders']
+NEWSPIDER_MODULE = 'city58.spiders'
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = 'city_58 (+http://www.yourdomain.com)'
+#USER_AGENT = 'city58 (+http://www.yourdomain.com)'
 
 # Obey robots.txt rules
-ROBOTSTXT_OBEY = True
+ROBOTSTXT_OBEY = False
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
@@ -47,14 +47,14 @@ ROBOTSTXT_OBEY = True
 # Enable or disable spider middlewares
 # See https://doc.scrapy.org/en/latest/topics/spider-middleware.html
 #SPIDER_MIDDLEWARES = {
-#    'city_58.middlewares.City58SpiderMiddleware': 543,
+#    'city58.middlewares.City58SpiderMiddleware': 543,
 #}
 
 # Enable or disable downloader middlewares
 # See https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
-#DOWNLOADER_MIDDLEWARES = {
-#    'city_58.middlewares.City58DownloaderMiddleware': 543,
-#}
+DOWNLOADER_MIDDLEWARES = {
+   'city58.middlewares.UAMiddlware': 543,
+}
 
 # Enable or disable extensions
 # See https://doc.scrapy.org/en/latest/topics/extensions.html
@@ -64,9 +64,9 @@ ROBOTSTXT_OBEY = True
 
 # Configure item pipelines
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    'city_58.pipelines.City58Pipeline': 300,
-#}
+ITEM_PIPELINES = {
+   'city58.pipelines.City58Pipeline': 300,
+}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://doc.scrapy.org/en/latest/topics/autothrottle.html
