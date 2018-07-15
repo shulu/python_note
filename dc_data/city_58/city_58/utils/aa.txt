@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge;chrome=1">
+    <link rel="icon" href="//img.58cdn.com.cn/fangrs/img/58.png">
+
+    <title>【神仙树大院三期, 神仙树大院三期小区详情，房价走势，房源，业主论坛】- 成都58同城</title>
+    
+    <meta name="keywords" content="成都小区,成都小区信息" />
+    <meta name="description" content="58同城神仙树大院三期小区频道为您提供神仙树大院三期租房、二手房价格走势，神仙树大院三期二手房租房信息，神仙树大院三期周边介绍、地图位置等关于神仙树大院三期小区信息。"/>
+
+    <link rel="stylesheet" href="//c.58cdn.com.cn/componentsLoader/dist/CompontsLoader_v20180626165501.css" />
+    <link rel="stylesheet" href="//c.58cdn.com.cn/frs/fangfe/pc-site/3.2/pages/xq-detail/detail_v20180608173244.css" />
+    <script>
+        window.____json4fe = {
+            locallist: [{
+                dispid: '102',
+                name: "成都",
+                listname: "cd"
+            }, {
+                dispid: '11487',
+                name: "高新区",
+                listname: "cdgaoxin"
+            }, {
+                dispid: '11488',
+                name: "神仙树",
+                listname: "shenxianshu"
+            }],
+            infoid: "8915",
+            lat: "30.622822",
+            lon: "104.049584",
+            comListname: "shenxianshudayuan",
+            im: "//j1.58cdn.com.cn/webim/js/entry_v20180619144631.js"
+        };
+        window._trackURL = JSON.stringify({
+            'cate': '1,69944',
+            'area': '102,11487,11488',
+            'pagetype': 'xiaoqu',
+            'page':'xiaoqu-detail'
+        })
+    </script>
+</head>
+
+<body>
+    <!-- ComponentsLoader Topbar-->
+    <div id="commonTopbar" class="commonTopbar"></div>
+
+    <div class="body-wrapper">
+
+        <!-- 顶部LOGO，搜索，发布 -->
+        <div class="top-container"></div>
+
+        <!-- 面包屑 -->
+
+        <div class="breadcrumb-nav">
+            <a href="//cd.58.com">成都58同城</a>
+            <span> > </span>
+            <a href="//cd.58.com/house.shtml">成都房产信息</a>
+            <span> > </span>
+            <a href="//cd.58.com/xiaoqu/">成都小区</a>
+                        <span> > </span>
+            <a href="//cd.58.com/xiaoqu/11487/">高新区小区</a>
+                         <span> > </span>
+            <a href="//cd.58.com/xiaoqu/11488/">神仙树小区</a>
+                    </div>
+
+        <!-- 标题栏 -->
+        <div class="title-bar">
+            <span class="title">神仙树大院三期</span>
+            <span class="addr">二三环之间</span>
+            <div class="compare" tongji_tag="200000000116000100000010">
+                <i class="icon icon-compare"></i>
+                <span>
+                    <i class="compare-delta">添加</i>对比
+                </span>
+            </div>
+        </div>
+
+        <!-- 图片 + 基本信息 -->
+        <div class="basic-container">
+            <div class="pics-container"></div>
+
+            <div class="info-container">
+                <div class="price-container">
+                    <span class="price">28751</span>
+                    <span class="unit">元/m²</span>
+                    <span class="normal">06月参考均价</span>
+                    
+                    <span class="delta  down ">
+                        <span>环比上月 1.011%</span>
+                        <i class="icon"></i>
+                    </span>
+                </div>
+                <div class="info-tb-container">
+                    <table class="info-tb">
+                        <tr>
+                            <td class="type">商圈区域</td>
+                            <td class="desc" title="高新区 神仙树">
+                                <a class="sq-link" href="//cd.58.com/xiaoqu/11487" target="_blank" tongji_tag="200000000118000100000010">高新区</a>
+                                                                <a class="sq-link" href="//cd.58.com/xiaoqu/11488" target="_blank" tongji_tag="200000000119000100000010">神仙树</a>
+                                                            </td>
+                            <td class="type">详细地址</td>
+                            <td class="desc" title="紫荆西路6号">
+                                 紫荆西路6号                             </td>
+                        </tr>
+                        <tr>
+                            <td class="type">建筑类别</td>
+                            <td class="desc" title="小高层">
+                                 小高层                             </td>
+                            <td class="type">总住户数</td>
+                            <td class="desc" title="暂无数据">
+                                 暂无数据                             </td>
+                        </tr>
+                        <tr>
+                            <td class="type">产权类别</td>
+                            <td class="desc" title="商品房住宅">
+                                 商品房住宅                             </td>
+                            <td class="type">物业费用</td>
+                            <td class="desc" title="1.90元/平/月">
+                                 1.90元/平/月                             </td>
+                        </tr>
+                        <tr>
+                            <td class="type">产权年限</td>
+                            <td class="desc" title="70年">
+                                 70年                             </td>
+                            <td class="type">容积率</td>
+                            <td class="desc" title="2.00">
+                                 2.00                             </td>
+                        </tr>
+                        <tr>
+                            <td class="type">建筑年代</td>
+                            <td class="desc" title="2006年">
+                                 2006年                             </td>
+                            <td class="type">绿化率</td>
+                            <td class="desc" title="32%">
+                                 32%                             </td>
+                        </tr>
+                        <tr>
+                            <td class="type">占地面积</td>
+                            <td class="desc" title="暂无数据">
+                                 暂无数据                             </td>
+                            <td class="type">建筑面积</td>
+                            <td class="desc" title="139518平方米">
+                                 139518平方米                             </td>
+                        </tr>
+                        <tr>
+                            <td class="type">停车位</td>
+                            <td class="desc" colspan="3" title="1015">
+                                 1015                             </td>
+                        </tr>
+                        <tr>
+                            <td class="type">物业公司</td>
+                            <td class="desc" colspan="3" title="成都威斯顿经营管理有限责任公司">
+                                 成都威斯顿经营管理有限责任公司                             </td>
+                        </tr>
+                        <tr>
+                            <td class="type">开发商</td>
+                            <td class="desc" colspan="3" title="成都怡和天成房地产开发有限公司">
+                                 成都怡和天成房地产开发有限公司                             </td>
+                        </tr>
+                        <tr>
+                            <td class="info-tb-delimiter" colspan="4"></td>
+                        </tr>
+                        <tr class="tb-btm">
+                            <td class="type">在售房源</td>
+                            <td class="desc">
+                            	                                	<a class="fy-link" href="//cd.58.com/xiaoqu/shenxianshudayuan/ershoufang/" target="_blank" tongji_tag="200000000120000100000010">
+	                                    <span>305套</span>
+	                                    <i class="icon icon-right-on"></i>
+	                                </a>
+                                                            </td>
+                            <td class="type">在租房源</td>
+                            <td class="desc">
+                            	                                	<a class="fy-link" href="//cd.58.com/xiaoqu/shenxianshudayuan/chuzu/" target="_blank" tongji_tag="200000000121000100000010">
+                                        <span>697套</span>
+                                        <i class="icon icon-right-on"></i>
+                                    </a>
+                                                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- 描述简介 -->
+        <div class="detail-container">
+            <div class="detail-main">
+                <div class="detail-mod desc-mod">
+       				                        <h2 class="title">小区介绍</h2>
+                        <p class="desc">
+                            神仙树大院位于城南神仙树片区，居于中海名城、清华坊、新里维多利亚、上海花园等楼盘之间；距机场仅6分钟车程，毗邻规划中的一号地铁线站口；百联天府、家乐福等大型超市、购物中心举步即至；银行、电讯、行政机构配套齐全。 
+                        </p>
+                        <span class="expand">
+                            <span>展开更多</span>
+                            <i class="icon icon-expand"></i>
+                        </span>
+                                    </div>
+                <div class="detail-mod expert-mod"></div>
+                <div class="detail-mod charts-mod"></div>
+                <div class="detail-mod map-mod"></div>
+                <div class="detail-mod houselist-mod"></div>
+                <div class="detail-mod deal-mod"></div>
+            </div>
+            <div class="detail-right">
+                <div class="agent-container"></div>
+                <div class="recmd-container"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SEO 导流 -->
+<div class="seo-nav">
+    <div class="body-wrapper">
+        <table class="seo-tb">
+            <tr>
+                <th>热门小区周边：</th>
+                <td>
+                    <a target="_blank" href="//cd.58.com/fangjia/shenxianshudayuan/">房价动态</a>
+                </td>
+                <!-- <td>
+                    <a target="_blank" href="//cd.58.com/xiaoqu/shenxianshudayuan/map/">地图周边</a>
+                </td>
+                <td>
+                    <a target="_blank" href="//cd.58.com/xiaoqu/shenxianshudayuan/shijing/">小区相册</a>
+                </td> -->
+                <!-- <td>
+                    <a target="_blank" href="//cd.58.com/xiaoqu/esfhotlist">小区排行榜</a>
+                </td> -->
+            </tr>
+            <tr>
+                <th rowspan="2">热门城市房价：</th>
+                <td>
+                    <a target="_blank" href="//bj.58.com/fangjia/">北京房价</a>
+                </td>
+                <td>
+                    <a target="_blank" href="//sh.58.com/fangjia/">上海房价</a>
+                </td>
+                <td>
+                    <a target="_blank" href="//gz.58.com/fangjia/">广州房价</a>
+                </td>
+                <td>
+                    <a target="_blank" href="//sz.58.com/fangjia/">深圳房价</a>
+                </td>
+                <td>
+                    <a target="_blank" href="//tj.58.com/fangjia/">天津房价</a>
+                </td>
+                <td>
+                    <a target="_blank" href="//zz.58.com/fangjia/">郑州房价</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a target="_blank" href="//jn.58.com/fangjia/">济南房价</a>
+                </td>
+                <td>
+                    <a target="_blank" href="//nj.58.com/fangjia/">南京房价</a>
+                </td>
+                <td>
+                    <a target="_blank" href="//xa.58.com/fangjia/">西安房价</a>
+                </td>
+                <td>
+                    <a target="_blank" href="//km.58.com/fangjia/">昆明房价</a>
+                </td>
+                <td>
+                    <a target="_blank" href="//lz.58.com/fangjia/">兰州房价</a>
+                </td>
+                <td>
+                    <a target="_blank" href="//qd.58.com/fangjia/">青岛房价</a>
+                </td>
+            </tr>
+            <tr>
+                <th>北京小区频道介绍：</th>
+                <td colspan="6">58同城成都小区频道为您提供新的小区信息，包括小区的二手房、租房、小区均价和小区的周边信息等。欢迎使用58同城成都小区频道！手机版请点击
+                    <a href="//m.58.com/xiaoqu/shenxianshudayuan/" target="_blank">神仙树大院三期小区</a>
+                </td>
+            </tr>
+            <tr>
+                <th>小区直达：</th>
+                <td colspan="6">
+                    <div class="alpha-nav">
+                                                <div class="item">
+                            <span>A</span>
+                                                         <div class="detail-list">
+                                                                <a href="https://cd.58.com/xiaoqu/aocheng3/" target="_blank">傲城</a>
+                                                                <a href="https://cd.58.com/xiaoqu/aolongmingcheng/" target="_blank">澳龙名城</a>
+                                                                <a href="https://cd.58.com/xiaoqu/aijiaxincheng/" target="_blank">爱家馨城</a>
+                                                                <a href="https://cd.58.com/xiaoqu/aidingjunyuan/" target="_blank">爱丁郡院</a>
+                                                                <a href="https://cd.58.com/xiaoqu/aolinchuntiancd/" target="_blank">澳林春天</a>
+                                                                <a href="https://cd.58.com/xiaoqu/yulinxiaoquyvl/" target="_blank">爱心苑</a>
+                                                                <a href="https://cd.58.com/xiaoqu/anxinhuayuan/" target="_blank">安信花园</a>
+                                                                <a href="https://cd.58.com/xiaoqu/anlanjunjing/" target="_blank">安澜骏景</a>
+                                                                <a href="https://cd.58.com/xiaoqu/aijiatequ/" target="_blank">爱家特区</a>
+                                                                <a href="https://cd.58.com/xiaoqu/aolongmingchengweige/" target="_blank">澳龙名城维格</a>
+                                                                <a href="//cd.58.com/xiaoqu/xqlist_A_1/" target="_blank">更多</a>
+                            </div>
+                                                    </div>
+                                                <div class="item">
+                            <span>B</span>
+                                                         <div class="detail-list">
+                                                                <a href="https://cd.58.com/xiaoqu/baolijinxiangbincd/" target="_blank">保利金香槟</a>
+                                                                <a href="https://cd.58.com/xiaoqu/baolihuayuanvlp/" target="_blank">保利花园一期</a>
+                                                                <a href="https://cd.58.com/xiaoqu/baolixiangbinguanghua/" target="_blank">保利香槟光华</a>
+                                                                <a href="https://cd.58.com/xiaoqu/boruidoushihuayuan/" target="_blank">博瑞都市花园</a>
+                                                                <a href="https://cd.58.com/xiaoqu/baolihuayuanerqicd/" target="_blank">保利花园二期</a>
+                                                                <a href="https://cd.58.com/xiaoqu/bihualin/" target="_blank">碧华邻</a>
+                                                                <a href="https://cd.58.com/xiaoqu/beihuiguixianbpm/" target="_blank">北回归线一期</a>
+                                                                <a href="https://cd.58.com/xiaoqu/baolixiangbinguoji4/" target="_blank">保利香槟国际</a>
+                                                                <a href="https://cd.58.com/xiaoqu/baliyangguang/" target="_blank">巴黎阳光</a>
+                                                                <a href="https://cd.58.com/xiaoqu/baoligongyuan/" target="_blank">保利公园198</a>
+                                                                <a href="//cd.58.com/xiaoqu/xqlist_B_1/" target="_blank">更多</a>
+                            </div>
+                                                    </div>
+                                                <div class="item">
+                            <span>C</span>
+                                                         <div class="detail-list">
+                                                                <a href="https://cd.58.com/xiaoqu/chengpinshangyuan/" target="_blank">诚品上院</a>
+                                                                <a href="https://cd.58.com/xiaoqu/chengdouaqu/" target="_blank">成都A区锦外</a>
+                                                                <a href="https://cd.58.com/xiaoqu/zhonghaiguojisheouchenjun/" target="_blank">橙郡一期</a>
+                                                                <a href="https://cd.58.com/xiaoqu/chenghuafengjing/" target="_blank">橙花风景</a>
+                                                                <a href="https://cd.58.com/xiaoqu/renhechuntiandadao/" target="_blank">春天大道</a>
+                                                                <a href="https://cd.58.com/xiaoqu/caidieyuan/" target="_blank">彩叠园1A期</a>
+                                                                <a href="https://cd.58.com/xiaoqu/chengnanmingzhu/" target="_blank">城南名著</a>
+                                                                <a href="https://cd.58.com/xiaoqu/chaoyangshidaxijin/" target="_blank">朝阳时代西锦</a>
+                                                                <a href="https://cd.58.com/xiaoqu/chaofuyuan29/" target="_blank">潮福苑</a>
+                                                                <a href="https://cd.58.com/xiaoqu/chaoyangmingzhai/" target="_blank">朝阳名宅</a>
+                                                                <a href="//cd.58.com/xiaoqu/xqlist_C_1/" target="_blank">更多</a>
+                            </div>
+                                                    </div>
+                                                <div class="item">
+                            <span>D</span>
+                                                         <div class="detail-list">
+                                                                <a href="https://cd.58.com/xiaoqu/douchengyasongju/" target="_blank">都城雅颂居</a>
+                                                                <a href="https://cd.58.com/xiaoqu/dongyuanxiaoqucd/" target="_blank">东苑A区</a>
+                                                                <a href="https://cd.58.com/xiaoqu/donghuguoji/" target="_blank">东湖国际</a>
+                                                                <a href="https://cd.58.com/xiaoqu/dongliguojihuacheng/" target="_blank">东立国际花城</a>
+                                                                <a href="https://cd.58.com/xiaoqu/dongliguanghuaxinglin/" target="_blank">东立光华杏林</a>
+                                                                <a href="https://cd.58.com/xiaoqu/shuianhuiying/" target="_blank">顶峰水岸汇景</a>
+                                                                <a href="https://cd.58.com/xiaoqu/donglinchengshihuayuan/" target="_blank">东林城市花园</a>
+                                                                <a href="https://cd.58.com/xiaoqu/daqingshuyuan/" target="_blank">大庆蜀苑</a>
+                                                                <a href="https://cd.58.com/xiaoqu/dongjunhujingwan/" target="_blank">东骏湖景湾</a>
+                                                                <a href="https://cd.58.com/xiaoqu/dexinyuaneti/" target="_blank">德馨苑</a>
+                                                                <a href="//cd.58.com/xiaoqu/xqlist_D_1/" target="_blank">更多</a>
+                            </div>
+                                                    </div>
+                                                <div class="item">
+                            <span>E</span>
+                                                         <div class="detail-list">
+                                                                <a href="https://cd.58.com/xiaoqu/ershiyishijihuayuansiqi/" target="_blank">二十一世纪花园世纪城</a>
+                                                                <a href="https://cd.58.com/xiaoqu/chengwenlijiaoqiaoeyingchangxiushe/" target="_blank">峨眉电影制片厂宿舍</a>
+                                                                <a href="https://cd.58.com/xiaoqu/erhuanlubeiyiduanxiaoou/" target="_blank">二环路北一段小区</a>
+                                                                <a href="https://cd.58.com/xiaoqu/erjianghuayuan/" target="_blank">二江花园</a>
+                                                                <a href="https://cd.58.com/xiaoqu/21shijihuayuan1qi/" target="_blank">二十一世纪花园</a>
+                                                                <a href="https://cd.58.com/xiaoqu/guoanjuxiushe/" target="_blank">二环路西一段小区</a>
+                                                                <a href="https://cd.58.com/xiaoqu/ershiyishijihuayuanwuqi/" target="_blank">二十一世纪花园千禧园</a>
+                                                                <a href="https://cd.58.com/xiaoqu/ertaizixiaoqu/" target="_blank">二台子小区</a>
+                                                                <a href="https://cd.58.com/xiaoqu/erhuanluxisanduan93hao/" target="_blank">二环路西三段93号院</a>
+                                                                <a href="https://cd.58.com/xiaoqu/yucailuhaomgf/" target="_blank">二十九所生活区乙区</a>
+                                                                <a href="//cd.58.com/xiaoqu/xqlist_E_1/" target="_blank">更多</a>
+                            </div>
+                                                    </div>
+                                                <div class="item">
+                            <span>F</span>
+                                                         <div class="detail-list">
+                                                                <a href="https://cd.58.com/xiaoqu/fudiyonghuwan/" target="_blank">复地雍湖湾</a>
+                                                                <a href="https://cd.58.com/xiaoqu/fulihuacheng/" target="_blank">富丽花城</a>
+                                                                <a href="https://cd.58.com/xiaoqu/fuhexingcheng/" target="_blank">府河星城名苑</a>
+                                                                <a href="https://cd.58.com/xiaoqu/fangcaode/" target="_blank">芳草地</a>
+                                                                <a href="https://cd.58.com/xiaoqu/feicuihaiwan/" target="_blank">翡翠海湾</a>
+                                                                <a href="https://cd.58.com/xiaoqu/laguangfulidongfang/" target="_blank">富丽东方</a>
+                                                                <a href="https://cd.58.com/xiaoqu/fuyihuating/" target="_blank">富邑华庭</a>
+                                                                <a href="https://cd.58.com/xiaoqu/huayangfuheyinlehuayuan/" target="_blank">府河音乐花园</a>
+                                                                <a href="https://cd.58.com/xiaoqu/languangfulibimantinghuayuanyangfangs/" target="_blank">富丽碧蔓汀</a>
+                                                                <a href="https://cd.58.com/xiaoqu/fuqinxiaoqu/" target="_blank">抚琴小区</a>
+                                                                <a href="//cd.58.com/xiaoqu/xqlist_F_1/" target="_blank">更多</a>
+                            </div>
+                                                    </div>
+                                                <div class="item">
+                            <span>G</span>
+                                                         <div class="detail-list">
+                                                                <a href="https://cd.58.com/xiaoqu/guannanshangyu/" target="_blank">观南上域</a>
+                                                                <a href="https://cd.58.com/xiaoqu/cdguanghuajinyuan/" target="_blank">光华逸家</a>
+                                                                <a href="https://cd.58.com/xiaoqu/guojihuayuancd/" target="_blank">国际花园</a>
+                                                                <a href="https://cd.58.com/xiaoqu/guanghuameilin/" target="_blank">光华美邻</a>
+                                                                <a href="https://cd.58.com/xiaoqu/guojiaxinshijie/" target="_blank">国嘉新视界</a>
+                                                                <a href="https://cd.58.com/xiaoqu/laguanggongguan/" target="_blank">公馆1881</a>
+                                                                <a href="https://cd.58.com/xiaoqu/cdguanghuaxindi/" target="_blank">光华馨地</a>
+                                                                <a href="https://cd.58.com/xiaoqu/getiaocheng/" target="_blank">格调城</a>
+                                                                <a href="https://cd.58.com/xiaoqu/guancheng1/" target="_blank">观城</a>
+                                                                <a href="https://cd.58.com/xiaoqu/ganlanjuncd/" target="_blank">橄榄郡</a>
+                                                                <a href="//cd.58.com/xiaoqu/xqlist_G_1/" target="_blank">更多</a>
+                            </div>
+                                                    </div>
+                                                <div class="item">
+                            <span>H</span>
+                                                         <div class="detail-list">
+                                                                <a href="https://cd.58.com/xiaoqu/huarunfeicuicheng4qi6/" target="_blank">华润翡翠城4期</a>
+                                                                <a href="https://cd.58.com/xiaoqu/huarunfenghuangchengyiqi/" target="_blank">华润凤凰城一期</a>
+                                                                <a href="https://cd.58.com/xiaoqu/huaqiaochengdongan/" target="_blank">华侨城纯水岸二期</a>
+                                                                <a href="https://cd.58.com/xiaoqu/huayujinchengmingdou/" target="_blank">华宇锦城名都A区</a>
+                                                                <a href="https://cd.58.com/xiaoqu/huarunershisicheng1qi/" target="_blank">华润二十四城1期</a>
+                                                                <a href="https://cd.58.com/xiaoqu/feicuichengwuqintx/" target="_blank">华润翡翠城5期</a>
+                                                                <a href="https://cd.58.com/xiaoqu/hengdalvzhoucd/" target="_blank">恒大绿洲</a>
+                                                                <a href="https://cd.58.com/xiaoqu/henengyaozhicheng/" target="_blank">合能耀之城</a>
+                                                                <a href="https://cd.58.com/xiaoqu/hepanxinshijie/" target="_blank">恒大天府半岛一期</a>
+                                                                <a href="https://cd.58.com/xiaoqu/hengdachengcd/" target="_blank">恒大城</a>
+                                                                <a href="//cd.58.com/xiaoqu/xqlist_H_1/" target="_blank">更多</a>
+                            </div>
+                                                    </div>
+                                                <div class="item">
+                            <span>I</span>
+                                                         <div class="detail-list">
+                                                                <a href="https://cd.58.com/xiaoqu/ICONshangjun/" target="_blank">ICON尚郡</a>
+                                                                <a href="https://cd.58.com/xiaoqu/ICONdayuanzhongxin/" target="_blank">ICON大源中心</a>
+                                                                <a href="https://cd.58.com/xiaoqu/IMCguojiguangchangshangzhulou/" target="_blank">IMC国际广场(商住楼)</a>
+                                                                <a href="https://cd.58.com/xiaoqu/ICONshangjunshangzhulou/" target="_blank">ICON尚郡(商住楼)</a>
+                                                                <a href="https://cd.58.com/xiaoqu/IMCguojiguangchang/" target="_blank">IMC国际广场</a>
+                                                                <a href="//cd.58.com/xiaoqu/xqlist_I_1/" target="_blank">更多</a>
+                            </div>
+                                                    </div>
+                                                <div class="item">
+                            <span>J</span>
+                                                         <div class="detail-list">
+                                                                <a href="https://cd.58.com/xiaoqu/zhongfangjinshahaitang/" target="_blank">金沙海棠</a>
+                                                                <a href="https://cd.58.com/xiaoqu/jinshaludao/" target="_blank">金沙鹭岛一期</a>
+                                                                <a href="https://cd.58.com/xiaoqu/jinkeyicheng/" target="_blank">金科一城</a>
+                                                                <a href="https://cd.58.com/xiaoqu/jinshayuanerji/" target="_blank">金沙园2期</a>
+                                                                <a href="https://cd.58.com/xiaoqu/jiaodaqiabulicheng/" target="_blank">交大卡布里城</a>
+                                                                <a href="https://cd.58.com/xiaoqu/jinyangyichengguojilwl/" target="_blank">金阳易诚国际</a>
+                                                                <a href="https://cd.58.com/xiaoqu/jianianhuaxinshenghuo/" target="_blank">佳年华新生活</a>
+                                                                <a href="https://cd.58.com/xiaoqu/jinyuewan30/" target="_blank">金悦湾</a>
+                                                                <a href="https://cd.58.com/xiaoqu/jinshaxiyuansiqi/" target="_blank">金沙西园4期</a>
+                                                                <a href="https://cd.58.com/xiaoqu/jinjiangguojihuayuan1/" target="_blank">锦江国际花园</a>
+                                                                <a href="//cd.58.com/xiaoqu/xqlist_J_1/" target="_blank">更多</a>
+                            </div>
+                                                    </div>
+                                                <div class="item">
+                            <span>K</span>
+                                                         <div class="detail-list">
+                                                                <a href="https://cd.58.com/xiaoqu/kaidefengshangghj/" target="_blank">凯德风尚</a>
+                                                                <a href="https://cd.58.com/xiaoqu/konggangshiliuqu/" target="_blank">空港16区</a>
+                                                                <a href="https://cd.58.com/xiaoqu/kangheliyingsanqi/" target="_blank">康河郦景三期</a>
+                                                                <a href="https://cd.58.com/xiaoqu/languangkailibinjiang/" target="_blank">凯丽滨江花园</a>
+                                                                <a href="https://cd.58.com/xiaoqu/kaihualijing/" target="_blank">凯华丽景</a>
+                                                                <a href="https://cd.58.com/xiaoqu/kangqiaopinshang/" target="_blank">康桥品上</a>
+                                                                <a href="https://cd.58.com/xiaoqu/kailaidijing/" target="_blank">凯莱帝景花园</a>
+                                                                <a href="https://cd.58.com/xiaoqu/kangjuncd/" target="_blank">康郡南区</a>
+                                                                <a href="https://cd.58.com/xiaoqu/kailimeiyu/" target="_blank">凯丽美域</a>
+                                                                <a href="https://cd.58.com/xiaoqu/kailailijingyazhu/" target="_blank">凯莱丽景雅筑</a>
+                                                                <a href="//cd.58.com/xiaoqu/xqlist_K_1/" target="_blank">更多</a>
+                            </div>
+                                                    </div>
+                                                <div class="item">
+                            <span>L</span>
+                                                         <div class="detail-list">
+                                                                <a href="https://cd.58.com/xiaoqu/laguanghuamanting/" target="_blank">蓝光花满庭</a>
+                                                                <a href="https://cd.58.com/xiaoqu/linjiangfengge/" target="_blank">粼江峰阁</a>
+                                                                <a href="https://cd.58.com/xiaoqu/longhushijifengying/" target="_blank">龙湖世纪峰景</a>
+                                                                <a href="https://cd.58.com/xiaoqu/longhubeichengtianjielhe/" target="_blank">龙湖北城天街二期</a>
+                                                                <a href="https://cd.58.com/xiaoqu/ludijintianfu/" target="_blank">绿地锦天府</a>
+                                                                <a href="https://cd.58.com/xiaoqu/longcheng1hao/" target="_blank">龙城1号</a>
+                                                                <a href="https://cd.58.com/xiaoqu/languanglecaicheng/" target="_blank">蓝光乐彩城</a>
+                                                                <a href="https://cd.58.com/xiaoqu/lvdishengluyimingdi/" target="_blank">绿地圣路易名邸一期</a>
+                                                                <a href="https://cd.58.com/xiaoqu/ludaoguojishequsiqi/" target="_blank">鹭岛国际社区一二期</a>
+                                                                <a href="https://cd.58.com/xiaoqu/longhufulaiminggeboq/" target="_blank">龙湖弗莱明戈二期</a>
+                                                                <a href="//cd.58.com/xiaoqu/xqlist_L_1/" target="_blank">更多</a>
+                            </div>
+                                                    </div>
+                                                <div class="item">
+                            <span>M</span>
+                                                         <div class="detail-list">
+                                                                <a href="https://cd.58.com/xiaoqu/momacheng/" target="_blank">摩玛城</a>
+                                                                <a href="https://cd.58.com/xiaoqu/shijijinsha/" target="_blank">明信·世纪金沙</a>
+                                                                <a href="https://cd.58.com/xiaoqu/meichengyuerongfu/" target="_blank">美城悦荣府</a>
+                                                                <a href="https://cd.58.com/xiaoqu/muhenandao/" target="_blank">慕和南道</a>
+                                                                <a href="https://cd.58.com/xiaoqu/milanxiangzhou/" target="_blank">米兰香洲</a>
+                                                                <a href="https://cd.58.com/xiaoqu/manhadunerji/" target="_blank">曼哈顿自然派</a>
+                                                                <a href="https://cd.58.com/xiaoqu/mingshigongguan/" target="_blank">名士公馆</a>
+                                                                <a href="https://cd.58.com/xiaoqu/manhadunyiqi/" target="_blank">曼哈顿</a>
+                                                                <a href="https://cd.58.com/xiaoqu/meilipengchengxq/" target="_blank">美丽朋城</a>
+                                                                <a href="https://cd.58.com/xiaoqu/mianshixidiwan/" target="_blank">绵世溪地湾</a>
+                                                                <a href="//cd.58.com/xiaoqu/xqlist_M_1/" target="_blank">更多</a>
+                            </div>
+                                                    </div>
+                                                <div class="item">
+                            <span>N</span>
+                                                         <div class="detail-list">
+                                                                <a href="https://cd.58.com/xiaoqu/nanhuguojishequ/" target="_blank">南湖国际社区</a>
+                                                                <a href="https://cd.58.com/xiaoqu/nanyangshengshi/" target="_blank">南阳盛世</a>
+                                                                <a href="https://cd.58.com/xiaoqu/nanxiangshan/" target="_blank">楠香山</a>
+                                                                <a href="https://cd.58.com/xiaoqu/nanfujin/" target="_blank">南府锦</a>
+                                                                <a href="https://cd.58.com/xiaoqu/nanchengdouhuisanqi/" target="_blank">南城都汇汇智园</a>
+                                                                <a href="https://cd.58.com/xiaoqu/nanchengdouhuiwuqi/" target="_blank">南城都汇汇晴园</a>
+                                                                <a href="https://cd.58.com/xiaoqu/nanliwan/" target="_blank">南丽湾</a>
+                                                                <a href="https://cd.58.com/xiaoqu/nanchenjingxiu/" target="_blank">南辰景秀</a>
+                                                                <a href="https://cd.58.com/xiaoqu/nanyangjincheng/" target="_blank">南阳锦城1期</a>
+                                                                <a href="https://cd.58.com/xiaoqu/nanfanghuayuan/" target="_blank">南方花园</a>
+                                                                <a href="//cd.58.com/xiaoqu/xqlist_N_1/" target="_blank">更多</a>
+                            </div>
+                                                    </div>
+                                                <div class="item">
+                            <span>O</span>
+                                                         <div class="detail-list">
+                                                                <a href="https://cd.58.com/xiaoqu/ouzhouyinxiang/" target="_blank">欧洲印象</a>
+                                                                <a href="https://cd.58.com/xiaoqu/ouboluo/" target="_blank">欧波罗</a>
+                                                                <a href="https://cd.58.com/xiaoqu/oushangtingyuan/" target="_blank">欧尚庭院</a>
+                                                                <a href="https://cd.58.com/xiaoqu/ouyunjinsha/" target="_blank">欧韵金沙</a>
+                                                                <a href="https://cd.58.com/xiaoqu/oumeiyuan/" target="_blank">欧美苑</a>
+                                                                <a href="https://cd.58.com/xiaoqu/ouxiangmingyuan/" target="_blank">欧香名苑</a>
+                                                                <a href="https://cd.58.com/xiaoqu/ouxiangxiaozhen/" target="_blank">欧香小镇</a>
+                                                                <a href="https://cd.58.com/xiaoqu/ouchenghuayuan/" target="_blank">欧城花园</a>
+                                                                <a href="https://cd.58.com/xiaoqu/ouxiangyuan/" target="_blank">欧香苑</a>
+                                                                <a href="https://cd.58.com/xiaoqu/ouchengyadian/" target="_blank">欧城雅典</a>
+                                                                <a href="//cd.58.com/xiaoqu/xqlist_O_1/" target="_blank">更多</a>
+                            </div>
+                                                    </div>
+                                                <div class="item">
+                            <span>P</span>
+                                                         <div class="detail-list">
+                                                                <a href="https://cd.58.com/xiaoqu/peifengxiaoou/" target="_blank">培风小区</a>
+                                                                <a href="https://cd.58.com/xiaoqu/puluowangsicd/" target="_blank">普罗旺斯</a>
+                                                                <a href="https://cd.58.com/xiaoqu/panguhuayuanxq/" target="_blank">盘谷花园</a>
+                                                                <a href="https://cd.58.com/xiaoqu/pengchengyuanjie1/" target="_blank">朋城远界</a>
+                                                                <a href="https://cd.58.com/xiaoqu/pingfuhangxiaoou/" target="_blank">平福巷2号小区</a>
+                                                                <a href="https://cd.58.com/xiaoqu/paotongshujiexiaoqu/" target="_blank">泡桐树街小区</a>
+                                                                <a href="https://cd.58.com/xiaoqu/panleyuanxq/" target="_blank">攀乐苑</a>
+                                                                <a href="https://cd.58.com/xiaoqu/paliwan/" target="_blank">帕丽湾</a>
+                                                                <a href="https://cd.58.com/xiaoqu/pinganyuancd/" target="_blank">平安苑</a>
+                                                                <a href="https://cd.58.com/xiaoqu/pingfulixht/" target="_blank">平福里</a>
+                                                                <a href="//cd.58.com/xiaoqu/xqlist_P_1/" target="_blank">更多</a>
+                            </div>
+                                                    </div>
+                                                <div class="item">
+                            <span>Q</span>
+                                                         <div class="detail-list">
+                                                                <a href="https://cd.58.com/xiaoqu/qingshuiluyuancd/" target="_blank">清水路苑</a>
+                                                                <a href="https://cd.58.com/xiaoqu/qianshuibandao/" target="_blank">浅水半岛B区</a>
+                                                                <a href="https://cd.58.com/xiaoqu/qilibishuiwan/" target="_blank">齐力碧水湾</a>
+                                                                <a href="https://cd.58.com/xiaoqu/qingfangshangruitianyun/" target="_blank">青房尚瑞天韵</a>
+                                                                <a href="https://cd.58.com/xiaoqu/qianhexincheng/" target="_blank">千和馨城</a>
+                                                                <a href="https://cd.58.com/xiaoqu/qianjuchaoyang/" target="_blank">千居朝阳</a>
+                                                                <a href="https://cd.58.com/xiaoqu/qilihuayuan/" target="_blank">齐力花园</a>
+                                                                <a href="https://cd.58.com/xiaoqu/qingjiangzhichun/" target="_blank">清江之春</a>
+                                                                <a href="https://cd.58.com/xiaoqu/qiliguanghuasuiyue/" target="_blank">齐力光华岁月</a>
+                                                                <a href="https://cd.58.com/xiaoqu/dahuaqinglangju/" target="_blank">晴朗居</a>
+                                                                <a href="//cd.58.com/xiaoqu/xqlist_Q_1/" target="_blank">更多</a>
+                            </div>
+                                                    </div>
+                                                <div class="item">
+                            <span>R</span>
+                                                         <div class="detail-list">
+                                                                <a href="https://cd.58.com/xiaoqu/ruishengwangjiangxiangshulin/" target="_blank">瑞升望江橡树林2期</a>
+                                                                <a href="https://cd.58.com/xiaoqu/renhengbinhewancd/" target="_blank">仁恒滨河湾</a>
+                                                                <a href="https://cd.58.com/xiaoqu/zhongtieruijingmingcheng/" target="_blank">瑞景茗城</a>
+                                                                <a href="https://cd.58.com/xiaoqu/lianhuayidou/" target="_blank">瑞升莲花逸都</a>
+                                                                <a href="https://cd.58.com/xiaoqu/renhuochuntianguojihuayuan/" target="_blank">仁和春天国际花园</a>
+                                                                <a href="https://cd.58.com/xiaoqu/rongshengxiangxielanting1/" target="_blank">荣盛香榭兰庭</a>
+                                                                <a href="https://cd.58.com/xiaoqu/renhejinsha/" target="_blank">仁和金沙</a>
+                                                                <a href="https://cd.58.com/xiaoqu/cdrenmeidayuanyinxiang/" target="_blank">仁美大源印象</a>
+                                                                <a href="https://cd.58.com/xiaoqu/renjudoushiyangguang/" target="_blank">人居都市阳光</a>
+                                                                <a href="https://cd.58.com/xiaoqu/rongchenghoujie/" target="_blank">融城后街</a>
+                                                                <a href="//cd.58.com/xiaoqu/xqlist_R_1/" target="_blank">更多</a>
+                            </div>
+                                                    </div>
+                                                <div class="item">
+                            <span>S</span>
+                                                         <div class="detail-list">
+                                                                <a href="https://cd.58.com/xiaoqu/shenxianshudayuan/" target="_blank">神仙树大院三期</a>
+                                                                <a href="https://cd.58.com/xiaoqu/shidaijingkemingyuan/" target="_blank">时代晶科名苑</a>
+                                                                <a href="https://cd.58.com/xiaoqu/shudouhuayuan/" target="_blank">蜀都花园</a>
+                                                                <a href="https://cd.58.com/xiaoqu/shidaihaotingcd/" target="_blank">时代豪庭</a>
+                                                                <a href="https://cd.58.com/xiaoqu/shangjinyiyuanjiajing/" target="_blank">上锦颐园佳境</a>
+                                                                <a href="https://cd.58.com/xiaoqu/languangshengfeitowncheng/" target="_blank">圣菲TOWN城</a>
+                                                                <a href="https://cd.58.com/xiaoqu/shijichaoyang/" target="_blank">世纪朝阳</a>
+                                                                <a href="https://cd.58.com/xiaoqu/shangjinyazhu/" target="_blank">上锦雅筑</a>
+                                                                <a href="https://cd.58.com/xiaoqu/henengsijikangcheng/" target="_blank">四季康城</a>
+                                                                <a href="https://cd.58.com/xiaoqu/shanghaihuayuanbbt/" target="_blank">上海花园</a>
+                                                                <a href="//cd.58.com/xiaoqu/xqlist_S_1/" target="_blank">更多</a>
+                            </div>
+                                                    </div>
+                                                <div class="item">
+                            <span>T</span>
+                                                         <div class="detail-list">
+                                                                <a href="https://cd.58.com/xiaoqu/tongzilinoucheng/" target="_blank">桐梓林欧城</a>
+                                                                <a href="https://cd.58.com/xiaoqu/shijitianehuhuayuan/" target="_blank">天鹅湖花园</a>
+                                                                <a href="https://cd.58.com/xiaoqu/huijincheng2/" target="_blank">天合汇锦城</a>
+                                                                <a href="https://cd.58.com/xiaoqu/tianhekaixuancheng/" target="_blank">天合凯旋城</a>
+                                                                <a href="https://cd.58.com/xiaoqu/tianfuzhangchengtunanduo/" target="_blank">天府长城图南多</a>
+                                                                <a href="https://cd.58.com/xiaoqu/tingcheng/" target="_blank">听城</a>
+                                                                <a href="https://cd.58.com/xiaoqu/tanxiangshanxrb/" target="_blank">檀香山花园</a>
+                                                                <a href="https://cd.58.com/xiaoqu/tianfuzhangchengbainanjun/" target="_blank">天府长城柏南郡</a>
+                                                                <a href="https://cd.58.com/xiaoqu/tiankongcheng/" target="_blank">天空城</a>
+                                                                <a href="https://cd.58.com/xiaoqu/tianyihuayuan/" target="_blank">天邑花园</a>
+                                                                <a href="//cd.58.com/xiaoqu/xqlist_T_1/" target="_blank">更多</a>
+                            </div>
+                                                    </div>
+                                                <div class="item">
+                            <span>U</span>
+                                                         <div class="detail-list">
+                                                                <a href="https://cd.58.com/xiaoqu/ushangshe/" target="_blank">U+尚舍</a>
+                                                                <a href="//cd.58.com/xiaoqu/xqlist_U_1/" target="_blank">更多</a>
+                            </div>
+                                                    </div>
+                                                <div class="item">
+                            <span>V</span>
+                                                         <div class="detail-list">
+                                                                <a href="https://cd.58.com/xiaoqu/Vkedongqu/" target="_blank">V客东区</a>
+                                                                <a href="//cd.58.com/xiaoqu/xqlist_V_1/" target="_blank">更多</a>
+                            </div>
+                                                    </div>
+                                                <div class="item">
+                            <span>W</span>
+                                                         <div class="detail-list">
+                                                                <a href="https://cd.58.com/xiaoqu/waitan/" target="_blank">外滩</a>
+                                                                <a href="https://cd.58.com/xiaoqu/wanjingfengnqr/" target="_blank">万景峰东区</a>
+                                                                <a href="https://cd.58.com/xiaoqu/wangfuhuayuaniwb/" target="_blank">王府花园</a>
+                                                                <a href="https://cd.58.com/xiaoqu/wandajinhuacheng/" target="_blank">万达锦华城</a>
+                                                                <a href="https://cd.58.com/xiaoqu/mokejinrunhuafu/" target="_blank">万科金润华府</a>
+                                                                <a href="https://cd.58.com/xiaoqu/wankejinyuxiling/" target="_blank">万科金域西岭</a>
+                                                                <a href="https://cd.58.com/xiaoqu/wangjiangjiayuan/" target="_blank">望江嘉苑</a>
+                                                                <a href="https://cd.58.com/xiaoqu/mokehaiyuehuicheng/" target="_blank">万科海悦汇城西区</a>
+                                                                <a href="https://cd.58.com/xiaoqu/wankejinyulanwan/" target="_blank">万科金域蓝湾</a>
+                                                                <a href="https://cd.58.com/xiaoqu/wankechengshihuayuanxfv/" target="_blank">万科城市花园</a>
+                                                                <a href="//cd.58.com/xiaoqu/xqlist_W_1/" target="_blank">更多</a>
+                            </div>
+                                                    </div>
+                                                <div class="item">
+                            <span>X</span>
+                                                         <div class="detail-list">
+                                                                <a href="https://cd.58.com/xiaoqu/xingyuanlvzhou/" target="_blank">兴元绿洲</a>
+                                                                <a href="https://cd.58.com/xiaoqu/xingyuanhuasheng/" target="_blank">兴元华盛一期</a>
+                                                                <a href="https://cd.58.com/xiaoqu/xiangxieguoji/" target="_blank">香榭国际</a>
+                                                                <a href="https://cd.58.com/xiaoqu/xinliweiduoliya/" target="_blank">新里维多利亚公寓</a>
+                                                                <a href="https://cd.58.com/xiaoqu/xinyuanmingjiaywp/" target="_blank">鑫苑名家一期</a>
+                                                                <a href="https://cd.58.com/xiaoqu/xiangyu/" target="_blank">祥域</a>
+                                                                <a href="https://cd.58.com/xiaoqu/xinjiapohuayuan/" target="_blank">新加坡花园</a>
+                                                                <a href="https://cd.58.com/xiaoqu/huarunxiangshuwancd/" target="_blank">橡树湾A区</a>
+                                                                <a href="https://cd.58.com/xiaoqu/xipaiguoji/" target="_blank">西派国际</a>
+                                                                <a href="https://cd.58.com/xiaoqu/xinheyulongshan/" target="_blank">信和御龙山</a>
+                                                                <a href="//cd.58.com/xiaoqu/xqlist_X_1/" target="_blank">更多</a>
+                            </div>
+                                                    </div>
+                                                <div class="item">
+                            <span>Y</span>
+                                                         <div class="detail-list">
+                                                                <a href="https://cd.58.com/xiaoqu/cdyuanyihuayuan/" target="_blank">元益花园</a>
+                                                                <a href="https://cd.58.com/xiaoqu/xiangshangshenghuoguan/" target="_blank">隐庐巷上生活馆</a>
+                                                                <a href="https://cd.58.com/xiaoqu/youpindao/" target="_blank">优品道</a>
+                                                                <a href="https://cd.58.com/xiaoqu/youdibqu/" target="_blank">优地B区</a>
+                                                                <a href="https://cd.58.com/xiaoqu/yufengdkl/" target="_blank">誉峰</a>
+                                                                <a href="https://cd.58.com/xiaoqu/yueguangliuyucd/" target="_blank">月光琉域</a>
+                                                                <a href="https://cd.58.com/xiaoqu/yinglunvrq/" target="_blank">英伦</a>
+                                                                <a href="https://cd.58.com/xiaoqu/yingjunsanqi/" target="_blank">英郡三期</a>
+                                                                <a href="https://cd.58.com/xiaoqu/yiliyangguang/" target="_blank">一里阳光</a>
+                                                                <a href="https://cd.58.com/xiaoqu/yinxiangjinsha/" target="_blank">印象金沙</a>
+                                                                <a href="//cd.58.com/xiaoqu/xqlist_Y_1/" target="_blank">更多</a>
+                            </div>
+                                                    </div>
+                                                <div class="item">
+                            <span>Z</span>
+                                                         <div class="detail-list">
+                                                                <a href="https://cd.58.com/xiaoqu/zhonghailantingitb/" target="_blank">中海兰庭</a>
+                                                                <a href="https://cd.58.com/xiaoqu/guokelidecheng/" target="_blank">中国铁建果壳里的城</a>
+                                                                <a href="https://cd.58.com/xiaoqu/zhonghaichengnanhao/" target="_blank">中海城南一号</a>
+                                                                <a href="https://cd.58.com/xiaoqu/zhongtiexizixianghe/" target="_blank">中铁西子香荷</a>
+                                                                <a href="https://cd.58.com/xiaoqu/zhonghaijinshafu/" target="_blank">中海金沙府</a>
+                                                                <a href="https://cd.58.com/xiaoqu/zhonghailongwanbandaolev/" target="_blank">中海龙湾半岛龙园</a>
+                                                                <a href="https://cd.58.com/xiaoqu/zhixinlidouhuayuancheng/" target="_blank">置信丽都花园城A区</a>
+                                                                <a href="https://cd.58.com/xiaoqu/cdzhonghaijincheng/" target="_blank">中海锦城一期</a>
+                                                                <a href="https://cd.58.com/xiaoqu/hongfenglingsanqi/" target="_blank">中房红枫岭三期</a>
+                                                                <a href="https://cd.58.com/xiaoqu/zhonghaichengnanhuafu/" target="_blank">中海城南华府</a>
+                                                                <a href="//cd.58.com/xiaoqu/xqlist_Z_1/" target="_blank">更多</a>
+                            </div>
+                                                    </div>
+                                            </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<!-- ComponentsLoader Footer-->
+<div id="commonFooter" class="commonFooter"></div>
+<!-- ComponentsLoader -->
+<script src="//j1.58cdn.com.cn/componentsLoader/dist/ComponentsLoader_v20180626165501.js"></script>
+    <!-- E-Charts -->
+    <script src="//j1.58cdn.com.cn/fangrs/pc-site/echarts.min_v20171229144233.js"></script>
+
+    <script data-main="//j1.58cdn.com.cn/frs/fangfe/pc-site/3.2/pages/xq-detail/detail_v20180611163714.js" src="//j1.58cdn.com.cn/frs/fangfe/pc-site/3.2/global_v20180525111359.js"></script>
+    <script src="//j1.58cdn.com.cn/frs/fangfe/pc-site/3.2/base_v20180606120202.js"></script>
+
+    <script src="//j1.58cdn.com.cn/git/JsCout/FE_JS/js-report-tryjs.min_v20180713143220.js"></script>
+    <script>
+        try {
+            JSCOUT_REPORT.init({
+                id: 4,
+                url: "https://jscout.58.com/messageData/saveMessageData",
+            });
+            JSCOUT_REPORT.tryJs().spyAll();
+        } catch (e) {}
+    </script>
+</body>
+
+</html>

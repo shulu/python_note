@@ -35,12 +35,18 @@ def xiaoqu_parse(response):
 
     result = dict()
     jpy = PyQuery(response.text)
-    result['name'] = jpy('body > div.bodyItem.bheader > div > h1 > span').text()
-    result['reference_price'] = jpy('body > div.bodyItem.bheader > div > dl > dd:nth-child(1) > span.moneyColor').text()
-    result['address'] = jpy('body > div.bodyItem.bheader > div > dl > dd:nth-child(3) > span.ddinfo')\
-        .text().replace('查看地图', '')   #得到地址详情，去除“查看地图”，如 “ 紫荆西路6号 查看地图”，将“查看地图”替换为“”
-    result['times'] = jpy('body > div.bodyItem.bheader > div > dl > dd:nth-child(5)').text().split()
-    result['times'] = result['times'][2]  #取出建筑年代
+    # f = open('aa.txt', 'r', encoding='utf-8').read()
+    # jpy = PyQuery(f)
+    # f = open('aa.txt', 'w', encoding='utf-8')
+    # f.write(response.text)
+    result['name'] = jpy('body > div.body-wrapper > div.title-bar > span.title').text()
+    info_container = jpy('body > div.body-wrapper > div.basic-container > div.info-container')
+    result['reference_price'] = info_container('div.price-container > span.price').text()
+    # 得到地址详情，去除“查看地图”，如 “ 紫荆西路6号 查看地图”，将“查看地图”替换为“”
+    result['address'] = info_container('div.info-tb-container > table > tr:nth-child(1) > td:nth-child(4)').text()
+    result['times'] = jpy('div.info-tb-container > table > tr:nth-child(5) > td:nth-child(2)').text()
+    # print(result)
+    #result['times'] = result['times'][2]  #取出建筑年代
     return result
 
 
@@ -95,5 +101,5 @@ def get_chuzu_house_info(response):
 
 if __name__ == '__main__':
     import requests
-    r = requests.get('http://cd.58.com/zufang/31995551807162x.shtml')
-    get_chuzu_house_info(r)
+    r = requests.get('http://cd.58.com/xiaoqu/shenxianshudayuan/')
+    print(xiaoqu_parse(r))

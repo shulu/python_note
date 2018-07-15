@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Scrapy settings for city58 project
+# Scrapy settings for city_58 project
 #
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
@@ -9,17 +9,17 @@
 #     https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://doc.scrapy.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = 'city58'
+BOT_NAME = 'city_58'
 
-SPIDER_MODULES = ['city58.spiders']
-NEWSPIDER_MODULE = 'city58.spiders'
+SPIDER_MODULES = ['city_58.spiders']
+NEWSPIDER_MODULE = 'city_58.spiders'
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = 'city58 (+http://www.yourdomain.com)'
+#USER_AGENT = 'city_58 (+http://www.yourdomain.com)'
 
 # Obey robots.txt rules
-ROBOTSTXT_OBEY = False
+ROBOTSTXT_OBEY = True
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
@@ -27,7 +27,7 @@ ROBOTSTXT_OBEY = False
 # Configure a delay for requests for the same website (default: 0)
 # See https://doc.scrapy.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
-#DOWNLOAD_DELAY = 3
+DOWNLOAD_DELAY = 0.3
 # The download delay setting will honor only one of:
 #CONCURRENT_REQUESTS_PER_DOMAIN = 16
 #CONCURRENT_REQUESTS_PER_IP = 16
@@ -47,13 +47,13 @@ ROBOTSTXT_OBEY = False
 # Enable or disable spider middlewares
 # See https://doc.scrapy.org/en/latest/topics/spider-middleware.html
 #SPIDER_MIDDLEWARES = {
-#    'city58.middlewares.City58SpiderMiddleware': 543,
+#    'city_58.middlewares.City58SpiderMiddleware': 543,
 #}
 
 # Enable or disable downloader middlewares
 # See https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
 DOWNLOADER_MIDDLEWARES = {
-   'city58.middlewares.UAMiddlware': 543,
+   'city_58.middlewares.City58DownloaderMiddleware': 543,
 }
 
 # Enable or disable extensions
@@ -65,8 +65,9 @@ DOWNLOADER_MIDDLEWARES = {
 # Configure item pipelines
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-   'city58.pipelines.City58Pipeline': 300,
-   # 'scrapy_redis.pipelines.RedisPipeline': 300
+   'city_58.pipelines.HandleZuFangPipline': 300,    #  租房平均每平米价格
+   'city_58.pipelines.HandleFangjiaPipline': 310,   #小区平均价格
+   'city_58.pipelines.City58Pipeline': 320,   #储存入库
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
@@ -90,18 +91,7 @@ ITEM_PIPELINES = {
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
 
-SCHEDULER = "scrapy_redis.scheduler.Scheduler"
-DUPEFILTER_CLASS = "scrapy_redis.dupefilter.RFPDupeFilter"
-# SCHEDULER_SERIALIZER = "scrapy_redis.picklecompat"
-# SCHEDULER_PERSIST = True
-# SCHEDULER_QUEUE_CLASS = "scrapy_redis.queue.PriorityQueue"
-# REDIS_ITEMS_KEY = '%(spider)s:items'
-# REDIS_HOST = 'localhost'
-# REDIS_PORT = 6379
-#或者
-# REDIS_URL = 'redis://user:pass@hostname:9001'
-REDIS_URL = 'redis://localhost:6379'
-#REDIS_PARAMS['redis_cls'] = 'myproject.RedisClient'
-REDIS_START_URLS_AS_SET = True
-# REDIS_START_URLS_KEY = '%(name)s:start_urls'
-# REDIS_ENCODING = 'latin1'
+MONGODB_HOST = '127.0.0.1'   #本地数据库
+MONGODB_PORT = '27017'    #数据库端口
+MONGODB_URI = 'mongodb://{}:{}'.format(MONGODB_HOST, MONGODB_PORT)
+MONGODB_DATABASE = 'test'  #数据库名字
