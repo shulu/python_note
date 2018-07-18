@@ -12,7 +12,27 @@ from pymongo import MongoClient
 from scrapy.conf import settings
 from pymongo.errors import DuplicateKeyError
 from traceback import format_exc
+from .items import JilupianItem, JilupianInfoItem
+import json
 
+
+class testPipeline(object):
+
+    def open_spider(self, spider):
+        self.file = open('jilupian_info.txt', 'w', encoding='utf-8')
+        print('==========open file=========')
+
+    def process_item(self, item, spider):
+
+        line = '{}\n'.format(json.dumps(dict(item)))
+        self.file.write(line)
+        return item
+
+
+    def close_spider(self, spider):
+
+        self.file.close()
+        print('==============close file==========')
 
 class JilupianPipeline(object):
 
@@ -34,8 +54,8 @@ class JilupianPipeline(object):
         _ = spider
         self.client = MongoClient(self.mongo_uri)  #连接数据库
         self.db = self.client[self.mongo_db]
-        self.db['city58_info'].ensure_index('id', unique=True)  #在表city58_info中建立索引，并保证索引的唯一性
-        self.db['city58_chuzu_info'].ensure_index('url', unique=True)   #在表city58_chuzu_info中建立索引，并保证索引的唯一性
+        self.db['jilupian_info'].ensure_index('url', unique=True)  #在表city58_info中建立索引，并保证索引的唯一性
+        self.db['jilupian_detail_info'].ensure_index('url', unique=True)   #在表city58_chuzu_info中建立索引，并保证索引的唯一性
 
     def close_spider(self, spider):
         _ = spider
@@ -43,14 +63,10 @@ class JilupianPipeline(object):
 
     def process_item(self, item, spider):
         try:
-            if isinstance(item, City58XiaoQu):    #判断是否是小区的item
+            if isinstance(item, JilupianItem):    #判断是否是小区的item
                 self.db['city58_info'].update({'id': item['id']}, {'$set': item}, upsert=True)   #通过id判断，有就更新，没有就插入
-            elif isinstance(item, City58ChuZuInfo): #判断是否是小区出租信息的item
+            elif isinstance(item, JilupianInfoItem): #判断是否是小区出租信息的item
                 try:
-                    fangjia = HandleFangjiaPipline.price_per_square_meter_dict[item['id']]  #把HandleFangjiaPipline管道的字典price_per_square_meter_dict中每平米平均价格赋值给fangjia
-                    # del HandleFangjiaPipline.price_per_square_meter_dict[item['id']]
-                    item['price_pre'] = fangjia   #赋值给item
-
                     self.db['city58_chuzu_info'].update({'url': item['url']}, {'$set': item}, upsert=True)   #通过url判断，有就更新，没有就插入
                 except Exception as e:
                     print(e)   #打印错误
@@ -61,7 +77,6 @@ class JilupianPipeline(object):
             _ = e
             spider.logger.error(format_exc())
         return item
-
 
 class VideodownloaderPipeline(object):
     def process_item(self, item, spider):

@@ -4,7 +4,7 @@
 __author__ = 'SarcasMe'
 
 
-for ch in range(0x41, 0x5B):
-    print(chr(ch))
+from scrapy.cmdline import execute
 
+execute('scrapy crawl cctv'.split())
 

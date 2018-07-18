@@ -6,9 +6,10 @@ import scrapy
 import json, time
 from scrapy.http import Request
 from ..items import JilupianItem
-from ..utils.parse import parse
+from ..utils.parse import parse, detail_parse
 
 class CctvSpider(scrapy.Spider):
+
     name = 'cctv'
     allowed_domains = ['cctv.com']
     host = 'jishi.cctv.com'
@@ -26,12 +27,12 @@ class CctvSpider(scrapy.Spider):
 
     def parse(self, response):
 
-        url_list, data = parse(response.text)
+        url_list, data = parse(response)
 
         for info in data:
 
             item = JilupianItem()
-            item['id'] = info['url'].split['/'][6][-6]
+            # item['id'] = info['url'].split['/'][6][-6]
             item[ 'title' ] = info[ 'title' ]
             item[ 'zimu' ] = info[ 'zimu' ]
             item[ 'url' ] = info[ 'url' ]
@@ -39,16 +40,20 @@ class CctvSpider(scrapy.Spider):
 
             yield item
 
-        for url in url_list:
+        # for url in url_list:
+        #
+        #     yield Request(
+        #         url=url,
+        #         callback=self.detail_parse,
+        #         errback=self.error_back,
+        #     )
 
-            yield Request(
-                url = url,
-                callback='',
-                errback=self.error_back
-            )
 
+    def detail_parse(self, response):
 
+        data = detail_parse(response)
 
+        pass
 
 
     def error_back(self, e):

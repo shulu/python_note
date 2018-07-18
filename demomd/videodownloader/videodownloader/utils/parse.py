@@ -12,3 +12,8 @@ def parse(response):
     if not def_list:
         return []
     return [x['url'] for x in def_list], def_list
+
+
+def detail_parse(response):
+
+    pass

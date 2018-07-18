@@ -8,12 +8,6 @@
 import scrapy
 
 
-class VideodownloaderItem(scrapy.Item):
-    # define the fields for your item here like:
-    # name = scrapy.Field()
-    pass
-
-
 class JilupianItem(scrapy.Item):
 
     id = scrapy.Field()
@@ -21,3 +15,8 @@ class JilupianItem(scrapy.Item):
     zimu = scrapy.Field()
     url = scrapy.Field()
     date = scrapy.Field()
+
+
+class JilupianInfoItem(scrapy.Item):
+
+    pass
