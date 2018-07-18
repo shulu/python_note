@@ -23,6 +23,10 @@ class my_pipelines():
 
     def continue_to_excel(self):
 
+        """
+        获取最新数据计算是否需要更新本地数据
+        :return:
+        """
         data = open('max_count.json').read()
         data = json.loads(data)
         last_allacount = data['all_count']
@@ -48,6 +52,11 @@ class my_pipelines():
 
     def get_pipelines(self, pages):
 
+        """
+        分离出数据返回存储
+        :param pages:
+        :return:
+        """
         while pages > 0:
 
             time.sleep(0.5)
@@ -81,6 +90,11 @@ class my_pipelines():
     @staticmethod
     def conv_utc_time(dt):
 
+        """
+        转换UTC时间为正常时间
+        :param dt:
+        :return:
+        """
         dates = re.search("(\d*-\d*-\d*)", dt).group()
         times = re.search("(\d*:\d*:\d*)", dt).group()
         dt = dates + ' ' + times
@@ -97,10 +111,15 @@ class my_pipelines():
 
     def return_pipelines(self, page):
 
+        """
+        返回json数据
+        :param page:
+        :return:
+        """
+        page_ = 1
         if page:
-            url = 'https://g.banggood.com/' + self.project + '/pipelines.json?scope=all&page='+str(page)+'&private_token=' + self.private_token
-        else:
-            url = 'https://g.banggood.com/' + self.project + '/pipelines.json?scope=all&page=1&private_token=' + self.private_token
+            page_ = page
+        url = 'https://g.banggood.com/{}/pipelines.json?scope=all&page={}&private_token={}'.format(self.project, page_, self.private_token)
         ret = requests.get(url)
         if ret.status_code == 200:
             data = json.loads(ret.text)
@@ -110,6 +129,10 @@ class my_pipelines():
 
     def save_to_excel(self):
 
+        """
+        初始化存储数据
+        :return:
+        """
         pages = self.continue_to_excel()
         wb = load_workbook(self.excel_name)
         sheet = wb.active

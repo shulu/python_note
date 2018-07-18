@@ -1,7 +1,12 @@
 # -*- coding: utf-8 -*-
+
+from traceback import format_exc
+
 import scrapy
+import json, time
 from scrapy.http import Request
-from ..utils import parse
+from ..items import JilupianItem
+from ..utils.parse import parse
 
 class CctvSpider(scrapy.Spider):
     name = 'cctv'
@@ -21,7 +26,33 @@ class CctvSpider(scrapy.Spider):
 
     def parse(self, response):
 
-        url_list = parse(response)
+        url_list, data = parse(response.text)
+
+        for info in data:
+
+            item = JilupianItem()
+            item['id'] = info['url'].split['/'][6][-6]
+            item[ 'title' ] = info[ 'title' ]
+            item[ 'zimu' ] = info[ 'zimu' ]
+            item[ 'url' ] = info[ 'url' ]
+            item[ 'date' ] = int(time.time())
+
+            yield item
+
+        for url in url_list:
+
+            yield Request(
+                url = url,
+                callback='',
+                errback=self.error_back
+            )
 
 
-        pass
+
+
+
+    def error_back(self, e):
+
+        _ = e
+        self.logger.error(format_exc())
+

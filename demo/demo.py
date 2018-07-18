@@ -1,3 +1,17 @@
+
+import requests
+import json, re
+
+print('http://jishi.cctv.com/2016/09/12/VIDAV12WqaPzU09IZWj2WgsK160912.shtml'.split('/')[6][:-6])
+
+exit()
+# response = requests.get('http://jishi.cctv.com/doc/shujubao/A/index.json')
+txt = open('jsonp.text', 'r', encoding='utf-8').read()
+txt = txt.replace('index_data(', '').replace(')', '')
+print(json.loads(txt)['data']['defList'])
+# print(re.findall(r"\w+\((.*)\)", txt))
+# print((response.text))
+exit()
 a = [1,2,3,4,5,6]
 a.extend([1,2,3])
 print(a)
