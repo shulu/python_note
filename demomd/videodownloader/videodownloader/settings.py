@@ -88,3 +88,9 @@ ITEM_PIPELINES = {
 #HTTPCACHE_DIR = 'httpcache'
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
+
+# [MongoDB Config]
+MONGODB_HOST = '127.0.0.1'   #本地数据库
+MONGODB_PORT = '27017'    #数据库端口
+MONGODB_URI = 'mongodb://{}:{}'.format(MONGODB_HOST, MONGODB_PORT)
+MONGODB_DATABASE = 'test'  #数据库名字

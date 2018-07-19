@@ -3,6 +3,7 @@
 
 __author__ = 'SarcasMe'
 
+from pyquery import PyQuery
 import json
 
 def parse(response):
@@ -16,4 +17,14 @@ def parse(response):
 
 def detail_parse(response):
 
-    pass
+    """
+    #page_body > div:nth-child(9) > div > div.right > div > h3 title
+    #page_body > div:nth-child(9) > div > div.right > div > p:nth-child(3) type
+    #page_body > div:nth-child(9) > div > div.right > div > p:nth-child(5) director
+    #zhankai description
+    #fpy_ind03 single description
+    #chbox01 > div.mtab_con > div:nth-child(3) > div > div.list_box video list
+    :param response:
+    :return:
+    """
+    jpy = PyQuery(response.text)

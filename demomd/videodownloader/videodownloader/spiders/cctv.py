@@ -33,20 +33,20 @@ class CctvSpider(scrapy.Spider):
 
             item = JilupianItem()
             # item['id'] = info['url'].split['/'][6][-6]
-            item[ 'title' ] = info[ 'title' ]
-            item[ 'zimu' ] = info[ 'zimu' ]
-            item[ 'url' ] = info[ 'url' ]
-            item[ 'date' ] = int(time.time())
+            item['title'] = info['title']
+            item['zimu'] = info['zimu']
+            item['url'] = info['url']
+            item['date'] = int(time.time())
 
             yield item
 
-        # for url in url_list:
-        #
-        #     yield Request(
-        #         url=url,
-        #         callback=self.detail_parse,
-        #         errback=self.error_back,
-        #     )
+        for url in url_list:
+
+            yield Request(
+                url=url,
+                callback=self.detail_parse,
+                errback=self.error_back,
+            )
 
 
     def detail_parse(self, response):

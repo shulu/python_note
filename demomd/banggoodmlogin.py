@@ -17,7 +17,7 @@ def start_get_session():
 
 def get_base_cookie(session_):
 
-    response = session_.get('https://m.banggood.com/login.html?pannel=signin')
+    response = session_.get('https://m.banggood.com/login.html?pannel=signin', verify=False)
     s = etree.HTML(response.text)
     js_text = s.xpath('/html/body/script[2]/text()')
     # str = "var rand_code = '5b4c57cd8d273';"
