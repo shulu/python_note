@@ -7,3 +7,5 @@
 ### [python基础学习](http://www.cnblogs.com/luck-L/tag/python/default.html?page=2)
 
 `http://www.cnblogs.com/luck-L/tag/python/default.html?page=2`
+
+### [最新20条公开代理IP](http://www.goubanjia.com)

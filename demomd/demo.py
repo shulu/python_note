@@ -2,6 +2,21 @@
 import requests
 import json, re
 
+test_url = 'http://www.baidu.com' #这只是一个用来测试的网址，可以修改为目标网站
+ip = '125.212.254.125'
+port = 3128
+proxies = {
+        'http': 'http://{}:{}'.format(ip, port),
+        'https': 'http://{}:{}'.format(ip, port),
+    }
+response1 = requests.get(test_url, proxies=proxies, timeout=3)
+if response1.status_code == 200:
+    print('代理IP已保存！')
+else:
+    print('代理IP请求不成功！')
+
+
+exit()
 print('http://jishi.cctv.com/2016/09/12/VIDAV12WqaPzU09IZWj2WgsK160912.shtml'.split('/')[6][:-6])
 
 exit()
