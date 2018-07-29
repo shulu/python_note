@@ -1,0 +1,48 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+__author__ = 'SarcasMe'
+
+import requests
+from lxml import etree
+from pyquery import PyQuery
+"""
+    # tv.cctv.com
+    //*[@id="page_body"]/div[7]/div/div[1]/div/img -image
+    //*[@id="page_body"]/div[7]/div/div[2]/div/h3 -title
+    //*[@id="page_body"]/div[7]/div/div[2]/div/p[1] -type
+    //*[@id="page_body"]/div[7]/div/div[2]/div/p[2] -num
+    //*[@id="page_body"]/div[7]/div/div[2]/div/p[3] -director
+    //*[@id="zhankai"] -description
+    //*[@id="fpy_ind04"]/dd[2] -video list
+    # jishi.cctv.com
+    //*[@id="page_body"]/div[4]/div/div[1]/div[1]/div/div[1]/div/img -image
+    //*[@id="page_body"]/div[4]/div/div[1]/div[1]/div/div[1]/table/tbody/tr[1]/td[2]/a -title
+    //*[@id="page_body"]/div[4]/div/div[1]/div[1]/div/div[1]/table/tbody/tr[2]/td[2]/a -type
+    //*[@id="page_body"]/div[4]/div/div[1]/div[1]/div/div[1]/table/tbody/tr[4]/td[2] -director
+    //*[@id="foldtext"]/text() -description
+    //*[@id="ypdianbo"]/div/ul/li/div[1]/a[1] -url
+    :param response:
+    :return:
+    """
+
+url1 = 'http://tv.cctv.com/2012/12/15/VIDA1355568145639422.shtml'
+url2 = 'http://jishi.cctv.com/2016/09/12/VIDAV12WqaPzU09IZWj2WgsK160912.shtml'
+rq = requests.get(url1)
+print(rq.encoding)
+xp = etree.HTML(rq.text)
+# jp = PyQuery(rq.text)
+
+#xp.xpath('//*[@id="page_body"]/div[7]/div/div[1]/div/img/@src')[0]
+#xp.xpath('//*[@id="page_body"]/div[7]/div/div[2]/div/h3/text()')[0].encode('ISO-8859-1').decode('utf-8')
+#xp.xpath('//*[@id="page_body"]/div[7]/div/div[2]/div/p[1]/span')[0].tail.encode('ISO-8859-1').decode('utf-8')
+#xp.xpath('//*[@id="page_body"]/div[7]/div/div[2]/div/p[2]')[0].tail.encode('ISO-8859-1').decode('utf-8')
+#xp.xpath('//*[@id="page_body"]/div[7]/div/div[2]/div/p[3]')[0].tail.encode('ISO-8859-1').decode('utf-8')
+#items = xp.xpath('//*[@id="fpy_ind04"]/dd')
+#for it in range(1, len(items)):
+    # piece__href = xp.xpath('//*[@id="fpy_ind04"]/dd[{}]/div[1]/a[1]/@href'.format(it))[0]
+    # piece_title = xp.xpath('//*[@id="fpy_ind04"]/dd[{}]/div[1]/a[1]/@title'.format(it))[0].encode('ISO-8859-1').decode('utf-8')
+    # print("href: {} title: {}".format(piece__href, piece_title))
+#xp.xpath('//*[@id="shuoqi"]/span')[0].tail.encode('ISO-8859-1').decode('utf-8')
+
+pass

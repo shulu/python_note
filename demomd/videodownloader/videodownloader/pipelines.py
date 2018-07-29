@@ -34,6 +34,7 @@ class testPipeline(object):
         self.file.close()
         print('==============close file==========')
 
+
 class JilupianPipeline(object):
 
     def __init__(self, mongo_uri, mongo_db):
@@ -45,7 +46,8 @@ class JilupianPipeline(object):
     @classmethod
     def from_crawler(cls, crawler):
         return cls(
-            mongo_uri=crawler.settings.get('MONGODB_URI'),   #提取出了mongodb配置
+            # 提取出了mongodb配置
+            mongo_uri=crawler.settings.get('MONGODB_URI'),
             mongo_db=settings.get('MONGODB_DATABASE', 'items')
         )
 
@@ -54,8 +56,10 @@ class JilupianPipeline(object):
         _ = spider
         self.client = MongoClient(self.mongo_uri)  #连接数据库
         self.db = self.client[self.mongo_db]
-        self.db['jilupian_info'].ensure_index('url', unique=True)  #在表city58_info中建立索引，并保证索引的唯一性
-        self.db['jilupian_detail_info'].ensure_index('url', unique=True)   #在表city58_chuzu_info中建立索引，并保证索引的唯一性
+        # 在表city58_info中建立索引，并保证索引的唯一性
+        self.db['jilupian_info'].ensure_index('url', unique=True)
+        # 在表city58_chuzu_info中建立索引，并保证索引的唯一性
+        # self.db['jilupian_detail_info'].ensure_index('url', unique=True)
 
     def close_spider(self, spider):
         _ = spider
@@ -63,21 +67,23 @@ class JilupianPipeline(object):
 
     def process_item(self, item, spider):
         try:
-            if isinstance(item, JilupianItem):    #判断是否是小区的item
-                self.db['city58_info'].update({'id': item['id']}, {'$set': item}, upsert=True)   #通过id判断，有就更新，没有就插入
-            elif isinstance(item, JilupianInfoItem): #判断是否是小区出租信息的item
+            # 判断是否是小区的item
+            if isinstance(item, JilupianItem):
+                # 通过id判断，有就更新，没有就插入
+                self.db['jilupian_info'].update({'id': item['id']}, {'$set': item}, upsert=True)
+            # 判断是否是小区出租信息的item
+            elif isinstance(item, JilupianInfoItem):
                 try:
-                    self.db['city58_chuzu_info'].update({'url': item['url']}, {'$set': item}, upsert=True)   #通过url判断，有就更新，没有就插入
+                    # 通过url判断，有就更新，没有就插入
+                    self.db['city58_chuzu_info'].update({'url': item['url']}, {'$set': item}, upsert=True)
+                # 打印错误
                 except Exception as e:
-                    print(e)   #打印错误
+                    print(e)
 
         except DuplicateKeyError:
-            spider.logger.debug(' duplicate key error collection')  #唯一键冲突报错
+            # 唯一键冲突报错
+            spider.logger.debug(' duplicate key error collection')
         except Exception as e:
             _ = e
             spider.logger.error(format_exc())
-        return item
-
-class VideodownloaderPipeline(object):
-    def process_item(self, item, spider):
         return item
