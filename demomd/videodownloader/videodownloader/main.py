@@ -6,8 +6,5 @@ __author__ = 'SarcasMe'
 
 from scrapy.cmdline import execute
 
-import requests
-from lxml import etree
-
-# execute('scrapy crawl cctv'.split())
+execute('scrapy crawl cctv'.split())
 

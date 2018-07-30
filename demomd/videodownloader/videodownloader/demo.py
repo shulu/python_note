@@ -6,6 +6,7 @@ __author__ = 'SarcasMe'
 import requests
 from lxml import etree
 from pyquery import PyQuery
+import re
 """
     # tv.cctv.com
     //*[@id="page_body"]/div[7]/div/div[1]/div/img -image
@@ -28,11 +29,20 @@ from pyquery import PyQuery
 
 url1 = 'http://tv.cctv.com/2012/12/15/VIDA1355568145639422.shtml'
 url2 = 'http://jishi.cctv.com/2016/09/12/VIDAV12WqaPzU09IZWj2WgsK160912.shtml'
-rq = requests.get(url1)
+rq = requests.get(url2)
 print(rq.encoding)
 xp = etree.HTML(rq.text)
+#file = open('jishi.txt', 'w', encoding='utf-8')
+#file.write(rq.text.encode('ISO-8859-1').decode('utf-8'))
 # jp = PyQuery(rq.text)
-
+items = xp.xpath('//script/text()')
+print(re.findall(r'(VSET[\d]{12})',items[12]))
+# count = 1
+# for it in items:
+#
+#     piece__href = it.encode('ISO-8859-1').decode('utf-8')
+#     print("index: {} href: {}".format(count, piece__href))
+#     count+=1
 #xp.xpath('//*[@id="page_body"]/div[7]/div/div[1]/div/img/@src')[0]
 #xp.xpath('//*[@id="page_body"]/div[7]/div/div[2]/div/h3/text()')[0].encode('ISO-8859-1').decode('utf-8')
 #xp.xpath('//*[@id="page_body"]/div[7]/div/div[2]/div/p[1]/span')[0].tail.encode('ISO-8859-1').decode('utf-8')
