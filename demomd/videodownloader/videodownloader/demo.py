@@ -3,10 +3,13 @@
 
 __author__ = 'SarcasMe'
 
+from subprocess import run, call, Popen
 import requests
 from lxml import etree
 from pyquery import PyQuery
 import re
+
+
 """
     # tv.cctv.com
     //*[@id="page_body"]/div[7]/div/div[1]/div/img -image

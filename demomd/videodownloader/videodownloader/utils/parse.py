@@ -6,6 +6,7 @@ __author__ = 'SarcasMe'
 from pyquery import PyQuery
 import json
 from lxml import etree
+import re
 
 def parse(response):
 
@@ -38,12 +39,16 @@ def detail_parse(response):
     """
     # jpy = PyQuery(response.text)
     request_url = response.url
+    xp = etree.HTML(response.text)
     if 'jishi' in request_url:
         # print('here was jishi {}'.format(request_url))
+        json_url = 'http://tv.cntv.cn/api/video/getvideo/{}'
+        script = xp.xpath('//script/text()')
+        vset = re.findall(r'(VSET[\d]{12})', script[12])
+
         pass
     elif 'tv.cctv.com' in request_url:
         # print('hera was tv')
-        xp = etree.HTML(response.text)
         image = xp.xpath('//*[@id="page_body"]/div[7]/div/div[1]/div/img/@src')[ 0 ]
         title = xp.xpath('//*[@id="page_body"]/div[7]/div/div[2]/div/h3/text()')[ 0 ].encode('ISO-8859-1').decode('utf-8')
         type = xp.xpath('//*[@id="page_body"]/div[7]/div/div[2]/div/p[1]/span')[ 0 ].tail.encode('ISO-8859-1').decode('utf-8')
