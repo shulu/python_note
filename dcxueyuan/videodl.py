@@ -19,6 +19,7 @@ def start_get_ession():
     session = requests.session()
     return session
 
+
 def get_cookies(session_):
 
     header = {
@@ -26,6 +27,7 @@ def get_cookies(session_):
         'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36'
     }
     session_.get(session_url, headers=header)
+
 
 def login(session_):
 
@@ -44,6 +46,7 @@ def login(session_):
     # print(response.text)
     pass
 
+
 def get_session(session_):
 
     headers = {
@@ -53,6 +56,7 @@ def get_session(session_):
     }
     requests.utils.add_dict_to_cookiejar(session_.cookies, {"_dcU": "sarcasme"})
     session_.get(session_url, headers=headers)
+
 
 def get_course(session_):
     course_url = 'https://www.dcxueyuan.com/user/getVideoUrl.json?classId={}&pixel=1080P&videoFrom=2'
@@ -69,7 +73,7 @@ def download_course():
 
     counts = 1
     for title,url in webm:
-        p = Popen('you-get -o ./dc_video/webm -O {}-{}.webm {}'.format(counts, title, url), shell=True)
+        p = Popen('you-get -o ./dc_video/webm -O {}-{} {}'.format(counts, title, url), shell=True)
         p.wait()
         counts+=1
 
