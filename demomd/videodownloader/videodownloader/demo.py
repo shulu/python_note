@@ -8,7 +8,7 @@ import requests
 from lxml import etree
 from pyquery import PyQuery
 import re
-
+import json
 
 """
     # tv.cctv.com
@@ -29,17 +29,35 @@ import re
     :param response:
     :return:
     """
-
+url = 'http://tv.cctv.com/2017/07/04/VIDESiZ5OCY9hwSwF7SY7fiA170704.shtml'
+print(re.findall(r'(VIDE[\w]*)', url))
+exit()
 url1 = 'http://tv.cctv.com/2012/12/15/VIDA1355568145639422.shtml'
 url2 = 'http://jishi.cctv.com/2016/09/12/VIDAV12WqaPzU09IZWj2WgsK160912.shtml'
 rq = requests.get(url2)
-print(rq.encoding)
+# print(rq.encoding)
 xp = etree.HTML(rq.text)
-#file = open('jishi.txt', 'w', encoding='utf-8')
-#file.write(rq.text.encode('ISO-8859-1').decode('utf-8'))
+# file = open('jishi.txt', 'w', encoding='utf-8')
+# file.write(rq.text.encode('ISO-8859-1').decode('utf-8'))
 # jp = PyQuery(rq.text)
+
 items = xp.xpath('//script/text()')
-print(re.findall(r'(VSET[\d]{12})',items[12]))
+param = re.findall(r'(VSET[\d]{12})',items[12])[0]
+dl_url = 'http://tv.cntv.cn/api/video/getvideo/vsid_{}'.format(param)
+dl_rq = requests.get(dl_url)
+video_info = json.loads(dl_rq.text)
+vsid = video_info['videoset']['0']['vsid']
+image = video_info['videoset']['0']['img']
+num = video_info['videoset']['count']
+video_url = video_info['videoset']['0']['url']
+video_name = video_info['videoset']['0']['name']
+video_date = video_info['videoset']['0']['nf']
+video_type = video_info['videoset']['0']['fl']
+video_desc = video_info['videoset']['0']['desc']
+print(video_name+' : '+video_url)
+# print(video_info)
+for info in video_info['video']:
+    print(info)
 # count = 1
 # for it in items:
 #

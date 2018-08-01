@@ -38,8 +38,8 @@ def login(session_):
         'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36'
     }
     data= {
-        'username': 'sarcasme',
-        'password': 'sarcasme'
+        'username': '*****',
+        'password': '*****'
     }
     response = session_.post(login_url, headers = headers, data=data)
     # get_cookies(session_)
@@ -54,7 +54,7 @@ def get_session(session_):
         'Referer': 'https://www.dcxueyuan.com/login.html',
         'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36'
     }
-    requests.utils.add_dict_to_cookiejar(session_.cookies, {"_dcU": "sarcasme"})
+    requests.utils.add_dict_to_cookiejar(session_.cookies, {"_dcU": "*****"})
     session_.get(session_url, headers=headers)
 
 

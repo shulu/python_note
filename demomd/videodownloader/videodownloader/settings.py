@@ -65,7 +65,7 @@ ROBOTSTXT_OBEY = True
 # Configure item pipelines
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-   # 'videodownloader.pipelines.testPipeline': 300,
+   'videodownloader.pipelines.testPipeline': 300,
    # 'videodownloader.pipelines.JilupianPipeline': 300,
 }
 

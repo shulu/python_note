@@ -12,7 +12,7 @@ from pymongo import MongoClient
 from scrapy.conf import settings
 from pymongo.errors import DuplicateKeyError
 from traceback import format_exc
-from .items import JilupianItem, JilupianInfoItem
+from .items import JilupianItem, JilupianInfoItem, JilupianVideoInfoItem
 import json
 
 
@@ -27,7 +27,6 @@ class testPipeline(object):
         line = '{}\n'.format(json.dumps(dict(item)))
         self.file.write(line)
         return item
-
 
     def close_spider(self, spider):
 
@@ -67,15 +66,22 @@ class JilupianPipeline(object):
 
     def process_item(self, item, spider):
         try:
-            # 判断是否是小区的item
+            # 判断是否是第一层页面的item
             if isinstance(item, JilupianItem):
                 # 通过id判断，有就更新，没有就插入
                 self.db['jilupian_info'].update({'id': item['id']}, {'$set': item}, upsert=True)
-            # 判断是否是小区出租信息的item
+            # 判断是否是纪录片页面信息的item
             elif isinstance(item, JilupianInfoItem):
                 try:
-                    # 通过url判断，有就更新，没有就插入
-                    self.db['city58_chuzu_info'].update({'url': item['url']}, {'$set': item}, upsert=True)
+                    # 通过id判断，有就更新，没有就插入
+                    self.db['jilupian_detail_info'].update({'id': item['id']}, {'$set': item}, upsert=True)
+                # 打印错误
+                except Exception as e:
+                    print(e)
+            elif isinstance(item, JilupianVideoInfoItem):
+                try:
+                    # 通过id判断，有就更新，没有就插入
+                    self.db['jilupian_video_info'].update({'id': item['id']}, {'$set': item}, upsert=True)
                 # 打印错误
                 except Exception as e:
                     print(e)

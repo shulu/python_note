@@ -19,4 +19,22 @@ class JilupianItem(scrapy.Item):
 
 class JilupianInfoItem(scrapy.Item):
 
-    pass
+    id = scrapy.Field()
+    title = scrapy.Field()
+    director = scrapy.Field()
+    num = scrapy.Field()
+    img = scrapy.Field()
+    url = scrapy.Field()
+    type = scrapy.Field()
+    desc = scrapy.Field()
+    date = scrapy.Field()
+
+class JilupianVideoInfoItem(scrapy.Item):
+
+    id = scrapy.Field()
+    vsid = scrapy.Field()
+    order = scrapy.Field()
+    title = scrapy.Field()
+    img = scrapy.Field()
+    url = scrapy.Field()
+    date = scrapy.Field()
