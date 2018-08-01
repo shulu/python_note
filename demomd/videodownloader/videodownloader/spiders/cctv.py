@@ -78,7 +78,7 @@ class CctvSpider(scrapy.Spider):
             item['title'] = video['t']
             item['img'] = video['url']
             item['url'] = video['img']
-            item['id'] = int(time.time())
+            item['date'] = int(time.time())
 
             yield item
 

@@ -65,8 +65,8 @@ ROBOTSTXT_OBEY = True
 # Configure item pipelines
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-   'videodownloader.pipelines.testPipeline': 300,
-   # 'videodownloader.pipelines.JilupianPipeline': 300,
+   # 'videodownloader.pipelines.testPipeline': 300,
+   'videodownloader.pipelines.JilupianPipeline': 300,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
@@ -94,4 +94,4 @@ ITEM_PIPELINES = {
 MONGODB_HOST = '127.0.0.1'   #本地数据库
 MONGODB_PORT = '27017'    #数据库端口
 MONGODB_URI = 'mongodb://{}:{}'.format(MONGODB_HOST, MONGODB_PORT)
-MONGODB_DATABASE = 'test'  #数据库名字
+MONGODB_DATABASE = 'cctv_documentary'  #数据库名字

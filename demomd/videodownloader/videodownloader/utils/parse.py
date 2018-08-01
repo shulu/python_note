@@ -40,6 +40,7 @@ def detail_parse(response):
     """
     # jpy = PyQuery(response.text)
     request_url = response.url
+    encoding = response.encoding
     xp = etree.HTML(response.text)
     if 'jishi' in request_url:
         # print('here was jishi {}'.format(request_url))
@@ -79,22 +80,21 @@ def detail_parse(response):
     elif 'tv.cctv.com' in request_url:
         # print('hera was tv')
         video = []
-        vsid = re.findall(r'(VIDE[\w]*)', request_url)[0]
+        vsid = re.findall(r'(VID[\w]*)', request_url)[0]
         image = xp.xpath('//*[@id="page_body"]/div[7]/div/div[1]/div/img/@src')[ 0 ]
-        video_name = xp.xpath('//*[@id="page_body"]/div[7]/div/div[2]/div/h3/text()')[ 0 ].encode('ISO-8859-1').decode('utf-8')
-        video_type = xp.xpath('//*[@id="page_body"]/div[7]/div/div[2]/div/p[1]/span')[ 0 ].tail.encode('ISO-8859-1').decode('utf-8')
-        num = xp.xpath('//*[@id="page_body"]/div[7]/div/div[2]/div/p[2]')[ 0 ].tail.encode('ISO-8859-1').decode('utf-8')
-        director = xp.xpath('//*[@id="page_body"]/div[7]/div/div[2]/div/p[3]')[ 0 ].tail.encode('ISO-8859-1').decode('utf-8')
-        video_desc =  xp.xpath('//*[@id="shuoqi"]/span')[ 0 ].tail.encode('ISO-8859-1').decode('utf-8')
-        publish_date = xp.xpath('/html/head/script[15]')
+        video_name = xp.xpath('//*[@id="page_body"]/div[7]/div/div[2]/div/h3/text()')[ 0 ].encode(encoding).decode('utf-8')
+        video_type = xp.xpath('//*[@id="page_body"]/div[7]/div/div[2]/div/p[1]/span')[ 0 ].tail.encode(encoding).decode('utf-8').strip()
+        num = xp.xpath('//*[@id="page_body"]/div[7]/div/div[2]/div/p[2]')[ 0 ].tail.encode(encoding).decode('utf-8').strip()
+        director = xp.xpath('//*[@id="page_body"]/div[7]/div/div[2]/div/p[3]')[ 0 ].tail.encode(encoding).decode('utf-8')
+        video_desc =  xp.xpath('//*[@id="shuoqi"]/span')[ 0 ].tail.encode(encoding).decode('utf-8')
+        publish_date = xp.xpath('/html/head/script/text()')[3]
         video_date = re.findall(r'([\d]{14})', publish_date)[0]
         items = xp.xpath('//*[@id="fpy_ind04"]/dd')
         for it in range(1, len(items)):
             piece_href = xp.xpath('//*[@id="fpy_ind04"]/dd[{}]/div[1]/a[1]/@href'.format(it))[ 0 ]
             piece_img = xp.xpath('//*[@id="fpy_ind04"]/dd[{}]/div[1]/a[2]/img/@src'.format(it))[ 0 ]
-            piece_title = xp.xpath('//*[@id="fpy_ind04"]/dd[{}]/div[1]/a[1]/@title'.format(it))[ 0 ].encode(
-                'ISO-8859-1').decode('utf-8')
-            vid = re.findall(r'(VIDE[\w]*)', piece_href)[0]
+            piece_title = xp.xpath('//*[@id="fpy_ind04"]/dd[{}]/div[1]/a[1]/@title'.format(it))[ 0 ].encode(encoding).decode('utf-8')
+            vid = re.findall(r'(VID[\w]*)', piece_href)[0]
             video.append({
                 'vsid':vsid,
                 'order':it,
