@@ -60,9 +60,11 @@ def get_session(session_):
 
 def get_course(session_):
     course_url = 'https://www.dcxueyuan.com/user/getVideoUrl.json?classId={}&pixel=1080P&videoFrom=2'
-    for i in range(51, 70):
+    for i in range(51, 71):
+    # for i in range(1, 36):
         res = session_.get(course_url.format(i))
         info = json.loads(res.text)
+        # print(info)
         title = info['data']['class']['name']
         # video_url = info['data']['urls'][2]
         video_url = info['data']['url']
@@ -84,4 +86,5 @@ if __name__ == '__main__':
     login(session)
     get_session(session)
     get_course(session)
+    print(webm)
     download_course()
