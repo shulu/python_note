@@ -6,5 +6,18 @@
 
 `http://www.cnblogs.com/luck-L/tag/python/default.html?page=2`
 
-### [最新20条公开代理IP](http://www.goubanjia.com)
-`http://www.goubanjia.com`
+
+### IP代理
+
+[全网代理](http://www.goubanjia.com)
+    `http://www.goubanjia.com`
+    
+[站大爷](http://ip.zdaye.com/FreeIPlist.html)
+ `http://ip.zdaye.com/FreeIPlist.html`
+ 
+[蚂蚁代理](http://www.mayidaili.com/share/) `http://www.mayidaili.com/share/`
+
+[无忧代理](http://www.data5u.com/free/index.html) `http://www.data5u.com/free/index.html`
+
+[米扑代理](https://proxy.mimvp.com/price.php#open) `https://proxy.mimvp.com/price.php#open`
+
