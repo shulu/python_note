@@ -4,7 +4,7 @@
 __author__ = 'SarcasMe'
 
 import requests
-
+import json
 
 login_url = 'http://www.acfun.cn/login.aspx'
 session_url = 'http://www.acfun.cn/verification/captcha'
@@ -36,7 +36,9 @@ def login(session_):
         'password': 'SHU1202LU'
     }
     response = session_.post(login_url, headers = headers, data=data)
-    print(response.text)
+    cookie_file = open('ac_cookie.json', 'w')
+    cookie_file.write(json.dumps(response.cookies.get_dict()))
+    # print(response.cookies.get_dict())
 
 if __name__ == '__main__':
 
