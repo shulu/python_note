@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>366</width>
-    <height>542</height>
+    <width>278</width>
+    <height>377</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -26,8 +26,14 @@
       <property name="minimumSize">
        <size>
         <width>0</width>
-        <height>81</height>
+        <height>40</height>
        </size>
+      </property>
+      <property name="font">
+       <font>
+        <family>Monaco</family>
+        <pointsize>12</pointsize>
+       </font>
       </property>
      </widget>
     </item>
@@ -50,7 +56,7 @@
     <item>
      <layout class="QGridLayout" name="gridLayout">
       <item row="0" column="0">
-       <widget class="QPushButton" name="num_0">
+       <widget class="QPushButton" name="num_1">
         <property name="minimumSize">
          <size>
           <width>60</width>
@@ -69,7 +75,7 @@
        </widget>
       </item>
       <item row="0" column="1">
-       <widget class="QPushButton" name="num_1">
+       <widget class="QPushButton" name="num_2">
         <property name="minimumSize">
          <size>
           <width>60</width>
@@ -297,7 +303,7 @@
        </widget>
       </item>
       <item row="3" column="1">
-       <widget class="QPushButton" name="pushButton_13">
+       <widget class="QPushButton" name="num_0">
         <property name="minimumSize">
          <size>
           <width>60</width>
@@ -362,7 +368,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>366</width>
+     <width>278</width>
      <height>19</height>
     </rect>
    </property>
