@@ -5,9 +5,8 @@ __author__ = 'SarcasMe'
 
 
 import sys
-from PyQt5.QtWidgets import QApplication, QMainWindow
-from pyQtdemo.designer.calculated import *
-from pyQtdemo.calc import calculator
+from PyQt5.QtWidgets import QApplication, QMainWindow, QMessageBox
+from calculated import *
 
 class MyWindow(QMainWindow, Ui_MainWindow):
 
@@ -58,14 +57,23 @@ class MyWindow(QMainWindow, Ui_MainWindow):
         self.lineEdit.insert('/')
 
     def equal_click ( self ):
-        self.lineEdit.insert('=')
-        text = self.lineEdit.text()
-        res = calculator(text)
-        self.lineEdit.insert(res)
+        s = self.lineEdit.text()
+        if len(s) > 0:
+            try:
+                ans = eval(s)
+                self.lineEdit.clear()
+                self.lineEdit.setText(str(ans))
+            except:
+                self.lineEdit.clear()
+                self.slotCritical()
+                return False
 
     def clear_click ( self ):
         self.lineEdit.clear()
 
+    def slotCritical(self):
+        QMessageBox.critical(self, "Critical",
+                             self.tr("请输入正确的表达式!"))
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
