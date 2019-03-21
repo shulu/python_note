@@ -1,6 +1,6 @@
 #-*-coding:utf-8-*-
 
-import requests
+`
 from lxml import etree
 from openpyxl import load_workbook
 import random
