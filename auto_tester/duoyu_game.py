@@ -17,6 +17,7 @@ class duoyugame():
         self.user_url = 'http://sdkapi.543911.com/api/h5/user.php'
         self.login_url = 'http://sdkapi.543911.com/h5/login_skip.php'
         self.uname = ''
+        self.ori_pwd = ''
         self.pwd = ''
         self.game_id = 34
         self.sess_id = ''
@@ -75,7 +76,7 @@ class duoyugame():
     # 写入游戏对应信息
     def set_account_info(self):
         file_time = str(datetime.datetime.now().strftime('%Y-%m-%d'))
-        file_name = file_time+'csv'
+        file_name = './'+file_time+'.csv'
         state = os.path.exists(file_name)  # 判断路径是否存在
         if state:
             # 打开文件，追加a
@@ -83,16 +84,17 @@ class duoyugame():
             # 设定写入模式
             csv_write = csv.writer(out, dialect='excel')
             # 写入具体内容
-            info = [self.uid, self.uname, self.pwd, self.game_id, self.real_url]
+            info = [self.uid, self.uname, self.ori_pwd, self.game_id, self.real_url]
             csv_write.writerow(info)
         else:
-            os.makedirs(file_name)
             # 打开文件，追加a
-            out = open(file_name, 'a', newline='')
+            out = open(file_name, 'w', newline='')
             # 设定写入模式
             csv_write = csv.writer(out, dialect='excel')
             # 写入头
             info = ['uid', 'username', 'password', 'game_id', 'game_url']
+            csv_write.writerow(info)
+            info = [self.uid, self.uname, self.ori_pwd, self.game_id, self.real_url]
             csv_write.writerow(info)
 
     # 获取真实游戏地址
@@ -132,6 +134,7 @@ class duoyugame():
         for x in range(0,6):
             offset = random.randint(0, int(len_char)-1)
             pwd = pwd+chars[offset]
+        self.ori_pwd = pwd
         self.pwd = self.get_token(pwd)
         #return {'uname':uname, 'pwd':pwd}
 
