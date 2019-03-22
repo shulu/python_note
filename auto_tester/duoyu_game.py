@@ -4,8 +4,9 @@
 __author__ = 'SarcasMe'
 
 import requests
+from selenium import webdriver
 import hashlib
-import json, time, random, csv, os, datetime
+import json, time, random, csv, os, datetime, re
 
 
 class duoyugame():
@@ -16,6 +17,8 @@ class duoyugame():
         self.game_url = 'http://h5.543911.com/game.php?id='
         self.user_url = 'http://sdkapi.543911.com/api/h5/user.php'
         self.login_url = 'http://sdkapi.543911.com/h5/login_skip.php'
+        self.pay_url = 'http://h5.543911.com/iframe/pay.php'
+        self.yb_url = 'https://lcwslogpy.newyx.jiulingwan.com/duoyu/payment?'
         self.uname = ''
         self.ori_pwd = ''
         self.pwd = ''
@@ -23,14 +26,55 @@ class duoyugame():
         self.sess_id = ''
         self.uid = ''
         self.real_url = ''
+        self.login_cookie = ''
+        self.server_id = 0
+        self.order_id = ''
 
-    def main_hand(self):
+    def main(self):
         # self.game_id = game_id
         self.reg()
         self.get_info()
         self.get_real_url()
         self.set_account_info()
+        self.handler_game()
         pass
+
+    def yb(self):
+        pay_key = 'c315e07b11e8426c8371c6d00fc9b4fd'
+        payload = {
+            "uid": 24,
+            "money": 39830,
+            "time": str(int(time.time())),
+            "sid": "66624406",
+            "orderid": self.order_id,
+            "ext": "39830|66624406",
+            "flag": "1000元宝",
+        }
+        md5_str = payload['uid']+payload['money']+payload['time']+payload['sid']+payload['orderid']+payload['ext']+pay_key
+        md5_str = self.get_token(md5_str)
+        payload['flag'] = md5_str
+        r = requests.get(self.yb_url, params=payload)
+        print(r.text)
+        pass
+
+    def order(self):
+        payload = {
+            "game_id": 24,
+            "server_id": 39830,
+            "uid": 1,
+            "role_id": "66624406",
+            "role_name": "眼泪辉煌",
+            "money": 10,
+            "ext": "39830|66624406",
+            "product_name": "1000元宝",
+            "user_name": "sarcasme",
+            "agent_id": 200000,
+            "site_id": 200000,
+            "tw_game_id": ""
+        }
+        r = self.sess.get(self.pay_url, params=payload)
+        pay_info = json.loads(r.text)
+        self.order_id = pay_info['data']['orderid']
 
     def reg(self):
         self.set_user_pwd()
@@ -61,6 +105,13 @@ class duoyugame():
             "game_id": self.game_id,
         }
         r = self.sess.get(self.user_url, params=payload)
+        self.login_cookie = {
+            'loginreg':r.cookies["loginreg"],
+            'login_time':r.cookies["login_time"],
+            'login_name':r.cookies["login_name"],
+            'login_ip':r.cookies["login_ip"],
+            'PHPSESSID':r.cookies["PHPSESSID"]
+        }
         self.sess_id = r.cookies["PHPSESSID"]
 
     def get_info(self):
@@ -151,10 +202,22 @@ class duoyugame():
         game_url = self.game_url + str(game_id)
         return game_url
 
+    def handler_game(self):
+        driver = webdriver.Chrome()
+        driver.get(self.real_url)
+        for key in self.login_cookie:
+            driver.add_cookie({'name': key, 'value': self.login_cookie[key]})
+        driver.get(self.real_url)
+        server_ele = driver.find_element_by_class_name('selected-server').text
+        self.server_id = re.sub("\D", "", server_ele)
+        driver.find_element_by_xpath('//*[@id="curDf"]/p').click()
+        #now_driver = driver.current_window_handle()
+        print(driver.page_source)
+        pass
 
 if __name__ == '__main__':
 
     #game_id = input('请输入要生成的游戏ID:')
     game = duoyugame()
     #game.main_hand(game_id)
-    game.main_hand()
+    game.main()
